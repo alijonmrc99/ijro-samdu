@@ -7,8 +7,6 @@ import { HomePage } from "../pages/home-page";
 export type RouteObjectType = IndexRouteObject |
     (Omit<NonIndexRouteObject, 'children'> & { children: (RouteObject & { roles?: RoleTypeEnums[] })[] }) & { roles?: RoleTypeEnums[] }
 
-
-const
 export const routes = (): RouteObjectType[] => {
     return [
         {
@@ -18,7 +16,7 @@ export const routes = (): RouteObjectType[] => {
             children: [
                 {
                     path: ROUTE_LOGIN,
-                    element: null
+                    element: <LoginForm />
                 }
             ]
         },]
