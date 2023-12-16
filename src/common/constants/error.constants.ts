@@ -1,0 +1,1 @@
+export const MSG_ERROR_REQIURED_FIELD = 'error.message.required';
