@@ -31,7 +31,7 @@ export const useLogin = () => {
     const handleErrors = (errors: any) => {
         messageApi.open({
             type: 'error',
-            content: errors?.response?.data?.message || "Error message",
+            content: errors?.response?.data?.message || "Error message for user",
         })
     }
 
@@ -39,8 +39,8 @@ export const useLogin = () => {
         setIsLoading(true);
 
         login(values)
-            .then(({ result: { result: { token } } }) => {
-                setBearerToken(token);
+            .then(({ data: { accessToken } }) => {
+                setBearerToken(accessToken);
                 navigate(ROUTE_DASHBOARD);
             })
             .catch(handleErrors)
@@ -55,8 +55,10 @@ export const login = (body: ILoginQuery): Promise<ILogin> => {
     const loginData = new URLSearchParams();
     loginData.append('username', body.username);
     loginData.append('password', body.password);
+    // console.log();
 
-    return httpApi.post(ENDPOINT_AUTH_LOGIN, loginData.toString, {
+
+    return httpApi.post(ENDPOINT_AUTH_LOGIN, loginData.toString(), {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         }

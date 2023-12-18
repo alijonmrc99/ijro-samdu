@@ -1,1 +1,1 @@
-export const ENDPOINT_ROOT = ""
+export const ENDPOINT_ROOT = "http://172.16.10.126:8000/api";

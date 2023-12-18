@@ -1,9 +1,7 @@
 import { FC } from "react";
 import Group from "antd/es/input/Group";
-import { Controller } from "react-hook-form";
-import { useTranslation } from "react-i18next";
+import { Control, Controller } from "react-hook-form";
 import { Input, InputProps, Space } from "antd";
-import { Control } from "react-hook-form/dist/types/form";
 import Search, { SearchProps } from "antd/es/input/Search";
 import TextArea, { TextAreaProps } from "antd/es/input/TextArea";
 import Password, { PasswordProps } from "antd/es/input/Password";
@@ -33,7 +31,7 @@ export const TextFieldController: FC<TextFieldControllerProps> = ({
     label,
     ...props
 }) => {
-    const { t } = useTranslation();
+    // const { t } = useTranslation();
     const ControlledInput = inputCompound
         ? (Input[inputCompound] as CompoundedComponent)
         : Input;
@@ -41,13 +39,17 @@ export const TextFieldController: FC<TextFieldControllerProps> = ({
         <Controller
             name={name}
             control={control}
-            render={({ field: { ...fieldProps }, fieldState: { error } }) => (
-                <Space style={{ width: '100%' }} size={'small'} direction={'vertical'}>
-                    {label && <label className="controller-label">{label}</label>}
-                    <ControlledInput {...{ ...props, ...fieldProps }} type="default" />
-                    <small>{error?.message ? t(error.message) : null}</small>
-                </Space>
-            )}
+            render={({ field: { ...fieldProps }, fieldState: { error } }) => {
+                console.log(error);
+
+                return (
+                    <Space style={{ width: '100%' }} size={'small'} direction={'vertical'}>
+                        {label && <label className="controller-label">{label}</label>}
+                        <ControlledInput {...{ ...props, ...fieldProps }} type="default" />
+                        <small>{error?.message ? error.message : null}</small>
+                    </Space>
+                )
+            }}
         />
     );
 };

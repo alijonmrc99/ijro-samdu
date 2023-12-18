@@ -1,7 +1,8 @@
 import { IndexRouteObject, NonIndexRouteObject, RouteObject } from "react-router-dom";
-import { ROUTE_HOME, ROUTE_LOGIN, RoleTypeEnums } from "../common/constants";
+import { ROUTE_DASHBOARD, ROUTE_HOME, ROUTE_LOGIN, RoleTypeEnums } from "../common/constants";
 import { LoginForm } from "../features/auth/companets/login-form";
 import { HomePage } from "../pages/home-page";
+import { DashboardBase } from "../layouts/DashboardBase";
 
 
 export type RouteObjectType = IndexRouteObject |
@@ -19,5 +20,14 @@ export const routes = (): RouteObjectType[] => {
                     element: <LoginForm />
                 }
             ]
-        },]
+        },
+        {
+            path: ROUTE_DASHBOARD,
+            caseSensitive: true,
+            element: <DashboardBase />,
+            children: [
+
+            ]
+        }
+    ]
 }

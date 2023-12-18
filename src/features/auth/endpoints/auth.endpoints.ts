@@ -1,2 +1,2 @@
-export const ENDPOINT_AUTH_LOGIN = '/auth/login';
-export const ENDPOINT_AUTH_ME = '/users/current';
+export const ENDPOINT_AUTH_LOGIN = '/login';
+export const ENDPOINT_AUTH_ME = '/fetchme';

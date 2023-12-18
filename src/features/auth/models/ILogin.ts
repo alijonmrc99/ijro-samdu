@@ -6,14 +6,11 @@ export interface ILoginQuery {
 
 export interface ILogin {
     error: any,
-    result: ILoginResult,
+    data: ILoginResult,
     role: string[]
 }
 
 export interface ILoginResult {
     step: string,
-    result: {
-        token: string,
-        user: {}
-    }
+    accessToken: string,
 }

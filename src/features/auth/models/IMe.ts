@@ -1,8 +1,10 @@
 import { RoleTypeEnums } from "../../../common/constants";
+import { ID } from "../../../common/models/baseTypes";
 
 export interface IMe {
-    fullName: string,
-    userName: string,
+    id: ID;
+    fullName: string;
+    userName: string;
     roles: IRole
 }
 
