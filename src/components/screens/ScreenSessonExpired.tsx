@@ -10,7 +10,7 @@ export const ScreenSessionExpired: FC = () => {
     const handleLogout = () => {
         dispatch(meSlice.actions.emptyState());
         localStorage.removeItem(BASE_AUTH_TOKEN);
-        navigate(`/${ROUTE_LOGIN}`)
+        navigate(ROUTE_LOGIN)
     }
 
     return (

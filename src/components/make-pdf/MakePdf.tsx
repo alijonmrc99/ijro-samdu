@@ -1,26 +1,18 @@
 import jsPDF from "jspdf";
 import { FC, useRef } from "react";
+import { typedEntries } from "../../common/utils/functions";
+
 
 export const MakePdf: FC = () => {
     const demoRef = useRef(null)
 
-    const printCharacters = (doc: any, textObject: [string], startY: number, startX: number, fontSize: number, lineSpacing: number) => {
+    const printCharacters = (doc: jsPDF, textObject: [string], startY: number, startX: number, fontSize: number, lineSpacing: number) => {
         const startXCached = startX;
         const boldStr = 'bold';
         const boldItl = 'italic';
         const normalStr = 'normal';
         textObject.map(row => {
-            console.log(row);
-
-            type TypeOfValue = [
-                string,
-                {
-                    char: string,
-                    bold: boolean,
-                }
-            ];
-
-            Object.values(row).map((value) => {
+            typedEntries(row).map((value: { italic: boolean, under: boolean, char: string, bold: boolean }) => {
 
                 doc.setFont("times", value?.italic ? boldItl : normalStr, value?.bold ? boldStr : normalStr,);
 
@@ -57,7 +49,7 @@ export const MakePdf: FC = () => {
         const regex = /(\*{2})+/g; // all "**" words
         const textWithoutBoldMarks = inputValue.replace(regex, '');
 
-        let splitTextWithoutBoldMarks = doc.splitTextToSize(
+        let splitTextWithoutBIUMarks = doc.splitTextToSize(
             textWithoutBoldMarks,
             maxLineWidth
         );
@@ -68,9 +60,8 @@ export const MakePdf: FC = () => {
         let isItalic = false;
         let isUnder = false;
 
-        // <><>><><>><>><><><><><>>><><<><><><><>
-        // power algorithm to determine which char is bold
-        let textRows = splitTextWithoutBoldMarks.map((row: any, i: number) => {
+        // power algorithm to determine which char is bold italic and under line
+        let textRows = splitTextWithoutBIUMarks.map((row: any, i: number) => {
             const charsMap = row.split('');
 
             const chars = charsMap.map((_char: string, j: number) => {
@@ -95,7 +86,7 @@ export const MakePdf: FC = () => {
                 if (currentChar === "_") {
                     const spyNextChar = inputValue.charAt(position + 1);
                     if (spyNextChar === "_") {
-                        // double asterix marker exist on these position's so we toggle the bold state
+                        // double asterix marker exist on these position's so we toggle the italic state
                         isItalic = !isItalic;
                         currentChar = inputValue.charAt(position + 2);
 
@@ -109,7 +100,7 @@ export const MakePdf: FC = () => {
                 if (currentChar === "+") {
                     const spyNextChar = inputValue.charAt(position + 1);
                     if (spyNextChar === "+") {
-                        // double asterix marker exist on these position's so we toggle the bold state
+                        // double asterix marker exist on these position's so we toggle the udderline state
                         isUnder = !isUnder;
                         currentChar = inputValue.charAt(position + 2);
 

@@ -1,7 +1,7 @@
 import { ComponentType } from "react";
-import { BASE_AUTH_TOKEN } from "../../common/constants";
-import { useMe } from "../auth/hooks";
-import { ScreenOnBoarding, ScreenSessionExpired } from "../../components/screens";
+import { BASE_AUTH_TOKEN } from "../../../common/constants";
+import { useMe } from "../hooks";
+import { ScreenOnBoarding, ScreenSessionExpired } from "../../../components/screens";
 
 export const withAuthorized = (ComposedComponet: ComponentType) =>
     (props: any) => {

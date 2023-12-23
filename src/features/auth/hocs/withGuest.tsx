@@ -1,5 +1,5 @@
 import { ComponentType, useEffect } from "react";
-import { BASE_AUTH_TOKEN, ROUTE_DASHBOARD, ROUTE_LOGIN } from "../../common/constants";
+import { BASE_AUTH_TOKEN, ROUTE_DASHBOARD, ROUTE_LOGIN } from "../../../common/constants";
 import { useNavigate } from "react-router-dom";
 
 export const withGUest = (ComposedComponents: ComponentType) =>
