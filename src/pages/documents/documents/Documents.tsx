@@ -1,13 +1,13 @@
 import { FC } from "react";
 import { Editor } from "../../../components/editor";
-import { Divider } from "antd";
+import { Divider, Layout } from "antd";
 
 export const Documents: FC = () => {
     return (
-        <div>
+        <Layout>
             Editorlar
-            <Divider orientation="right">Align Bottom</Divider>
-            <Editor />
-        </div>
+            {/* <Divider orientation="right">Align Bottom</Divider>
+            <Editor /> */}
+        </Layout>
     )
 }

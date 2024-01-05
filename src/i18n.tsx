@@ -14,9 +14,9 @@ const resources = {
 i18next
     .use(initReactI18next)
     .init({
-        debug: true,
+        debug: false,
         resources,
-        lng: 'ru'
+        lng: 'uz'
     })
 
 export default i18next;

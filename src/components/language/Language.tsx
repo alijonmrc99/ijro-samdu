@@ -1,5 +1,4 @@
 import { FC, useState } from "react";
-import { DownOutlined } from "@ant-design/icons";
 import './style.scss'
 import { useTranslation } from "react-i18next";
 
@@ -33,7 +32,6 @@ export const Languages: FC = () => {
                 <div className="language_open_contnent">
                     <button onClick={() => setOpen(!open)} className="languages__btn languages__btn--1">
                         <span>{t('current_lang')}</span>
-                        {/* <span className="icon"><DownOutlined /></span> */}
                     </button>
                 </div>
                 <div className="languages__buttons">
