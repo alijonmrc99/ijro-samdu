@@ -8,13 +8,13 @@ export const withAuthorized = (ComposedComponet: ComponentType) =>
         const { isAuthorized, isLoading } = useMe()
         const token = localStorage.getItem(BASE_AUTH_TOKEN);
 
-        if (isLoading) {
-            return <ScreenOnBoarding />
-        }
+        // if (isLoading) {
+        //     return <ScreenOnBoarding />
+        // }
 
-        if (!isAuthorized) {
-            return !!token ? <ScreenSessionExpired /> : null;
-        }
+        // if (!isAuthorized) {
+        //     return !!token ? <ScreenSessionExpired /> : null;
+        // }
 
         return <ComposedComponet {...props} />
     }

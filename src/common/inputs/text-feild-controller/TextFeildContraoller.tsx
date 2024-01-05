@@ -1,6 +1,6 @@
 import { FC } from "react";
 import Group from "antd/es/input/Group";
-import { Control, Controller } from "react-hook-form";
+import { Controller, Control } from "react-hook-form";
 import { Input, InputProps, Space } from "antd";
 import Search, { SearchProps } from "antd/es/input/Search";
 import TextArea, { TextAreaProps } from "antd/es/input/TextArea";

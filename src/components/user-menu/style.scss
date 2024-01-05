@@ -1,0 +1,30 @@
+.user-content {
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-weight: 700;
+    background-color: #2F80ED;
+    color: #fff;
+    line-height: normal;
+    width: 20rem;
+
+    .user_job {
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        font-weight: 300;
+        margin-top: 4px;
+    }
+
+    .user_name {
+        font-size: 24px;
+    }
+}
+
+.logout_btn {
+    width: 100%;
+    background-color: #2F80ED;
+    padding: 7px 25px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom"
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { AUTH_FIELD_USER_NAME, AUTH_FIELD_PASSWORD, AUTH_FIELD_REMEMBER } from "../constants";
+import { AUTH_FIELD_USER_NAME, AUTH_FIELD_PASSWORD } from "../constants";
 import { LoginSchema } from "../schema";
 import { message } from "antd";
 import { ILogin, ILoginQuery } from "../models/ILogin";

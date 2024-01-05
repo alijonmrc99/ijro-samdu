@@ -1,0 +1,18 @@
+.main-header {
+    background-color: #1259E6;
+    height: 6rem;
+    display: block;
+
+    .logo {
+        width: 14rem;
+        display: flex;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        height: 6rem;
+
+        img {
+            width: 100%;
+        }
+    }
+}

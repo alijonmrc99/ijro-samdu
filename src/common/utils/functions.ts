@@ -28,3 +28,8 @@ export type Entry<T extends {}> =
 export function typedEntries<T extends {}>(object: T): ReadonlyArray<Entry<T>> {
     return Object.entries(object) as unknown as ReadonlyArray<Entry<T>>;
 }
+
+
+export function keysFromObject<T extends object>(object: T): (keyof T)[] {
+    return Object.keys(object) as (keyof T)[];
+}
