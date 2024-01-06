@@ -1,1 +1,1 @@
-export * from './me.slice'
+export * from './documents.slice'

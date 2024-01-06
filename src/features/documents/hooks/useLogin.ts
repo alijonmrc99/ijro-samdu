@@ -6,7 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { AUTH_FIELD_USER_NAME, AUTH_FIELD_PASSWORD } from "../constants";
 import { LoginSchema } from "../schema";
 import { message } from "antd";
-import { ILogin, ILoginQuery } from "../models/ILogin";
+import { ILogin, ILoginQuery } from "../models/IDocuments";
 import { HttpApi } from "../../../common/http";
 import { ENDPOINT_AUTH_LOGIN } from "../endpoints";
 import { setBearerToken } from "../../../common/axios/axios.instance";

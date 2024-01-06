@@ -1,1 +1,1 @@
-export * from './auth.endpoints'
+export * from './doc.endpoints'

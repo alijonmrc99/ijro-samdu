@@ -1,2 +1,1 @@
-export * from './ILogin'
-export * from './IMe'
+export * from './IDocuments'

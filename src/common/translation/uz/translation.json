@@ -3,5 +3,14 @@
     "menu": "Menyu",
     "welcome": "Xush kelibsiz",
     "logout": "Tizimdan chiqish",
-    "documents": "Hujjatlar"
+    "documents": "Hujjatlar",
+    "attention": "Diqqat",
+    "delete_confirmation_message": "Siz haqiqatdan ham ushbu elementni o'chirmoqchimisiz",
+    "confirm": "Tasqiqlash",
+    "cancel": "Rad etish",
+    "name": "Nomi",
+    "status": "Holati",
+    "sent": "Yuborilgan",
+    "not_sent": "Yuborilmagan",
+    "is_sent": "Yuborilganlik holati"
 }
