@@ -14,5 +14,7 @@
     "not_sent": "Yuborilmagan",
     "is_sent": "Yuborilganlik holati",
     "my-documents": "Mening hujjatlarim",
-    "title": "Hujjat nomi"
+    "title": "Hujjat nomi",
+    "error.message.required": "Ushbu maydon bo'sh bo'lmasligi kerak",
+    "create_doc": "Hujjat yaratish"
 }

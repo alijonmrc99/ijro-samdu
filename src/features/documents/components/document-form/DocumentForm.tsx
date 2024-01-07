@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { useLogin } from "../../hooks/useLogin";
+import { useDocuments } from "../../hooks/useDocuments";
 import { TextFieldController } from "../../../../common/inputs/text-feild-controller";
 import { DOC_TITLE } from "../../constants";
 import { useTranslation } from "react-i18next";
@@ -8,21 +8,24 @@ import { useAppSelector } from "../../../../store";
 
 export const DocumentForm: FC = () => {
     const { t } = useTranslation()
-    const { handleLogin, isLoading, control, contextHolder, setValue } = useLogin();
-    const { data } = useAppSelector(state => state.document)
+    const { handleLogin, isLoading, control, contextHolder, setValue } = useDocuments();
+    const { data: doc } = useAppSelector(state => state.document)
     useEffect(() => {
-        if (data) {
-            setValue('title', data.title)
+        if (doc) {
+            setValue('body', doc.body)
+            setValue('title', doc.title)
         }
-    }, [t])
+    }, [doc])
+
     return (
         <div>
             <form onSubmit={handleLogin}>
                 <div>
                     <TextFieldController control={control}
                         name={DOC_TITLE}
+                        label={t('title')}
                         placeholder={t('title')} />
-                    <Editor />
+                    <Editor setValue={setValue} />
                 </div>
                 {contextHolder}
                 <div>

@@ -5,5 +5,6 @@ export const ROUTE_DOCUMENTS = "documents";
 export const ROUTE_DOCUMENT = "document";
 export const ROUTE_GET_DOCUMENTS = "get";
 export const ROUTE_EDIT = "edit";
+export const ROUTE_CREATE = "create";
 
 

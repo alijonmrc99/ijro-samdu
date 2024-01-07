@@ -4,25 +4,25 @@ import { useNavigate } from "react-router-dom"
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { DOC_BODY, DOC_TITLE } from "../constants";
-import { LoginSchema } from "../schema";
+import { DocumentSchema } from "../schema";
 import { message } from "antd";
-import { HttpApi } from "../../../common/http";
-import { ENDPOINT_AUTH_LOGIN } from "../endpoints";
-import { setBearerToken } from "../../../common/axios/axios.instance";
-import { ROUTE_DASHBOARD } from "../../../common/constants";
 import { IDocuments } from "../models";
+import { useAppDispatch } from "../../../store";
+import { onDocuments } from "../thunks";
+import { ROUTE_DASHBOARD, ROUTE_DOCUMENTS } from "../../../common/constants";
 
-const httpApi = new HttpApi;
 
-export const useLogin = () => {
+export const useDocuments = () => {
     const navigate = useNavigate();
+    const dispatch = useAppDispatch()
+
     const [isLoading, setIsLoading] = useState(false);
-    const { register, control, formState: { errors }, handleSubmit, setValue } = useForm({
+    const { register, control, formState: { errors }, handleSubmit, setValue } = useForm<IDocuments>({
         defaultValues: {
             [DOC_TITLE]: '',
-            // [DOC_BODY]: ''
+            [DOC_BODY]: ''
         },
-        resolver: yupResolver(LoginSchema),
+        // resolver: yupResolver(DocumentSchema),
         mode: 'onBlur'
     })
 
@@ -38,6 +38,17 @@ export const useLogin = () => {
     const onSubmit = (values: any) => {
         setIsLoading(true);
 
+        dispatch(onDocuments(values)).unwrap()
+            .then((responseValues: any) => {
+                console.log(responseValues);
+
+                if (responseValues.success) {
+                    navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/`)
+                    // setOnSetSuccess(true);
+                }
+            })
+            .catch(handleErrors)
+            .finally(() => { setIsLoading(false) })
 
     };
 

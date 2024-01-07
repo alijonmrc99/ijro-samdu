@@ -1,5 +1,6 @@
 {
     "current_lang": "RU",
     "menu": "Меню",
-    "welcome": "Добро пожаловать"
+    "welcome": "Добро пожаловать",
+    "error.message.required": "Ushbu maydon bo'sh bo'lmasligi kerak"
 }

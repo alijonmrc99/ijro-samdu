@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IDocuments } from "../models";
-import { docFetchById } from "../thunks";
+import { docFetchById, onDocuments } from "../thunks";
 
 interface InitialStateProps {
     data: IDocuments | null
@@ -21,6 +21,26 @@ export const documentSlice = createSlice({
         emptyState: (state) => ({ ...state, data: null })
     },
     extraReducers: (builder) => {
+        builder.addCase(onDocuments.pending, (state) => ({
+            ...state,
+            isLoading: true,
+            data: null,
+            error: null
+        }));
+        builder.addCase(onDocuments.fulfilled, (state) => ({
+            ...state,
+            isLoading: false,
+            data: null,
+            error: null
+        }));
+        builder.addCase(onDocuments.rejected, (state, { error }) => ({
+            ...state,
+            isLoading: false,
+            data: null,
+            error: error
+        }));
+
+
         builder.addCase(docFetchById.pending, (state) => ({
             ...state,
             isLoading: true,

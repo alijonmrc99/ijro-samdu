@@ -3,11 +3,18 @@ import { ENDPOINT_DOCUMENTS } from '../endpoints';
 import { HttpApi } from '../../../common/http';
 import { IDocuments } from '../models';
 import { IResponse, IPageable } from '../../../common/models';
-
+const httpApi = new HttpApi();
+export const onDocuments = createAsyncThunk('doc/action',
+    async (values: any, { rejectWithValue }) => {
+        try {
+            return await httpApi.post(ENDPOINT_DOCUMENTS, values)
+        } catch (error) {
+            return rejectWithValue(error)
+        }
+    })
 
 export const fetchDocuments = createAsyncThunk('auth/fetchDocuments',
     async (params: any, { rejectWithValue }) => {
-        const httpApi = new HttpApi();
         try {
             return await httpApi.get<IResponse<IPageable<IDocuments>>>(ENDPOINT_DOCUMENTS, params)
         } catch (error) {
@@ -17,7 +24,7 @@ export const fetchDocuments = createAsyncThunk('auth/fetchDocuments',
 
 export const docFetchById = createAsyncThunk('auth/docFetchById',
     async (id: any, { rejectWithValue }) => {
-        const httpApi = new HttpApi();
+
         try {
             return await httpApi.get<IResponse<IDocuments>>(`${ENDPOINT_DOCUMENTS}/${id}`, {})
         } catch (error) {
