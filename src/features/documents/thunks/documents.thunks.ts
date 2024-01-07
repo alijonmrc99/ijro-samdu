@@ -14,3 +14,13 @@ export const fetchDocuments = createAsyncThunk('auth/fetchDocuments',
             return rejectWithValue(error);
         }
     });
+
+export const docFetchById = createAsyncThunk('auth/docFetchById',
+    async (id: any, { rejectWithValue }) => {
+        const httpApi = new HttpApi();
+        try {
+            return await httpApi.get<IResponse<IDocuments>>(`${ENDPOINT_DOCUMENTS}/${id}`, {})
+        } catch (error) {
+            return rejectWithValue(error);
+        }
+    });

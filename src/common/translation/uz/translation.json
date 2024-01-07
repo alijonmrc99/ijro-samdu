@@ -12,5 +12,7 @@
     "status": "Holati",
     "sent": "Yuborilgan",
     "not_sent": "Yuborilmagan",
-    "is_sent": "Yuborilganlik holati"
+    "is_sent": "Yuborilganlik holati",
+    "my-documents": "Mening hujjatlarim",
+    "title": "Hujjat nomi"
 }

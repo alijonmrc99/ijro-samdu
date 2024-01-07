@@ -7,12 +7,15 @@ import { BrowserRouter } from 'react-router-dom'
 import './i18n';
 import 'antd-css-utilities/utility.min.css';
 import { SidebarProvider } from './common/providers/sidebar.provider.tsx'
+import { PageTitleProvider } from './common/providers/pageTitle.provider.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
     <BrowserRouter>
       <SidebarProvider>
-        <App />
+        <PageTitleProvider>
+          <App />
+        </PageTitleProvider>
       </SidebarProvider>
     </BrowserRouter>
   </Provider>

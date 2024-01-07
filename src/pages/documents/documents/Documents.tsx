@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { Layout, Modal } from "antd";
 import { DocumentsList } from "../../../features/documents/components/document-list";
 import { useAppDispatch, useAppSelector } from "../../../store";
@@ -8,7 +8,7 @@ import { ENDPOINT_DOCUMENTS } from "../../../features/documents/endpoints";
 import { ID } from "../../../common/models";
 import { useTranslation } from "react-i18next";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
-import { Editor } from "../../../components/editor";
+import { IPageTitleContext, PageTitleContext } from "../../../common/contexts/pageTitle.context";
 export const http = new HttpApi()
 
 export const Documents: FC = () => {
@@ -16,9 +16,15 @@ export const Documents: FC = () => {
     const dispatch = useAppDispatch();
     const [isDeleting, setIsDeleting] = useState(false)
     const { data, isLoading } = useAppSelector(state => state.documents);
+    const { setPageTitle } = useContext(PageTitleContext) as IPageTitleContext
+
     useEffect(() => {
         dispatch(fetchDocuments({}))
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        setPageTitle(t('my-documents'))
+    }, [t])
 
 
     const onDelete = (id: ID) => {
@@ -42,7 +48,6 @@ export const Documents: FC = () => {
 
     return (
         <Layout>
-
             <DocumentsList isDeleting={isDeleting} onDelete={confirm} list={data?.items || []} isLoading={isLoading} />
         </Layout>
     )

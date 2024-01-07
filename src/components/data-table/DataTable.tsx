@@ -19,7 +19,7 @@ export const DataTable: FC<IDataTableProps> = ({ columns, data, onSelectRow, isL
                 pagination={false}
                 onRow={(record, rowIndex) => {
                     return {
-                        onClick: event => onSelectRow(rowIndex, record)
+                        onClick: _event => onSelectRow(rowIndex, record)
                     }
                 }}
             />

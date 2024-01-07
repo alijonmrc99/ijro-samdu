@@ -43,7 +43,7 @@ export const MainMenu: FC = () => {
                     return true
                 } else {
                     return user?.roles
-                        .map(role => role.role)
+                        .map(role => role.name)
                         .some(role => menu.roles.includes(role))
                 }
             })

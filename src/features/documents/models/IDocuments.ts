@@ -3,8 +3,8 @@ import { ID } from "../../../common/models/baseTypes";
 export interface IDocuments {
     id: ID,
     title: string,
-    body: JSON,
+    body: string,
     isSend: boolean,
-    status: string,
+    status: "seen" | "approved" | "rejected" | null,
     name: string
 }

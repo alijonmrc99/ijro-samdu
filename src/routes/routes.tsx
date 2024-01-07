@@ -1,9 +1,11 @@
 import { IndexRouteObject, Navigate, NonIndexRouteObject, RouteObject } from "react-router-dom";
-import { ROUTE_DASHBOARD, ROUTE_DOCUMENTS, ROUTE_HOME, ROUTE_LOGIN, RoleTypeEnums } from "../common/constants";
+import { ROUTE_DASHBOARD, ROUTE_DOCUMENTS, ROUTE_EDIT, ROUTE_HOME, ROUTE_LOGIN, RoleTypeEnums } from "../common/constants";
 import { LoginForm } from "../features/auth/companets/login-form";
 import { HomePage } from "../pages/home-page";
 import { DashboardBase } from "../layouts/DashboardBase";
 import { Documents } from "../pages/documents";
+import { Document } from "../pages/documents/document/Document";
+import { DocumentEdit } from "../pages/documents/doc-edit/DocumentEdit";
 
 
 export type RouteObjectType = IndexRouteObject |
@@ -34,6 +36,14 @@ export const routes = (): RouteObjectType[] => {
                 {
                     path: ROUTE_DOCUMENTS,
                     element: <Documents />
+                },
+                {
+                    path: `${ROUTE_DOCUMENTS}/:id`,
+                    element: <Document />
+                },
+                {
+                    path: `${ROUTE_DOCUMENTS}/:id/${ROUTE_EDIT}`,
+                    element: <DocumentEdit />
                 }
             ]
         }
