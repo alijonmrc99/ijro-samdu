@@ -1,0 +1,27 @@
+.content-header {
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #ddd8d8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+
+
+
+    .back-action {
+        margin-right: 15px;
+        color: rgb(236, 165, 43);
+    }
+
+    .print {
+        color: #fff;
+        margin-right: 15px;
+        background-color: #17A2B8;
+
+        &:hover {
+            color: #fff !important;
+            background-color: #3daec0;
+            border-color: #3daec0 !important;
+        }
+    }
+}

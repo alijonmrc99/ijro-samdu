@@ -17,20 +17,20 @@ export const MainMenu: FC = () => {
             icon: <FolderOpenOutlined />,
             label: t("documents"),
             roles: [RoleTypeEnums.ROLE_VISE_RECTOR, RoleTypeEnums.ROLE_REGISTER],
-            children: [
-                {
-                    key: ROUTE_DOCUMENT,
-                    icon: <FolderOpenOutlined />,
-                    label: t("documents"),
-                }
-            ]
+            // children: [
+            //     {
+            //         key: ROUTE_DOCUMENT,
+            //         icon: <FolderOpenOutlined />,
+            //         label: t("documents"),
+            //     }
+            // ]
         },
-        // {
-        //     key: ROUTE_GET_DOCUMENTS,
-        //     icon: <FolderOpenOutlined />,
-        //     label: t("documents"),
-        //     roles: [RoleTypeEnums.Ro]
-        // },
+        {
+            key: ROUTE_GET_DOCUMENTS,
+            icon: <FolderOpenOutlined />,
+            label: t("documents"),
+            roles: [RoleTypeEnums.ROLE_VISE_RECTOR]
+        },
 
     ], [t])
 

@@ -16,5 +16,7 @@
     "my-documents": "Mening hujjatlarim",
     "title": "Hujjat nomi",
     "error.message.required": "Ushbu maydon bo'sh bo'lmasligi kerak",
-    "create_doc": "Hujjat yaratish"
+    "create_doc": "Hujjat yaratish",
+    "back": "Orqaga",
+    "print": "Chop etish"
 }

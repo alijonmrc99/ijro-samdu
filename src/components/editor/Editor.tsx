@@ -1,5 +1,5 @@
-import { FC, useState } from "react";
-import ReactQuill from "react-quill";
+import { FC, useEffect, useState } from "react";
+import ReactQuill, { Quill } from "react-quill";
 import 'quill/dist/quill.snow.css'
 import './styles.scss';
 import { UseFormSetValue } from "react-hook-form";
@@ -8,9 +8,10 @@ import { IDocuments } from "../../features/documents/models";
 
 type getParams = {
     setValue: UseFormSetValue<IDocuments>,
+    hasValue?: string
 }
 
-export const Editor: FC<getParams> = ({ setValue }) => {
+export const Editor: FC<getParams> = ({ hasValue, setValue }) => {
     var modules = {
         toolbar: [
 
@@ -35,6 +36,14 @@ export const Editor: FC<getParams> = ({ setValue }) => {
         setContent(content);
         setValue('body', content)
     };
+
+
+    useEffect(() => {
+        if (hasValue) {
+            setContent(hasValue)
+            setValue('body', hasValue)
+        }
+    }, [hasValue])
 
     // function getTexts(htmlString: string) {
     //     const divELement = document.createElement('div');
@@ -76,14 +85,16 @@ export const Editor: FC<getParams> = ({ setValue }) => {
 
     // }
 
-    const [_content, setContent] = useState<string>("")
+    const [content, setContent] = useState<string>("")
 
     return (
         <div className="main-editor" style={{ display: "flex", justifyContent: "center" }}>
             <ReactQuill
                 theme="snow"
+                value={content}
                 modules={modules}
                 formats={formats}
+                defaultValue={"fa sd asfd asf"}
                 placeholder="write your content ...."
                 onChange={handleProcedureContentChange}
             >

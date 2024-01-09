@@ -52,7 +52,9 @@ export const Documents: FC = () => {
             <ContentHeader>
                 salom
             </ContentHeader>
-            <DocumentsList isDeleting={isDeleting} onDelete={confirm} list={data?.items || []} isLoading={isLoading} />
+            <div className="pages__content">
+                <DocumentsList isDeleting={isDeleting} onDelete={confirm} list={data?.items || []} isLoading={isLoading} />
+            </div>
         </Layout>
     )
 }

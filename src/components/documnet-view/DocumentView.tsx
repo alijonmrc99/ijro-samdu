@@ -13,7 +13,7 @@ export const DocumentView: FC<IContent> = ({ contentText, status }) => {
     return (
         <div className="doc-view-container">
             {
-                status === "approved" &&
+                status !== "approved" &&
                 <Row className="header-view-content">
                     <Col span={8}>
                         <p className="left"> O'zbekiston Respublikasi <br />

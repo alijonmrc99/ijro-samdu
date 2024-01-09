@@ -6,6 +6,7 @@ import { DocumentView } from "../../../components/documnet-view";
 import { Spin } from "antd";
 import { documentSlice } from "../../../features/documents/sclices/document.slice";
 import { IPageTitleContext, PageTitleContext } from "../../../common/contexts/pageTitle.context";
+import { ContentHeader } from "../../../components/content-header";
 
 const sytle = {
     display: "flex",
@@ -33,11 +34,16 @@ export const Document: FC = () => {
     }, [])
 
     return (
-        <div style={sytle}>
-            {
-                isLoading ? <Spin tip="loading" /> :
-                    <DocumentView status={data?.status || null} contentText={data?.body || ""} />
-            }
+        <div className="pages">
+            <ContentHeader hasBackAction={true}>
+                ss
+            </ContentHeader>
+            <div className="pages__content" style={sytle}>
+                {
+                    isLoading ? <Spin tip="loading" /> :
+                        <DocumentView status={data?.status || null} contentText={data?.body || ""} />
+                }
+            </div>
         </div>
     )
 }

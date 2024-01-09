@@ -17,6 +17,9 @@ export const DocumentForm: FC = () => {
         }
     }, [doc])
 
+    console.log(doc);
+
+
     return (
         <div>
             <form onSubmit={handleLogin}>
@@ -25,7 +28,7 @@ export const DocumentForm: FC = () => {
                         name={DOC_TITLE}
                         label={t('title')}
                         placeholder={t('title')} />
-                    <Editor setValue={setValue} />
+                    <Editor hasValue={doc?.body} setValue={setValue} />
                 </div>
                 {contextHolder}
                 <div>
