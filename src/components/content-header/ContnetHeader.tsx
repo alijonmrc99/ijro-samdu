@@ -12,7 +12,7 @@ interface IContentHeader {
 export const ContentHeader: FC<IContentHeader> = ({ hasBackAction, children }) => {
     const { pageTitle } = useContext(PageTitleContext) as IPageTitleContext;
     const { t } = useTranslation()
-    const [] = React.Children.toArray(children)
+    const [breadcrumb, printBtn, pagination] = React.Children.toArray(children)
     const navigate = useNavigate()
 
     const printPage = () => {
@@ -21,12 +21,18 @@ export const ContentHeader: FC<IContentHeader> = ({ hasBackAction, children }) =
     return (
         <div className="content-header">
 
-            <Flex align="center">
-                {hasBackAction &&
-                    <Button onClick={() => navigate(-1)} className="back-action"><LeftOutlined /> {t('back')}</Button>
-                }
-                <h2>{pageTitle}</h2>
-            </Flex>
+            <div>
+                <Flex align="center">
+                    {hasBackAction &&
+                        <Button onClick={() => navigate(-1)} className="back-action"><LeftOutlined /> {t('back')}</Button>
+                    }
+                    <h2 className="content-title">{pageTitle}</h2>
+                </Flex>
+                    <div className="">
+                        {breadcrumb}
+                    </div>
+            </div>
+            
 
             <div className="new-doc">
 

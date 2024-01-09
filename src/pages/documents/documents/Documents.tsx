@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { IPageTitleContext, PageTitleContext } from "../../../common/contexts/pageTitle.context";
 import { ContentHeader } from "../../../components/content-header";
+import { MainBreadcrumb } from "../../../components/main-breadcamp";
 export const http = new HttpApi()
 
 export const Documents: FC = () => {
@@ -50,6 +51,7 @@ export const Documents: FC = () => {
     return (
         <Layout>
             <ContentHeader>
+                <MainBreadcrumb />
                 salom
             </ContentHeader>
             <div className="pages__content">

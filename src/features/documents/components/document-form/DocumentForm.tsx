@@ -10,14 +10,15 @@ export const DocumentForm: FC = () => {
     const { t } = useTranslation()
     const { handleLogin, isLoading, control, contextHolder, setValue } = useDocuments();
     const { data: doc } = useAppSelector(state => state.document)
+    
     useEffect(() => {
         if (doc) {
+            console.log(doc);
             setValue('body', doc.body)
             setValue('title', doc.title)
         }
     }, [doc])
 
-    console.log(doc);
 
 
     return (

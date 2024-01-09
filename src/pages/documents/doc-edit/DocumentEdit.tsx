@@ -7,6 +7,7 @@ import { DocumentForm } from "../../../features/documents/components/document-fo
 import { IPageTitleContext, PageTitleContext } from "../../../common/contexts/pageTitle.context";
 import { useTranslation } from "react-i18next";
 import { ContentHeader } from "../../../components/content-header";
+import { MainBreadcrumb } from "../../../components/main-breadcamp";
 
 export const DocumentEdit: FC = () => {
     const { t } = useTranslation()
@@ -17,6 +18,7 @@ export const DocumentEdit: FC = () => {
         if (id) {
             dispatch(docFetchById(id))
         }
+        
         setPageTitle(t('create_doc'))
         return () => { dispatch(documentSlice.actions.emptyState()) }
     }, [])
@@ -27,7 +29,7 @@ export const DocumentEdit: FC = () => {
     return (
         <div className="pages">
             <ContentHeader hasBackAction={true}>
-                ss
+                <MainBreadcrumb lastItem={{key: "edit", title: `${t('create_doc')}`}} />
             </ContentHeader>
             <div className="pages__content">
                 <DocumentForm />

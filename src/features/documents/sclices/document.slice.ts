@@ -18,7 +18,10 @@ export const documentSlice = createSlice({
     name: 'documentSlice',
     initialState,
     reducers: {
-        emptyState: (state) => ({ ...state, data: null })
+        emptyState: (state) => {
+            console.log(1);
+            return ({ ...state, data: null })
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(onDocuments.pending, (state) => ({

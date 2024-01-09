@@ -7,6 +7,7 @@ import { Spin } from "antd";
 import { documentSlice } from "../../../features/documents/sclices/document.slice";
 import { IPageTitleContext, PageTitleContext } from "../../../common/contexts/pageTitle.context";
 import { ContentHeader } from "../../../components/content-header";
+import { MainBreadcrumb } from "../../../components/main-breadcamp";
 
 const sytle = {
     display: "flex",
@@ -24,7 +25,6 @@ export const Document: FC = () => {
 
     useEffect(() => {
         setPageTitle(data?.title || "");
-        console.log(data?.title);
 
     }, [data])
 
@@ -36,7 +36,7 @@ export const Document: FC = () => {
     return (
         <div className="pages">
             <ContentHeader hasBackAction={true}>
-                ss
+                <MainBreadcrumb lastItem={{key: "documnet", title: data?.title || "Loading..."}} />
             </ContentHeader>
             <div className="pages__content" style={sytle}>
                 {
