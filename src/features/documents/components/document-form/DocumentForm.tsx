@@ -13,7 +13,6 @@ export const DocumentForm: FC = () => {
     
     useEffect(() => {
         if (doc) {
-            console.log(doc);
             setValue('body', doc.body)
             setValue('title', doc.title)
         }
