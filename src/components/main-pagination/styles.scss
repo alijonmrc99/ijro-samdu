@@ -1,0 +1,48 @@
+.main-pagination {
+    .ant-pagination-total-text {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        color: #828282;
+        margin-right: 2.9rem;
+    }
+
+    .ant-pagination li a {
+        color: #414141;
+    }
+
+    .ant-pagination-prev {
+        border: 1px solid #dfe2e6;
+        padding: 0 1.1rem !important;
+        border-radius: 3.12971px 0px 0px 3.12971px;
+        margin: 0;
+    }
+
+    .ant-pagination-next {
+        border: 1px solid #dfe2e6;
+        padding: 0 1.1rem;
+        margin: 0;
+        border-radius: 0;
+        border-radius: 0px 3.12971px 3.12971px 0;
+    }
+
+    .ant-pagination-item {
+        border-radius: 0;
+        border: 1px solid #dfe2e6;
+        margin: 0;
+    }
+
+    .ant-pagination-disabled a {
+        color: #adb4be !important;
+    }
+
+    .ant-pagination-item-active {
+        background-color: #2E2E2E;
+        border: 1px solid #2E2E2E !important;
+    }
+
+    .ant-pagination-item-active a {
+        color: #fff !important;
+    }
+
+}

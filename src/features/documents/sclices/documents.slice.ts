@@ -26,7 +26,6 @@ export const documentsSlice = createSlice({
         builder.addCase(fetchDocuments.pending, (state) => ({
             ...state,
             isLoading: true,
-            data: null,
             error: null
         }));
 

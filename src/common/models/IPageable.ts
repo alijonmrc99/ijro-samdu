@@ -1,9 +1,9 @@
 export interface IPageable<T> {
     items: T[],
     meta: {
-        pageSize: number,
-        totalElements: number,
-        totalPage: number,
-        page: number
+        lastPage: number,
+        currentPage: number,
+        total: number,
+        perPage: number
     }
 }
