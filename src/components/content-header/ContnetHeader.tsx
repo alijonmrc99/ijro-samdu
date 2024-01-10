@@ -12,15 +12,11 @@ interface IContentHeader {
 export const ContentHeader: FC<IContentHeader> = ({ hasBackAction, children }) => {
     const { pageTitle } = useContext(PageTitleContext) as IPageTitleContext;
     const { t } = useTranslation()
-    const [breadcrumb, printBtn, pagination] = React.Children.toArray(children)
+    const [breadcrumb, printBtn, pagination, actionBtn] = React.Children.toArray(children)
     const navigate = useNavigate()
 
-    const printPage = () => {
-        window.print()
-    }
     return (
         <div className="content-header">
-
             <div>
                 <Flex align="center">
                     {hasBackAction &&
@@ -33,11 +29,9 @@ export const ContentHeader: FC<IContentHeader> = ({ hasBackAction, children }) =
                     </div>
             </div>
             
-
             <div className="new-doc">
-
-                {hasBackAction && <Button className="print" onClick={printPage} > <PrinterOutlined />{t('print')}</Button>}
-                <Button onClick={() => navigate('/dashboard/documents/create')} type="primary"> <FileAddOutlined />{t('create_doc')}</Button>
+                {printBtn}
+                {actionBtn}
             </div>
 
 

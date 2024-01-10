@@ -30,6 +30,7 @@ export const DocumentEdit: FC = () => {
         <div className="pages">
             <ContentHeader hasBackAction={true}>
                 <MainBreadcrumb lastItem={{key: "edit", title: `${t('create_doc')}`}} />
+                <div></div>
             </ContentHeader>
             <div className="pages__content">
                 <DocumentForm />

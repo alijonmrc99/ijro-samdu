@@ -18,8 +18,6 @@ export const DocumentForm: FC = () => {
         }
     }, [doc])
 
-
-
     return (
         <div>
             <form onSubmit={handleLogin}>

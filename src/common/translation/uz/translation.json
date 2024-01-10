@@ -19,5 +19,6 @@
     "error.message.required": "Ushbu maydon bo'sh bo'lmasligi kerak",
     "create_doc": "Hujjat yaratish",
     "back": "Orqaga",
-    "print": "Chop etish"
+    "print": "Chop etish",
+    "doc_edit": "Hujjatni o'zgartirish"
 }

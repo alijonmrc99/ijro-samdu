@@ -1,13 +1,16 @@
 import { FC, useContext, useEffect } from "react";
 import { docFetchById } from "../../../features/documents/thunks";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { DocumentView } from "../../../components/documnet-view";
-import { Spin } from "antd";
+import { Button, Spin } from "antd";
 import { documentSlice } from "../../../features/documents/sclices/document.slice";
 import { IPageTitleContext, PageTitleContext } from "../../../common/contexts/pageTitle.context";
 import { ContentHeader } from "../../../components/content-header";
 import { MainBreadcrumb } from "../../../components/main-breadcamp";
+import { printPage } from "../../../common/utils/functions";
+import { EditOutlined, FileAddOutlined, PrinterOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 const sytle = {
     display: "flex",
@@ -17,7 +20,9 @@ const sytle = {
 }
 
 export const Document: FC = () => {
-    const { id } = useParams()
+    const { id } = useParams();
+    const {t} = useTranslation();
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { setPageTitle } = useContext(PageTitleContext) as IPageTitleContext
 
@@ -37,6 +42,9 @@ export const Document: FC = () => {
         <div className="pages">
             <ContentHeader hasBackAction={true}>
                 <MainBreadcrumb lastItem={{key: "documnet", title: data?.title || "Loading..."}} />
+                <Button className="print" onClick={printPage} > <PrinterOutlined />{t('print')}</Button>
+                <div></div>
+                <Button onClick={() => navigate(`/dashboard/documents/${id}/edit`)} type="primary"> <EditOutlined />{t('doc_edit')}</Button>
             </ContentHeader>
             <div className="pages__content" style={sytle}>
                 {
