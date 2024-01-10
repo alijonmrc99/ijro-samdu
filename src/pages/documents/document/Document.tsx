@@ -37,9 +37,7 @@ export const Document: FC = () => {
         dispatch(docFetchById(id))
         return () => { dispatch(documentSlice.actions.emptyState()) }
     }, [])
-    {
-        console.log()
-    }
+
     return (
         <div className="pages">
             <ContentHeader hasBackAction={true}>
@@ -47,13 +45,14 @@ export const Document: FC = () => {
                 <Button className="print" onClick={printPage} > <PrinterOutlined />{t('print')}</Button>
                 <div></div>
                 <Button disabled={data?.isSent} onClick={() => navigate(`/dashboard/documents/${id}/edit`)} type="primary"> <EditOutlined />{t('edit_doc')}</Button>
-
+                <Button>{t('sent_document')}</Button>
             </ContentHeader>
             <div className="pages__content" style={sytle}>
                 {
                     isLoading ? <Spin tip="loading" /> :
                         <DocumentView status={data?.status || null} contentText={data?.body || ""} />
                 }
+
             </div>
         </div>
     )

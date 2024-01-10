@@ -23,7 +23,6 @@ export const DocumentEdit: FC = () => {
             setPageTitle(t('create_doc'))
 
         }
-
         return () => { dispatch(documentSlice.actions.emptyState()) }
     }, [])
 

@@ -7,7 +7,10 @@ import { ROUTE_DASHBOARD, ROUTE_DOCUMENTS } from "../../../../common/constants";
 import { useTranslation } from "react-i18next";
 import { ColumnType } from "antd/es/table";
 import { Button } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EditFilled } from "@ant-design/icons";
+
+
+
 export const DocumentsList: FC<{
     isLoading: boolean,
     list: IDocuments[],
@@ -20,6 +23,7 @@ export const DocumentsList: FC<{
     const onSelectRow = (_index: any, value: any) => {
         navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/${value.id}`)
     }
+
 
     const columns = useMemo(() => [
         {
@@ -42,8 +46,13 @@ export const DocumentsList: FC<{
             dataIndex: 'status',
             key: "status"
         },
-        deleteColumnsType(!!isDeleting, onDelete)
+        editColumnsType((id: any) => {
+            navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/${id}/edit`)
+        }),
+        deleteColumnsType(!!isDeleting, onDelete),
     ], [])
+
+
 
     return (
         <DataTable columns={columns} onSelectRow={onSelectRow} isLoading={isLoading} data={list || []} />
@@ -52,7 +61,7 @@ export const DocumentsList: FC<{
 
 export const deleteColumnsType = (isDeleting: boolean, onDelete: (id: any) => void): ColumnType<any> => {
     return {
-        title: ' ',
+        title: "",
         width: 64,
         key: 'action',
         fixed: 'right',
@@ -61,6 +70,27 @@ export const deleteColumnsType = (isDeleting: boolean, onDelete: (id: any) => vo
             danger
             icon={<DeleteOutlined />}
             onClick={(e) => { e.stopPropagation(); onDelete(item.id) }}
+        />,
+    }
+}
+
+export const editColumnsType = (onEdit: (id: any) => void): ColumnType<any> => {
+
+    return {
+        title: '',
+        width: 64,
+        key: 'action',
+        fixed: 'right',
+        render: (item: any) => <Button
+            // style={{}}
+            type="primary"
+            icon={<EditFilled />}
+            onClick={(e) => {
+                e.stopPropagation();
+                console.log(item);
+
+                onEdit(item.id)
+            }}
         />,
     }
 }
