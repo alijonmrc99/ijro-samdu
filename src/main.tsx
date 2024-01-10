@@ -8,13 +8,16 @@ import './i18n';
 import 'antd-css-utilities/utility.min.css';
 import { SidebarProvider } from './common/providers/sidebar.provider.tsx'
 import { PageTitleProvider } from './common/providers/pageTitle.provider.tsx'
+import { PaginationProvider } from './common/providers/pagination.provider.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
     <BrowserRouter>
       <SidebarProvider>
         <PageTitleProvider>
-          <App />
+          <PaginationProvider >
+            <App />
+          </PaginationProvider>
         </PageTitleProvider>
       </SidebarProvider>
     </BrowserRouter>

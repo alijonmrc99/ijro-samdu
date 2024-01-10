@@ -12,6 +12,8 @@ import { IPageTitleContext, PageTitleContext } from "../../../common/contexts/pa
 import { ContentHeader } from "../../../components/content-header";
 import { MainBreadcrumb } from "../../../components/main-breadcamp";
 import { useNavigate } from "react-router-dom";
+import { MainPagination } from "../../../components/main-pagination";
+import { IPaginationData, PaginationContext } from "../../../common/contexts/pagination.context";
 export const http = new HttpApi()
 
 export const Documents: FC = () => {
@@ -21,10 +23,7 @@ export const Documents: FC = () => {
     const [isDeleting, setIsDeleting] = useState(false);
     const { data, isLoading } = useAppSelector(state => state.documents);
     const { setPageTitle } = useContext(PageTitleContext) as IPageTitleContext
-
-    useEffect(() => {
-        dispatch(fetchDocuments({}))
-    }, [])
+    const { pagination, setPagination } = useContext(PaginationContext) as IPaginationData
 
     useEffect(() => {
         setPageTitle(t('my-documents'))
@@ -50,6 +49,15 @@ export const Documents: FC = () => {
         })
     };
 
+    const onChange = (data: any) => {
+        setPagination(data)
+    }
+
+    useEffect(() => {
+        dispatch(fetchDocuments({ ...pagination }))
+    }, [pagination]);
+
+
     return (
         <Layout>
             <ContentHeader>
@@ -58,6 +66,7 @@ export const Documents: FC = () => {
                 <div></div>
                 <Button onClick={() => navigate('/dashboard/documents/create')} type="primary"> <FileAddOutlined />{t('create_doc')}</Button>
             </ContentHeader>
+            <MainPagination defaultcurrent={data?.meta.currentPage || 1} onChange={onChange} total={data?.meta.total || 1} pageSize={data?.meta.perPage || 30} />
             <div className="pages__content">
                 <DocumentsList isDeleting={isDeleting} onDelete={confirm} list={data?.items || []} isLoading={isLoading} />
             </div>
