@@ -1,13 +1,13 @@
 import { FC, useEffect, useState } from "react";
-import ReactQuill, { Quill } from "react-quill";
+import ReactQuill from "react-quill";
 import 'quill/dist/quill.snow.css'
 import './styles.scss';
 import { UseFormSetValue } from "react-hook-form";
-import { IDocuments } from "../../features/documents/models";
+import { IDocumentsSend } from "../../features/documents/models";
 
 
 type getParams = {
-    setValue: UseFormSetValue<IDocuments>,
+    setValue: UseFormSetValue<IDocumentsSend>,
     hasValue?: string
 }
 

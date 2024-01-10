@@ -63,10 +63,10 @@ export const Documents: FC = () => {
             <ContentHeader>
                 <MainBreadcrumb />
                 <div></div>
-                <div></div>
+                <MainPagination defaultcurrent={data?.meta.currentPage || 1} onChange={onChange} total={data?.meta.total || 1} pageSize={data?.meta.perPage || 30} />
                 <Button onClick={() => navigate('/dashboard/documents/create')} type="primary"> <FileAddOutlined />{t('create_doc')}</Button>
             </ContentHeader>
-            <MainPagination defaultcurrent={data?.meta.currentPage || 1} onChange={onChange} total={data?.meta.total || 1} pageSize={data?.meta.perPage || 30} />
+            
             <div className="pages__content">
                 <DocumentsList isDeleting={isDeleting} onDelete={confirm} list={data?.items || []} isLoading={isLoading} />
             </div>

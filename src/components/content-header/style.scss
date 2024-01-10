@@ -10,8 +10,18 @@
         margin-right: 15px;
         color: rgb(236, 165, 43);
     }
-    .content-title{
+
+    .content-title {
         margin: 10px 0;
+    }
+
+    button {
+        margin-bottom: 10px;
+        margin-right: 10px;
+        padding: 20px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .print {
@@ -25,4 +35,5 @@
             border-color: #3daec0 !important;
         }
     }
+
 }

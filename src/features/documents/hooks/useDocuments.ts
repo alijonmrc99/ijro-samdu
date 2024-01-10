@@ -2,14 +2,14 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom"
 import { yupResolver } from '@hookform/resolvers/yup';
-
 import { DOC_BODY, DOC_TITLE } from "../constants";
 import { DocumentSchema } from "../schema";
 import { message } from "antd";
-import { IDocuments } from "../models";
+import { IDocumentsSend } from "../models";
 import { useAppDispatch } from "../../../store";
 import { onDocuments } from "../thunks";
-import { ROUTE_DASHBOARD, ROUTE_DOCUMENTS } from "../../../common/constants";
+import { ROUTE_DASHBOARD, ROUTE_DOCUMENTS, } from "../../../common/constants";
+import { ENDPOINT_DOCUMENTS } from "../endpoints";
 
 
 export const useDocuments = () => {
@@ -17,12 +17,12 @@ export const useDocuments = () => {
     const dispatch = useAppDispatch()
 
     const [isLoading, setIsLoading] = useState(false);
-    const { register, control, formState: { errors }, handleSubmit, setValue } = useForm<IDocuments>({
+    const { register, control, handleSubmit, setValue } = useForm<IDocumentsSend>({
         defaultValues: {
             [DOC_TITLE]: '',
             [DOC_BODY]: ''
         },
-        // resolver: yupResolver(DocumentSchema),
+        resolver: yupResolver(DocumentSchema),
         mode: 'onBlur'
     })
 
@@ -35,20 +35,37 @@ export const useDocuments = () => {
         })
     }
 
-    const onSubmit = (values: any) => {
+    const onSubmit = (values: IDocumentsSend) => {
         setIsLoading(true);
 
-        dispatch(onDocuments(values)).unwrap()
-            .then((responseValues: any) => {
-                console.log(responseValues);
+        if (values.id) {
+            console.log(values.id);
 
-                if (responseValues.success) {
-                    navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/`)
-                    // setOnSetSuccess(true);
-                }
-            })
-            .catch(handleErrors)
-            .finally(() => { setIsLoading(false) })
+            values["_method"] = "PUT";
+            dispatch(onDocuments({ values: values, route: `${ENDPOINT_DOCUMENTS}/${values.id}` })).unwrap()
+                .then((responseValues: any) => {
+                    console.log(responseValues);
+
+                    if (responseValues.success) {
+                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/`)
+                        // setOnSetSuccess(true);
+                    }
+                })
+                .catch(handleErrors)
+                .finally(() => { setIsLoading(false) })
+        }
+        else {
+            dispatch(onDocuments({ values: values, route: `${ENDPOINT_DOCUMENTS}` })).unwrap()
+                .then((responseValues: any) => {
+                    if (responseValues.success) {
+                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/`)
+                        // setOnSetSuccess(true);
+                    }
+                })
+                .catch(handleErrors)
+                .finally(() => { setIsLoading(false) })
+        }
+
 
     };
 

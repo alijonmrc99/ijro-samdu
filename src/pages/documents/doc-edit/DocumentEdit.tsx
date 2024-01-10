@@ -17,19 +17,20 @@ export const DocumentEdit: FC = () => {
     useEffect(() => {
         if (id) {
             dispatch(docFetchById(id))
+            setPageTitle(t('edit_doc'))
         }
-        
-        setPageTitle(t('create_doc'))
+        else {
+            setPageTitle(t('create_doc'))
+
+        }
+
         return () => { dispatch(documentSlice.actions.emptyState()) }
     }, [])
-
-    console.log(id);
-
 
     return (
         <div className="pages">
             <ContentHeader hasBackAction={true}>
-                <MainBreadcrumb lastItem={{key: "edit", title: `${t('create_doc')}`}} />
+                <MainBreadcrumb lastItem={{ key: "edit", title: `${id ? t('edit_doc') : t('create_doc')}` }} />
                 <div></div>
             </ContentHeader>
             <div className="pages__content">

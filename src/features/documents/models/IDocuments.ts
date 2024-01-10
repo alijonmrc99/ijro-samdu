@@ -4,7 +4,15 @@ export interface IDocuments {
     id: ID,
     title: string,
     body: string,
-    isSend: boolean,
+    isSent: boolean,
     status: "seen" | "approved" | "rejected" | null,
     name: string
 }
+
+export interface IDocumentsSend {
+    id?: ID,
+    "_method"?: string,
+    title: string,
+    body: string,
+}
+

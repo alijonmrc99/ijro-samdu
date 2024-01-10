@@ -20,5 +20,6 @@
     "create_doc": "Hujjat yaratish",
     "back": "Orqaga",
     "print": "Chop etish",
-    "doc_edit": "Hujjatni o'zgartirish"
+    "edit_doc": "Hujjatni o'zgartirish",
+    "save": "Saqlash"
 }

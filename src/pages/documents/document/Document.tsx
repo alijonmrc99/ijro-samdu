@@ -21,7 +21,7 @@ const sytle = {
 
 export const Document: FC = () => {
     const { id } = useParams();
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { setPageTitle } = useContext(PageTitleContext) as IPageTitleContext
@@ -37,14 +37,17 @@ export const Document: FC = () => {
         dispatch(docFetchById(id))
         return () => { dispatch(documentSlice.actions.emptyState()) }
     }, [])
-
+    {
+        console.log()
+    }
     return (
         <div className="pages">
             <ContentHeader hasBackAction={true}>
-                <MainBreadcrumb lastItem={{key: "documnet", title: data?.title || "Loading..."}} />
+                <MainBreadcrumb lastItem={{ key: "documnet", title: data?.title || "Loading..." }} />
                 <Button className="print" onClick={printPage} > <PrinterOutlined />{t('print')}</Button>
                 <div></div>
-                <Button onClick={() => navigate(`/dashboard/documents/${id}/edit`)} type="primary"> <EditOutlined />{t('doc_edit')}</Button>
+                <Button disabled={data?.isSent} onClick={() => navigate(`/dashboard/documents/${id}/edit`)} type="primary"> <EditOutlined />{t('edit_doc')}</Button>
+
             </ContentHeader>
             <div className="pages__content" style={sytle}>
                 {

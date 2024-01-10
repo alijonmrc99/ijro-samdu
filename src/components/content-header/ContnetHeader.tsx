@@ -1,6 +1,6 @@
 import React, { FC, useContext } from "react";
 import { IPageTitleContext, PageTitleContext } from "../../common/contexts/pageTitle.context";
-import { FileAddOutlined, LeftOutlined, PrinterOutlined } from "@ant-design/icons";
+import { LeftOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { Button, Flex } from "antd";
 import './style.scss'
@@ -30,8 +30,11 @@ export const ContentHeader: FC<IContentHeader> = ({ hasBackAction, children }) =
             </div>
             
             <div className="new-doc">
-                {printBtn}
-                {actionBtn}
+                <Flex justify="end">
+                    {actionBtn}
+                    {printBtn} 
+                </Flex>
+                {pagination}
             </div>
 
 

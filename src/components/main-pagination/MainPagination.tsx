@@ -31,6 +31,7 @@ export const MainPagination: FC<IPagination> = ({ onChange,
             total={total || 0}
             showTotal={(tatal, range) => `${range[0]} - ${range[1]} on ${tatal}`}
             itemRender={itemRender}
+            
         />
     </div>
 }

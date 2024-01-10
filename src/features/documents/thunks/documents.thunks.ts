@@ -1,13 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ENDPOINT_DOCUMENTS } from '../endpoints';
 import { HttpApi } from '../../../common/http';
-import { IDocuments } from '../models';
+import { IDocuments, IDocumentsSend } from '../models';
 import { IResponse, IPageable } from '../../../common/models';
 const httpApi = new HttpApi();
 export const onDocuments = createAsyncThunk('doc/action',
-    async (values: any, { rejectWithValue }) => {
+    async (payload: { route: string, values: IDocumentsSend }, { rejectWithValue }) => {
+        console.log(payload);
+
         try {
-            return await httpApi.post(ENDPOINT_DOCUMENTS, values)
+            return await httpApi.post(payload.route, payload.values)
         } catch (error) {
             return rejectWithValue(error)
         }
