@@ -1,0 +1,39 @@
+.guest-home {
+    width: 100%;
+    min-height: 100vh;
+    background-image: url('/src/assets/bg-01.jpg');
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .guest-content {
+
+        margin: auto;
+        background-color: #fff;
+        min-height: 80vh;
+        border-radius: 10px;
+        padding: 65px 50px;
+    }
+
+    .guest-header {
+        display: block;
+        font-size: 39px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: #333;
+        line-height: 1.2;
+        text-align: center;
+    }
+
+    .site-name {
+        font-size: 16px;
+        text-align: center;
+        margin-bottom: 50px;
+        font-weight: 300;
+    }
+
+
+
+
+}

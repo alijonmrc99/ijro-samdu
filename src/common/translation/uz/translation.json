@@ -1,6 +1,10 @@
 {
     "current_lang": "UZ",
+    "site_name": "Samarqand davlat universitet ijro va hujjatlar almashinish tizimi",
     "dashboard": "Bosh sahifa",
+    "login_title": "Tiziga kirish",
+    "username": "Login",
+    "password": "Parol",
     "menu": "Menyu",
     "welcome": "Xush kelibsiz",
     "logout": "Tizimdan chiqish",

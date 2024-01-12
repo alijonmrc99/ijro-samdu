@@ -4,7 +4,7 @@ import { LoginForm } from "../features/auth/companets/login-form";
 import { HomePage } from "../pages/home-page";
 import { DashboardBase } from "../layouts/DashboardBase";
 import { Documents } from "../pages/documents";
-import { Document } from "../pages/documents/document/Document";
+import { Document } from "../pages/documents/vise-rector-docs/Document";
 import { DocumentEdit } from "../pages/documents/doc-edit/DocumentEdit";
 
 
@@ -35,20 +35,31 @@ export const routes = (): RouteObjectType[] => {
                 },
                 {
                     path: ROUTE_DOCUMENTS,
+                    roles: [RoleTypeEnums.ROLE_VISE_RECTOR],
                     element: <Documents />
                 },
                 {
                     path: `${ROUTE_DOCUMENTS}/${ROUTE_CREATE}`,
+                    roles: [RoleTypeEnums.ROLE_VISE_RECTOR],
                     element: <DocumentEdit />
                 },
                 {
                     path: `${ROUTE_DOCUMENTS}/:id`,
+                    roles: [RoleTypeEnums.ROLE_VISE_RECTOR],
                     element: <Document />
                 },
                 {
                     path: `${ROUTE_DOCUMENTS}/:id/${ROUTE_EDIT}`,
                     element: <DocumentEdit />
                 },
+
+                // Route Register 
+                {
+                    path: `${ROUTE_DOCUMENTS}`,
+                    element: <DocumentEdit />
+                },
+
+
 
             ]
         }

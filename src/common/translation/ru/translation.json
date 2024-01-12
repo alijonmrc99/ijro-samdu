@@ -1,6 +1,11 @@
 {
     "current_lang": "RU",
     "menu": "Меню",
+    "site_name": "Система исполнительного производства и обмена документами Самаркандского государственного университета",
+    "dashboard": "Домашняя страница",
+    "login_title": "Войти в систему",
+    "username": "Имя пользователя",
+    "password": "Пароль",
     "welcome": "Добро пожаловать",
-    "error.message.required": "Ushbu maydon bo'sh bo'lmasligi kerak"
+    "error.message.required": "Это поле не должно быть пустым"
 }

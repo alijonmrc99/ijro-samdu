@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <ConfigProvider theme={{
         token: {
-          fontFamily: "Open Sans",
+          fontFamily: `"Poppins", "Open sans" `,
           fontWeightStrong: 500,
         }
       }}>

@@ -1,6 +1,6 @@
 import { Menu } from "antd";
 import { FC, useEffect, useMemo, useState } from "react";
-import { ROUTE_DOCUMENT, ROUTE_DOCUMENTS, ROUTE_GET_DOCUMENTS, RoleTypeEnums } from "../../common/constants";
+import { ROUTE_DOCUMENT, ROUTE_DOCUMENTS, ROUTE_INCOMNG_DOCS, RoleTypeEnums } from "../../common/constants";
 import { FolderOpenOutlined } from '@ant-design/icons'
 import { useTranslation } from "react-i18next";
 import { useAppSelector } from "../../store";
@@ -26,7 +26,7 @@ export const MainMenu: FC = () => {
             // ]
         },
         {
-            key: ROUTE_GET_DOCUMENTS,
+            key: ROUTE_INCOMNG_DOCS,
             icon: <FolderOpenOutlined />,
             label: t("documents"),
             roles: [RoleTypeEnums.ROLE_VISE_RECTOR]
