@@ -1,0 +1,20 @@
+.pages {
+    .doc-content {
+        display: "flex";
+        align-items: "center";
+        justify-content: "center";
+        min-height: "80vh"
+    }
+
+    .send-btn {
+        background-color: #13c2c2;
+        color: #fff;
+        border: 1px solid #13c2c2;
+
+        &:hover {
+            border-color: #36cfc9 !important;
+            background-color: #36cfc9;
+            color: #fff !important;
+        }
+    }
+}

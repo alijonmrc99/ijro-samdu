@@ -33,8 +33,8 @@ export const Documents: FC = () => {
     const onDelete = (id: ID) => {
         setIsDeleting(true);
         http.delete(`${ENDPOINT_DOCUMENTS}/${id}`, {}).then(_ => {
-            dispatch(fetchDocuments({})).finally(() => setIsDeleting(false))
-        })
+            dispatch(fetchDocuments({ ...pagination }))
+        }).finally(() => setIsDeleting(false))
     };
 
     const confirm = (id: ID) => {
@@ -66,7 +66,7 @@ export const Documents: FC = () => {
                 <MainPagination defaultcurrent={data?.meta.currentPage || 1} onChange={onChange} total={data?.meta.total || 1} pageSize={data?.meta.perPage || 30} />
                 <Button onClick={() => navigate('/dashboard/documents/create')} type="primary"> <FileAddOutlined />{t('create_doc')}</Button>
             </ContentHeader>
-            
+
             <div className="pages__content">
                 <DocumentsList isDeleting={isDeleting} onDelete={confirm} list={data?.items || []} isLoading={isLoading} />
             </div>

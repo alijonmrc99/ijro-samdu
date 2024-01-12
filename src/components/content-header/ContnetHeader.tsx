@@ -14,6 +14,7 @@ export const ContentHeader: FC<IContentHeader> = ({ hasBackAction, children }) =
     const { t } = useTranslation()
     const [breadcrumb, printBtn, pagination, actionBtn, sentButton] = React.Children.toArray(children)
     const navigate = useNavigate()
+    console.log(sentButton);
 
     return (
         <div className="content-header">
@@ -34,8 +35,10 @@ export const ContentHeader: FC<IContentHeader> = ({ hasBackAction, children }) =
                     {actionBtn}
                     {printBtn}
                 </Flex>
-                {sentButton}
-                {pagination}
+                <div>
+                    {sentButton}
+                    {pagination}
+                </div>
             </div>
 
 

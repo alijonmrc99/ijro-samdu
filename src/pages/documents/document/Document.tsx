@@ -15,12 +15,8 @@ import { Helmet } from "react-helmet";
 import { http } from "..";
 import { ENDPOINT_DOCUMENTS, ENDPOINT_SEND } from "../../../features/documents/endpoints";
 import { ROUTE_DASHBOARD, ROUTE_DOCUMENTS } from "../../../common/constants";
-const sytle = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    minHeight: "80vh"
-}
+
+import './sytles.scss'
 
 export const Document: FC = () => {
     const { id } = useParams();
@@ -71,16 +67,15 @@ export const Document: FC = () => {
                 <Button className="print" onClick={printPage} > <PrinterOutlined />{t('print')}</Button>
                 <div></div>
                 {!data?.isSent &&
-                    <>
-                        <Button onClick={() => navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/${id}/edit`)} type="primary"> <EditOutlined />{t('edit_doc')}</Button>
-                        <Button onClick={confirm} >{isLoading ? <LoadingOutlined /> : <SendOutlined />} {t('sent_document')}</Button>
-                    </>
+                    <Button onClick={() => navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/${id}/edit`)} type="primary"> <EditOutlined />{t('edit_doc')}</Button>
                 }
-
+                {!data?.isSent &&
+                    <Button className="send-btn" onClick={confirm} >{isLoading ? <LoadingOutlined /> : <SendOutlined />} {t('sent_document')}</Button>
+                }
             </ContentHeader>
-            <div className="pages__content" style={sytle}>
+            <div className="pages__content doc-content" >
                 {
-                    isLoading ? <Spin tip="loading" /> :
+                    isSending ? <Spin tip="loading" /> :
                         <DocumentView status={data?.status || null} contentText={data?.body || ""} />
                 }
 
