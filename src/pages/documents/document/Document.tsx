@@ -70,8 +70,13 @@ export const Document: FC = () => {
                 <MainBreadcrumb lastItem={{ key: "documnet", title: data?.title || "Loading..." }} />
                 <Button className="print" onClick={printPage} > <PrinterOutlined />{t('print')}</Button>
                 <div></div>
-                <Button disabled={data?.isSent} onClick={() => navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/${id}/edit`)} type="primary"> <EditOutlined />{t('edit_doc')}</Button>
-                <Button onClick={confirm} >{isLoading ? <LoadingOutlined /> : <SendOutlined />} {t('sent_document')}</Button>
+                {!data?.isSent &&
+                    <>
+                        <Button onClick={() => navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/${id}/edit`)} type="primary"> <EditOutlined />{t('edit_doc')}</Button>
+                        <Button onClick={confirm} >{isLoading ? <LoadingOutlined /> : <SendOutlined />} {t('sent_document')}</Button>
+                    </>
+                }
+
             </ContentHeader>
             <div className="pages__content" style={sytle}>
                 {

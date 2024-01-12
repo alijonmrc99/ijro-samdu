@@ -31,10 +31,10 @@ export const ContentHeader: FC<IContentHeader> = ({ hasBackAction, children }) =
 
             <div className="new-doc">
                 <Flex justify="end">
-                    {sentButton}
                     {actionBtn}
                     {printBtn}
                 </Flex>
+                {sentButton}
                 {pagination}
             </div>
 
