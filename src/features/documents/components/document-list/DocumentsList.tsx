@@ -9,8 +9,6 @@ import { ColumnType } from "antd/es/table";
 import { Button } from "antd";
 import { DeleteOutlined, EditFilled } from "@ant-design/icons";
 
-
-
 export const DocumentsList: FC<{
     isLoading: boolean,
     list: IDocuments[],
@@ -24,14 +22,12 @@ export const DocumentsList: FC<{
         navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/${value.id}`)
     }
 
-
     const columns = useMemo(() => [
         {
             title: t('name'),
             dataIndex: 'title',
             key: 'title'
         },
-
         {
             title: t('is_sent'),
             dataIndex: 'isSent',
@@ -50,7 +46,7 @@ export const DocumentsList: FC<{
             navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/${id}/edit`)
         }),
         deleteColumnsType(!!isDeleting, onDelete),
-    ], [])
+    ], [t, list])
 
 
 
@@ -82,13 +78,11 @@ export const editColumnsType = (onEdit: (id: any) => void): ColumnType<any> => {
         key: 'action',
         fixed: 'right',
         render: (item: any) => <Button
-            // style={{}}
+            disabled={item.isSent}
             type="primary"
             icon={<EditFilled />}
             onClick={(e) => {
                 e.stopPropagation();
-                console.log(item);
-
                 onEdit(item.id)
             }}
         />,
