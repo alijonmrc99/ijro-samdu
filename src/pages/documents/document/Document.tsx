@@ -70,12 +70,12 @@ export const Document: FC = () => {
                     <Button onClick={() => navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/${id}/edit`)} type="primary"> <EditOutlined />{t('edit_doc')}</Button>
                 }
                 {!data?.isSent &&
-                    <Button className="send-btn" onClick={confirm} >{isLoading ? <LoadingOutlined /> : <SendOutlined />} {t('sent_document')}</Button>
+                    <Button className="send-btn" onClick={confirm} >{isSending ? <LoadingOutlined /> : <SendOutlined />} {t('sent_document')}</Button>
                 }
             </ContentHeader>
             <div className="pages__content doc-content" >
                 {
-                    isSending ? <Spin tip="loading" /> :
+                    isLoading ? <Spin tip="loading" /> :
                         <DocumentView status={data?.status || null} contentText={data?.body || ""} />
                 }
 
