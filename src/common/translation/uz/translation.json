@@ -27,5 +27,9 @@
     "print": "Chop etish",
     "edit_doc": "Hujjatni o'zgartirish",
     "save": "Saqlash",
-    "sent_document": "Hujjatni yuborish"
+    "sent_document": "Hujjatni yuborish",
+    "not_open": "Yangi kelgan",
+    "seen": "Tasdiqlanmagan",
+    "rejected": "Rad etilgan",
+    "approved": "Qabul qilingan"
 }

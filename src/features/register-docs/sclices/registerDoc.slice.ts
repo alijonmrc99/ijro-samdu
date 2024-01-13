@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IDocuments } from "../models";
-import { docFetchById, onDocuments } from "../thunks";
+import { RegdocFetchById, onRegDocuments } from "../thunks";
 
 interface InitialStateProps {
     data: IDocuments | null
@@ -14,29 +14,28 @@ const initialState: InitialStateProps = {
     isLoading: false,
 }
 
-export const documentSlice = createSlice({
-    name: 'documentSlice',
+export const registerDocSlice = createSlice({
+    name: 'registerDocSlice',
     initialState,
     reducers: {
         emptyState: (state) => {
-            console.log(1);
             return ({ ...state, data: null })
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(onDocuments.pending, (state) => ({
+        builder.addCase(onRegDocuments.pending, (state) => ({
             ...state,
             isLoading: true,
             data: null,
             error: null
         }));
-        builder.addCase(onDocuments.fulfilled, (state) => ({
+        builder.addCase(onRegDocuments.fulfilled, (state) => ({
             ...state,
             isLoading: false,
             data: null,
             error: null
         }));
-        builder.addCase(onDocuments.rejected, (state, { error }) => ({
+        builder.addCase(onRegDocuments.rejected, (state, { error }) => ({
             ...state,
             isLoading: false,
             data: null,
@@ -44,19 +43,19 @@ export const documentSlice = createSlice({
         }));
 
 
-        builder.addCase(docFetchById.pending, (state) => ({
+        builder.addCase(RegdocFetchById.pending, (state) => ({
             ...state,
             isLoading: true,
             data: null,
             error: null
         }));
-        builder.addCase(docFetchById.fulfilled, (state, { payload }) => ({
+        builder.addCase(RegdocFetchById.fulfilled, (state, { payload }) => ({
             ...state,
             isLoading: false,
             data: payload.data,
             error: null
         }));
-        builder.addCase(docFetchById.rejected, (state, { error }) => ({
+        builder.addCase(RegdocFetchById.rejected, (state, { error }) => ({
             ...state,
             isLoading: false,
             data: null,

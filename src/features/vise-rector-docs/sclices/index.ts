@@ -1,1 +1,1 @@
-export * from './documents.slice'
+export * from './vise-reactor-docs.slice'

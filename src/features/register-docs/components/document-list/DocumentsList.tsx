@@ -3,23 +3,19 @@ import './styles.scss'
 import { IDocuments } from "../../models";
 import { DataTable } from "../../../../components/data-table/DataTable";
 import { useNavigate } from "react-router-dom";
-import { ROUTE_DASHBOARD, ROUTE_DOCUMENTS } from "../../../../common/constants";
+import { ROUTE_DASHBOARD, ROUTE_INCOMNG_DOCS } from "../../../../common/constants";
 import { useTranslation } from "react-i18next";
-import { ColumnType } from "antd/es/table";
-import { Button } from "antd";
-import { DeleteOutlined, EditFilled } from "@ant-design/icons";
-
+import { Badge, Button } from "antd";
+import './styles.scss'
 export const DocumentsList: FC<{
     isLoading: boolean,
-    list: IDocuments[],
-    onDelete: (id: any) => void,
-    isDeleting?: boolean
-}> = ({ isLoading, list, onDelete, isDeleting }) => {
+    list: IDocuments[]
+}> = ({ isLoading, list }) => {
     const { t } = useTranslation()
     const navigate = useNavigate();
 
     const onSelectRow = (_index: any, value: any) => {
-        navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/${value.id}`)
+        navigate(`${ROUTE_DASHBOARD}/${ROUTE_INCOMNG_DOCS}/${value.id}`)
     }
 
     const columns = useMemo(() => [
@@ -29,23 +25,20 @@ export const DocumentsList: FC<{
             key: 'title'
         },
         {
-            title: t('is_sent'),
-            dataIndex: 'isSent',
-            key: "isSent",
-            render: (isSent: boolean) => (
-                <div>{isSent ? <Button type="text" style={{ borderColor: "#28A745", color: "#28A745" }}>{t('sent')}</Button> :
-                    <Button type="text" style={{ borderColor: "#ECA52B", color: "#ECA52B" }}>{t('not_sent')}</Button>}  </div>
-            )
-        },
-        {
             title: t('status'),
             dataIndex: 'status',
-            key: "status"
+            key: "status",
+            render: (status: "seen" | "approved" | "rejected" | null,) => (
+                <div>
+                    {status === 'rejected' ? <Button className="rejected">{t('rejected')}</Button> :
+                        status === "seen" ? <Button className="seen"><Badge style={{ marginRight: "10px" }} status="processing" /> {t('seen')}</Button> :
+                            status === 'approved' ? <Button className="approved">{t('approved')}</Button> :
+                                <Button className="not_open">{t('not_open')}</Button>
+                    }
+                </div>
+            )
         },
-        editColumnsType((id: any) => {
-            navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/${id}/edit`)
-        }),
-        deleteColumnsType(!!isDeleting, onDelete),
+
     ], [t, list])
 
 
@@ -55,36 +48,3 @@ export const DocumentsList: FC<{
     )
 }
 
-export const deleteColumnsType = (isDeleting: boolean, onDelete: (id: any) => void): ColumnType<any> => {
-    return {
-        title: "",
-        width: 64,
-        key: 'action',
-        fixed: 'right',
-        render: (item: any) => <Button
-            disabled={isDeleting || item.isSent}
-            danger
-            icon={<DeleteOutlined />}
-            onClick={(e) => { e.stopPropagation(); onDelete(item.id) }}
-        />,
-    }
-}
-
-export const editColumnsType = (onEdit: (id: any) => void): ColumnType<any> => {
-
-    return {
-        title: '',
-        width: 64,
-        key: 'action',
-        fixed: 'right',
-        render: (item: any) => <Button
-            disabled={item.isSent}
-            type="primary"
-            icon={<EditFilled />}
-            onClick={(e) => {
-                e.stopPropagation();
-                onEdit(item.id)
-            }}
-        />,
-    }
-}

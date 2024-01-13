@@ -1,0 +1,38 @@
+.not_open {
+    transition: 0.3s;
+    border-color: #ffc107;
+    background-color: #ffc107;
+    color: #fff;
+
+    &:hover {
+        background-color: transparent;
+        border-color: #ffc107;
+        color: #ffc107 !important;
+    }
+}
+
+.approved {
+    border-color: #28a745;
+    transition: 0.3s;
+    background-color: #28a745;
+    color: #fff;
+
+    &:hover {
+        color: #28a745 !important;
+        background-color: transparent;
+        border-color: #28a745 !important;
+    }
+}
+
+.rejected {
+    border-color: #f5222d;
+    transition: 0.3s;
+    background-color: #f5222d;
+    color: #fff;
+
+    &:hover {
+        color: #f5222d !important;
+        background-color: transparent;
+        border-color: #f5222d !important;
+    }
+}

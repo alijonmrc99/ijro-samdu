@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IDocuments } from "../models";
-import { docFetchById, onDocuments } from "../thunks";
+import { VRdocFetchById, onVRDocuments } from "../thunks";
 
 interface InitialStateProps {
     data: IDocuments | null
@@ -14,7 +14,7 @@ const initialState: InitialStateProps = {
     isLoading: false,
 }
 
-export const documentSlice = createSlice({
+export const vrDocSlice = createSlice({
     name: 'documentSlice',
     initialState,
     reducers: {
@@ -24,19 +24,19 @@ export const documentSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(onDocuments.pending, (state) => ({
+        builder.addCase(onVRDocuments.pending, (state) => ({
             ...state,
             isLoading: true,
             data: null,
             error: null
         }));
-        builder.addCase(onDocuments.fulfilled, (state) => ({
+        builder.addCase(onVRDocuments.fulfilled, (state) => ({
             ...state,
             isLoading: false,
             data: null,
             error: null
         }));
-        builder.addCase(onDocuments.rejected, (state, { error }) => ({
+        builder.addCase(onVRDocuments.rejected, (state, { error }) => ({
             ...state,
             isLoading: false,
             data: null,
@@ -44,19 +44,19 @@ export const documentSlice = createSlice({
         }));
 
 
-        builder.addCase(docFetchById.pending, (state) => ({
+        builder.addCase(VRdocFetchById.pending, (state) => ({
             ...state,
             isLoading: true,
             data: null,
             error: null
         }));
-        builder.addCase(docFetchById.fulfilled, (state, { payload }) => ({
+        builder.addCase(VRdocFetchById.fulfilled, (state, { payload }) => ({
             ...state,
             isLoading: false,
             data: payload.data,
             error: null
         }));
-        builder.addCase(docFetchById.rejected, (state, { error }) => ({
+        builder.addCase(VRdocFetchById.rejected, (state, { error }) => ({
             ...state,
             isLoading: false,
             data: null,

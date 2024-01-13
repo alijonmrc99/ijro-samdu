@@ -1,8 +1,8 @@
 import { FC, useContext, useEffect } from "react";
 import { useAppDispatch } from "../../../store";
-import { documentSlice } from "../../../features/vise-rector-docs/sclices/document.slice";
+import { vrDocSlice } from "../../../features/vise-rector-docs/sclices/vise-rector-doc.slice";
 import { useParams } from "react-router-dom";
-import { docFetchById } from "../../../features/vise-rector-docs/thunks";
+import { VRdocFetchById } from "../../../features/vise-rector-docs/thunks";
 import { DocumentForm } from "../../../features/vise-rector-docs/components/document-form";
 import { IPageTitleContext, PageTitleContext } from "../../../common/contexts/pageTitle.context";
 import { useTranslation } from "react-i18next";
@@ -16,14 +16,14 @@ export const DocumentEdit: FC = () => {
     const { setPageTitle } = useContext(PageTitleContext) as IPageTitleContext
     useEffect(() => {
         if (id) {
-            dispatch(docFetchById(id))
+            dispatch(VRdocFetchById(id))
             setPageTitle(t('edit_doc'))
         }
         else {
             setPageTitle(t('create_doc'))
 
         }
-        return () => { dispatch(documentSlice.actions.emptyState()) }
+        return () => { dispatch(vrDocSlice.actions.emptyState()) }
     }, [])
 
     return (

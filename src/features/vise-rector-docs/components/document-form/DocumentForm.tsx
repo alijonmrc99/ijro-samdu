@@ -10,7 +10,7 @@ import { Button } from "antd";
 export const DocumentForm: FC = () => {
     const { t } = useTranslation()
     const { handleLogin, isLoading, control, contextHolder, setValue } = useDocuments();
-    const { data: doc } = useAppSelector(state => state.document)
+    const { data: doc } = useAppSelector(state => state.vrDoc)
 
     useEffect(() => {
         if (doc) {

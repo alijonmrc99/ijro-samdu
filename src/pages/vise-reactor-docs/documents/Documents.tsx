@@ -2,7 +2,7 @@ import { FC, useContext, useEffect, useState } from "react";
 import { Button, Layout, Modal } from "antd";
 import { DocumentsList } from "../../../features/vise-rector-docs/components/document-list";
 import { useAppDispatch, useAppSelector } from "../../../store";
-import { fetchDocuments } from "../../../features/vise-rector-docs/thunks";
+import { fetchVRDocuments } from "../../../features/vise-rector-docs/thunks";
 import { HttpApi } from "../../../common/http";
 import { ENDPOINT_DOCUMENTS } from "../../../features/vise-rector-docs/endpoints";
 import { ID } from "../../../common/models";
@@ -14,6 +14,7 @@ import { MainBreadcrumb } from "../../../components/main-breadcamp";
 import { useNavigate } from "react-router-dom";
 import { MainPagination } from "../../../components/main-pagination";
 import { IPaginationData, PaginationContext } from "../../../common/contexts/pagination.context";
+import { ROUTE_DASHBOARD, ROUTE_INCOMNG_DOCS, RoleTypeEnums } from "../../../common/constants";
 export const http = new HttpApi()
 
 export const Documents: FC = () => {
@@ -21,7 +22,8 @@ export const Documents: FC = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const [isDeleting, setIsDeleting] = useState(false);
-    const { data, isLoading } = useAppSelector(state => state.documents);
+    const { data: user } = useAppSelector(state => state.me)
+    const { data, isLoading } = useAppSelector(state => state.vrDocs);
     const { setPageTitle } = useContext(PageTitleContext) as IPageTitleContext
     const { pagination, setPagination } = useContext(PaginationContext) as IPaginationData
 
@@ -33,9 +35,14 @@ export const Documents: FC = () => {
     const onDelete = (id: ID) => {
         setIsDeleting(true);
         http.delete(`${ENDPOINT_DOCUMENTS}/${id}`, {}).then(_ => {
-            dispatch(fetchDocuments({ ...pagination }))
+            dispatch(fetchVRDocuments({ route: ENDPOINT_DOCUMENTS, params: { ...pagination } }))
         }).finally(() => setIsDeleting(false))
     };
+
+    useEffect(() => {
+        // If user is Register change Route
+        user?.roles.map(role => role.name).includes(RoleTypeEnums.ROLE_REGISTER) && navigate(`${ROUTE_DASHBOARD}/${ROUTE_INCOMNG_DOCS}`)
+    }, [])
 
     const confirm = (id: ID) => {
         Modal.confirm({
@@ -54,7 +61,14 @@ export const Documents: FC = () => {
     }
 
     useEffect(() => {
-        dispatch(fetchDocuments({ ...pagination }))
+        // If user is Register change Route
+        if (user?.roles.map(role => role.name).includes(RoleTypeEnums.ROLE_REGISTER))
+            navigate(`${ROUTE_DASHBOARD}/${ROUTE_INCOMNG_DOCS}`)
+        else {
+            console.log('per pages');
+
+            dispatch(fetchVRDocuments({ route: ENDPOINT_DOCUMENTS, params: { ...pagination } }))
+        }
     }, [pagination]);
 
 

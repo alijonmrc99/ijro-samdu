@@ -1,10 +1,10 @@
 import { FC, useContext, useEffect, useState } from "react";
-import { docFetchById } from "../../../features/vise-rector-docs/thunks";
+import { VRdocFetchById } from "../../../features/vise-rector-docs/thunks";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { DocumentView } from "../../../components/documnet-view";
 import { Button, Modal, Spin } from "antd";
-import { documentSlice } from "../../../features/vise-rector-docs/sclices/document.slice";
+import { vrDocSlice } from "../../../features/vise-rector-docs/sclices/vise-rector-doc.slice";
 import { IPageTitleContext, PageTitleContext } from "../../../common/contexts/pageTitle.context";
 import { ContentHeader } from "../../../components/content-header";
 import { MainBreadcrumb } from "../../../components/main-breadcamp";
@@ -25,7 +25,7 @@ export const Document: FC = () => {
     const dispatch = useAppDispatch();
     const { setPageTitle } = useContext(PageTitleContext) as IPageTitleContext
     const [isSending, setIsSending] = useState(false)
-    const { data, isLoading } = useAppSelector(state => state.document)
+    const { data, isLoading } = useAppSelector(state => state.vrDoc)
 
     useEffect(() => {
         setPageTitle(data?.title || "");
@@ -33,8 +33,8 @@ export const Document: FC = () => {
     }, [data])
 
     useEffect(() => {
-        dispatch(docFetchById(id))
-        return () => { dispatch(documentSlice.actions.emptyState()) }
+        dispatch(VRdocFetchById(id))
+        return () => { dispatch(vrDocSlice.actions.emptyState()) }
     }, [])
 
     const onSend = () => {

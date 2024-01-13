@@ -1,1 +1,1 @@
-export * from './documents.thunks'
+export * from './register.thunks'

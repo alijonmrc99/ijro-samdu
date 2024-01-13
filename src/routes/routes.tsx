@@ -6,13 +6,15 @@ import { DashboardBase } from "../layouts/DashboardBase";
 import { Documents } from "../pages/vise-reactor-docs";
 import { DocumentEdit } from "../pages/vise-reactor-docs";
 import { Document } from "../pages/vise-reactor-docs";
-import { RDocuments } from "../pages/register-docs/documents/RDocuments";
+import { RegDocuments } from "../pages/register-docs/documents/RegDocuments";
+import { RegDocument } from "../pages/register-docs/document/RegDocument";
 
 
 export type RouteObjectType = IndexRouteObject |
     (Omit<NonIndexRouteObject, 'children'> & { children: (RouteObject & { roles?: RoleTypeEnums[] })[] }) & { roles?: RoleTypeEnums[] }
 
 export const routes = (): RouteObjectType[] => {
+    // const { data: user } = useAppSelector(state => state.me)
     return [
         {
             path: ROUTE_HOME,
@@ -36,7 +38,7 @@ export const routes = (): RouteObjectType[] => {
                 },
                 {
                     path: ROUTE_DOCUMENTS,
-                    roles: [RoleTypeEnums.ROLE_VISE_RECTOR],
+                    roles: [RoleTypeEnums.ROLE_VISE_RECTOR, RoleTypeEnums.ROLE_REGISTER],
                     element: <Documents />
                 },
                 {
@@ -46,18 +48,25 @@ export const routes = (): RouteObjectType[] => {
                 },
                 {
                     path: `${ROUTE_DOCUMENTS}/:id`,
-                    roles: [RoleTypeEnums.ROLE_VISE_RECTOR],
+                    roles: [RoleTypeEnums.ROLE_VISE_RECTOR, RoleTypeEnums.ROLE_REGISTER],
                     element: <Document />
                 },
                 {
                     path: `${ROUTE_DOCUMENTS}/:id/${ROUTE_EDIT}`,
-                    element: <DocumentEdit />
+                    element: <DocumentEdit />,
+                    roles: [RoleTypeEnums.ROLE_VISE_RECTOR],
                 },
 
                 // Route Register 
                 {
                     path: `${ROUTE_INCOMNG_DOCS}`,
-                    element: <RDocuments />
+                    roles: [RoleTypeEnums.ROLE_REGISTER],
+                    element: <RegDocuments />
+                },
+                {
+                    path: `${ROUTE_INCOMNG_DOCS}/:id`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER],
+                    element: <RegDocument />
                 },
 
 

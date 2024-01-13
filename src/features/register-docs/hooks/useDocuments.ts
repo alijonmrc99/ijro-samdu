@@ -7,7 +7,7 @@ import { DocumentSchema } from "../schema";
 import { message } from "antd";
 import { IDocumentsSend } from "../models";
 import { useAppDispatch } from "../../../store";
-import { onDocuments } from "../thunks";
+import { onRegDocuments } from "../thunks";
 import { ROUTE_DASHBOARD, ROUTE_DOCUMENTS, } from "../../../common/constants";
 import { ENDPOINT_DOCUMENTS } from "../endpoints";
 
@@ -42,7 +42,7 @@ export const useDocuments = () => {
             console.log(values.id);
 
             values["_method"] = "PUT";
-            dispatch(onDocuments({ values: values, route: `${ENDPOINT_DOCUMENTS}/${values.id}` })).unwrap()
+            dispatch(onRegDocuments({ values: values, route: `${ENDPOINT_DOCUMENTS}/${values.id}` })).unwrap()
                 .then((responseValues: any) => {
                     console.log(responseValues);
 
@@ -55,7 +55,7 @@ export const useDocuments = () => {
                 .finally(() => { setIsLoading(false) })
         }
         else {
-            dispatch(onDocuments({ values: values, route: `${ENDPOINT_DOCUMENTS}` })).unwrap()
+            dispatch(onRegDocuments({ values: values, route: `${ENDPOINT_DOCUMENTS}` })).unwrap()
                 .then((responseValues: any) => {
                     if (responseValues.success) {
                         navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/`)

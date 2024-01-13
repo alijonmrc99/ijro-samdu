@@ -14,8 +14,6 @@ export const ContentHeader: FC<IContentHeader> = ({ hasBackAction, children }) =
     const { t } = useTranslation()
     const [breadcrumb, printBtn, pagination, actionBtn, sentButton] = React.Children.toArray(children)
     const navigate = useNavigate()
-    console.log(sentButton);
-
     return (
         <div className="content-header">
             <div>

@@ -1,1 +1,1 @@
-export * from './documents.thunks'
+export * from './vise-rector.thunks'

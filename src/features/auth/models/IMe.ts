@@ -9,4 +9,4 @@ export interface IMe {
     job: string
 }
 
-export interface IRole { id: number, name: RoleTypeEnums, title: string }
+export interface IRole { id: number, name: RoleTypeEnums }

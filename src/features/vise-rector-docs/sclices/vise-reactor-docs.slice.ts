@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IDocuments } from "../models";
-import { fetchDocuments } from "../thunks";
+import { fetchVRDocuments } from "../thunks";
 import { IPageable } from "../../../common/models";
 
 interface InitialStateProps {
@@ -15,7 +15,7 @@ const initialState: InitialStateProps = {
     error: null,
 }
 
-export const documentsSlice = createSlice({
+export const vrDocsSlice = createSlice({
     name: "documentsSlice",
     initialState,
     reducers: {
@@ -23,13 +23,13 @@ export const documentsSlice = createSlice({
     },
 
     extraReducers: (builder) => {
-        builder.addCase(fetchDocuments.pending, (state) => ({
+        builder.addCase(fetchVRDocuments.pending, (state) => ({
             ...state,
             isLoading: true,
             error: null
         }));
 
-        builder.addCase(fetchDocuments.fulfilled, (state, { payload }) => {
+        builder.addCase(fetchVRDocuments.fulfilled, (state, { payload }) => {
             return ({
                 ...state,
                 isLoading: false,
@@ -38,7 +38,7 @@ export const documentsSlice = createSlice({
             })
         })
 
-        builder.addCase(fetchDocuments.rejected, (state, { error }) => ({
+        builder.addCase(fetchVRDocuments.rejected, (state, { error }) => ({
             ...state,
             isLoading: false,
             data: null,

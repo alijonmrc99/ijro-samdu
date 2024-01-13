@@ -38,5 +38,10 @@
     .ql-align-justify {
         text-align: justify;
         margin: 0.5rem 0;
+
+        &::first-letter {
+            display: inline-block;
+            margin-left: 25px;
+        }
     }
 }
