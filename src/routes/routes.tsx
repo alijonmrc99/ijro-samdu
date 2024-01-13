@@ -1,11 +1,12 @@
 import { IndexRouteObject, Navigate, NonIndexRouteObject, RouteObject } from "react-router-dom";
-import { ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DOCUMENTS, ROUTE_EDIT, ROUTE_HOME, ROUTE_LOGIN, RoleTypeEnums } from "../common/constants";
+import { ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DOCUMENTS, ROUTE_EDIT, ROUTE_HOME, ROUTE_INCOMNG_DOCS, ROUTE_LOGIN, RoleTypeEnums } from "../common/constants";
 import { LoginForm } from "../features/auth/companets/login-form";
 import { HomePage } from "../pages/home-page";
 import { DashboardBase } from "../layouts/DashboardBase";
-import { Documents } from "../pages/documents";
-import { Document } from "../pages/documents/vise-rector-docs/Document";
-import { DocumentEdit } from "../pages/documents/doc-edit/DocumentEdit";
+import { Documents } from "../pages/vise-reactor-docs";
+import { DocumentEdit } from "../pages/vise-reactor-docs";
+import { Document } from "../pages/vise-reactor-docs";
+import { RDocuments } from "../pages/register-docs/documents/RDocuments";
 
 
 export type RouteObjectType = IndexRouteObject |
@@ -55,8 +56,8 @@ export const routes = (): RouteObjectType[] => {
 
                 // Route Register 
                 {
-                    path: `${ROUTE_DOCUMENTS}`,
-                    element: <DocumentEdit />
+                    path: `${ROUTE_INCOMNG_DOCS}`,
+                    element: <RDocuments />
                 },
 
 

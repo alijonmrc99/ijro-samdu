@@ -1,9 +1,9 @@
 import { FC, useContext, useEffect } from "react";
 import { useAppDispatch } from "../../../store";
-import { documentSlice } from "../../../features/documents/sclices/document.slice";
+import { documentSlice } from "../../../features/vise-rector-docs/sclices/document.slice";
 import { useParams } from "react-router-dom";
-import { docFetchById } from "../../../features/documents/thunks";
-import { DocumentForm } from "../../../features/documents/components/document-form";
+import { docFetchById } from "../../../features/vise-rector-docs/thunks";
+import { DocumentForm } from "../../../features/vise-rector-docs/components/document-form";
 import { IPageTitleContext, PageTitleContext } from "../../../common/contexts/pageTitle.context";
 import { useTranslation } from "react-i18next";
 import { ContentHeader } from "../../../components/content-header";

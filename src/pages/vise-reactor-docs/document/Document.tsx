@@ -1,10 +1,10 @@
 import { FC, useContext, useEffect, useState } from "react";
-import { docFetchById } from "../../../features/documents/thunks";
+import { docFetchById } from "../../../features/vise-rector-docs/thunks";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { DocumentView } from "../../../components/documnet-view";
 import { Button, Modal, Spin } from "antd";
-import { documentSlice } from "../../../features/documents/sclices/document.slice";
+import { documentSlice } from "../../../features/vise-rector-docs/sclices/document.slice";
 import { IPageTitleContext, PageTitleContext } from "../../../common/contexts/pageTitle.context";
 import { ContentHeader } from "../../../components/content-header";
 import { MainBreadcrumb } from "../../../components/main-breadcamp";
@@ -13,7 +13,7 @@ import { EditOutlined, LoadingOutlined, PrinterOutlined, SendOutlined } from "@a
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 import { http } from "..";
-import { ENDPOINT_DOCUMENTS, ENDPOINT_SEND } from "../../../features/documents/endpoints";
+import { ENDPOINT_DOCUMENTS, ENDPOINT_SEND } from "../../../features/vise-rector-docs/endpoints";
 import { ROUTE_DASHBOARD, ROUTE_DOCUMENTS } from "../../../common/constants";
 
 import './sytles.scss'
@@ -42,7 +42,7 @@ export const Document: FC = () => {
         http.post(`${ENDPOINT_DOCUMENTS}/${id}/${ENDPOINT_SEND}`, {})
             .then(_res => setIsSending(false));
         navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}`)
-    }
+    };
 
 
     const confirm = () => {
@@ -55,7 +55,7 @@ export const Document: FC = () => {
             onCancel: () => { },
             onOk: onSend
         })
-    }
+    };
 
     return (
         <div className="pages">

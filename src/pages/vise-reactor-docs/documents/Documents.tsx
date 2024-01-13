@@ -1,10 +1,10 @@
 import { FC, useContext, useEffect, useState } from "react";
 import { Button, Layout, Modal } from "antd";
-import { DocumentsList } from "../../../features/documents/components/document-list";
+import { DocumentsList } from "../../../features/vise-rector-docs/components/document-list";
 import { useAppDispatch, useAppSelector } from "../../../store";
-import { fetchDocuments } from "../../../features/documents/thunks";
+import { fetchDocuments } from "../../../features/vise-rector-docs/thunks";
 import { HttpApi } from "../../../common/http";
-import { ENDPOINT_DOCUMENTS } from "../../../features/documents/endpoints";
+import { ENDPOINT_DOCUMENTS } from "../../../features/vise-rector-docs/endpoints";
 import { ID } from "../../../common/models";
 import { useTranslation } from "react-i18next";
 import { ExclamationCircleOutlined, FileAddOutlined } from "@ant-design/icons";

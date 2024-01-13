@@ -1,8 +1,8 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import { notificationSlice } from "../common/notification/slices";
 import { meSlice } from "../features/auth/sclices";
-import { documentsSlice } from "../features/documents/sclices";
-import { documentSlice } from "../features/documents/sclices/document.slice";
+import { documentsSlice } from "../features/vise-rector-docs/sclices";
+import { documentSlice } from "../features/vise-rector-docs/sclices/document.slice";
 
 export const rootReducer = combineReducers({
     notification: notificationSlice.reducer,
