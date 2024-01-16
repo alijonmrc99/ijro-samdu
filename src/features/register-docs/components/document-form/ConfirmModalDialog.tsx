@@ -1,7 +1,7 @@
 import { FC, FormEvent, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useConfirmModal } from "../../hooks";
-import { Button, Col, Flex, Modal, Row } from "antd";
+import { Button, Col, Flex, Modal } from "antd";
 import './style.scss';
 import { TextFieldController } from "../../../../common/inputs/text-feild-controller";
 import { DOC_COMMIT, DOC_NAME } from "../../constants";
