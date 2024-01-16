@@ -25,13 +25,13 @@ export const MainPagination: FC<IPagination> = ({ onChange,
 
     return <div className="main-pagination">
         <Pagination
-            onChange={(page, pageSize) => onChange({ pageSize, page: page })}
+            onChange={(page, pageSize) => onChange({ perPage: pageSize, page: page })}
             pageSize={perPage}
             defaultCurrent={defaultcurrent}
             total={total || 0}
             showTotal={(tatal, range) => `${range[0]} - ${range[1]} on ${tatal}`}
             itemRender={itemRender}
-            
+
         />
     </div>
 }

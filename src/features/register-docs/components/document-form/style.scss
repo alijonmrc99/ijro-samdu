@@ -18,6 +18,22 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
+
     }
+
+    .danger {
+        background-color: #ff4d4f;
+        color: #fff;
+        border: none;
+
+        &:hover {
+            background-color: #fc8d8f;
+            color: #fff !important;
+            border: none;
+        }
+    }
+
+
 
 }

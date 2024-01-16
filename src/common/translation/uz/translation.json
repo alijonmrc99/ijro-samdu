@@ -12,7 +12,7 @@
     "attention": "Diqqat",
     "delete_confirmation_message": "Siz haqiqatdan ham ushbu elementni o'chirmoqchimisiz?",
     "sent_confirmation_message": "Siz haqiqatdan ham ushbu hujjatni yubormochimisiz?",
-    "confirm": "Tasqiqlash",
+    "confirm": "Tasdiqlash",
     "cancel": "Rad etish",
     "name": "Nomi",
     "status": "Holati",
@@ -31,5 +31,7 @@
     "not_open": "Yangi kelgan",
     "seen": "Tasdiqlanmagan",
     "rejected": "Rad etilgan",
-    "approved": "Qabul qilingan"
+    "approved": "Qabul qilingan",
+    "reject-commit": "Rad etish sababi",
+    "close": "Yopish"
 }

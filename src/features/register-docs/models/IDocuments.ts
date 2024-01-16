@@ -9,10 +9,11 @@ export interface IDocuments {
     name: string
 }
 
-export interface IDocumentsSend {
+export interface IDocumentsSave {
     id?: ID,
     "_method"?: string,
-    title: string,
-    body: string,
+    name: string,
+    commit: string,
+    status?: "seen" | "approved" | "rejected" | null,
 }
 

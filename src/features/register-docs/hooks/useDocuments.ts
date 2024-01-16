@@ -1,78 +1,57 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom"
+import { message } from 'antd';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { DOC_BODY, DOC_TITLE } from "../constants";
-import { DocumentSchema } from "../schema";
-import { message } from "antd";
-import { IDocumentsSend } from "../models";
-import { useAppDispatch } from "../../../store";
-import { onRegDocuments } from "../thunks";
-import { ROUTE_DASHBOARD, ROUTE_DOCUMENTS, } from "../../../common/constants";
-import { ENDPOINT_DOCUMENTS } from "../endpoints";
+
+// import { IngredientConsumptionSchema } from '../schema';
+import { HttpApi } from '../../../common/http';
+// import { IConsumption } from '../models/IConsumption';
+// import { ENDPOINT_CONSUMPTION, ENDPOINT_RESTAURANT } from '../../../common/constants';
+import { useMe } from '../../auth/hooks';
+import { ENDPOINT_INCOMING } from '../endpoints';
+import { IDocumentsSave } from '../models';
+import { DocumentSchema } from '../schema';
 
 
-export const useDocuments = () => {
-    const navigate = useNavigate();
-    const dispatch = useAppDispatch()
-
-    const [isLoading, setIsLoading] = useState(false);
-    const { register, control, handleSubmit, setValue } = useForm<IDocumentsSend>({
-        defaultValues: {
-            [DOC_TITLE]: '',
-            [DOC_BODY]: ''
-        },
+export const useRegisterForm = () => {
+    const http = new HttpApi();
+    const defaultValues = {}
+    const { register, control, handleSubmit, setValue, reset, getValues, watch, formState: { isSubmitting } } = useForm<IDocumentsSave>({
+        defaultValues: defaultValues,
         resolver: yupResolver(DocumentSchema),
-        mode: 'onBlur'
-    })
+        mode: 'onBlur',
+    });
 
     const [messageApi, contextHolder] = message.useMessage();
+    const [onSuccess, setOnSetSuccess] = useState(false);
+
 
     const handleErrors = (errors: any) => {
         messageApi.open({
             type: 'error',
-            content: errors?.response?.data?.message || "Error message for user",
-        })
-    }
-
-    const onSubmit = (values: IDocumentsSend) => {
-        setIsLoading(true);
-
-        if (values.id) {
-            console.log(values.id);
-
-            values["_method"] = "PUT";
-            dispatch(onRegDocuments({ values: values, route: `${ENDPOINT_DOCUMENTS}/${values.id}` })).unwrap()
-                .then((responseValues: any) => {
-                    console.log(responseValues);
-
-                    if (responseValues.success) {
-                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/`)
-                        // setOnSetSuccess(true);
-                    }
-                })
-                .catch(handleErrors)
-                .finally(() => { setIsLoading(false) })
-        }
-        else {
-            dispatch(onRegDocuments({ values: values, route: `${ENDPOINT_DOCUMENTS}` })).unwrap()
-                .then((responseValues: any) => {
-                    if (responseValues.success) {
-                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/`)
-                        // setOnSetSuccess(true);
-                    }
-                })
-                .catch(handleErrors)
-                .finally(() => { setIsLoading(false) })
-        }
-
-
+            content: errors.response.data.message || 'Error messages'
+        });
     };
 
-    const handleLogin = handleSubmit(onSubmit);
-    return { control, register, setValue, isLoading, handleLogin, contextHolder };
+    const onSubmit = async (values: IDocumentsSave) => {
+        try {
+            values.status = "approved"
+            values._method = "PUT"
+            await http.post(`${ENDPOINT_INCOMING}/${values.id}`, values);
+            setOnSetSuccess(true)
+        } catch (error) {
+            handleErrors(error)
+        }
+    };
 
+    const handleReset = () => {
+        reset(defaultValues)
+    }
+
+    const handleCompanyForm = handleSubmit(onSubmit);
+
+    return {
+        control, register, setValue, getValues, handleReset,
+        resetValues: reset, handleCompanyForm, contextHolder, onSuccess, setOnSetSuccess, watch, isSubmitting
+    };
 };
-
-
-

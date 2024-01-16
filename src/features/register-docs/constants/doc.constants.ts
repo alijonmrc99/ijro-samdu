@@ -1,3 +1,3 @@
-export const DOC_TITLE = 'title';
-export const DOC_BODY = 'body';
+export const DOC_NAME = 'name';
+export const DOC_COMMIT = 'commit';
 
