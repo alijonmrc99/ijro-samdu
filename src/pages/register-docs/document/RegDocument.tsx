@@ -25,7 +25,6 @@ export const RegDocument: FC = () => {
 
     useEffect(() => {
         setPageTitle(data?.title || "");
-
     }, [data])
 
     useEffect(() => {
@@ -50,7 +49,7 @@ export const RegDocument: FC = () => {
                         <DocumentView status={data?.status || null} contentText={data?.body || ""} />
                 }
             </div>
-            <ConfirmModalDialog />
+            <ConfirmModalDialog id={id || null} />
         </div>
     )
 }

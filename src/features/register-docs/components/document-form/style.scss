@@ -1,6 +1,7 @@
 .document-form {
     max-width: 1000px;
     margin: auto;
+    margin-bottom: 30px;
 
     .buttons-container {
         margin-top: 50px;
@@ -25,12 +26,12 @@
     .danger {
         background-color: #ff4d4f;
         color: #fff;
-        border: none;
+        border-color: #ff4d4f;
 
         &:hover {
             background-color: #fc8d8f;
             color: #fff !important;
-            border: none;
+            border-color: #ff4d4f;
         }
     }
 

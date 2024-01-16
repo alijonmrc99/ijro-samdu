@@ -1,1 +1,1 @@
-export * from './DocumentForm';
+export * from './ConfirmModalDialog';

@@ -1,1 +1,1 @@
-export * from './useDocuments';
+export * from './useConfirmModal';
