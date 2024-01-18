@@ -2,7 +2,7 @@
     background-color: #fff;
     padding: 50px 80px;
     font-family: 'Times New Roman', Times, serif;
-    font-size: 20px;
+    font-size: 18px;
     max-width: 1000px;
     min-width: 700px;
     min-height: 90vh;
@@ -23,6 +23,13 @@
             width: 100px;
         }
 
+        .register-name {
+            margin-top: 18px;
+            font-family: initial;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
         span {
             color: #543A76;
             text-decoration: underline;
@@ -33,8 +40,14 @@
         margin-top: 20px;
     }
 
+    .footer-text p {
+        font-weight: 700;
+        font-size: 18px;
+    }
+
     p {
         margin: 0;
+        font-family: 'Times New Roman', Times, serif !important;
     }
 
     .ql-align-right {

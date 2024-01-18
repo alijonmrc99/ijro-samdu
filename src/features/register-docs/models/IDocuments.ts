@@ -6,7 +6,11 @@ export interface IDocuments {
     body: string,
     isSent: boolean,
     status: "seen" | "approved" | "rejected" | null,
-    name: string
+    name: string,
+    user: {
+        fullName: string,
+        job: string
+    }
 }
 
 export interface IDocumentsSave {

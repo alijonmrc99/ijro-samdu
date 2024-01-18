@@ -24,6 +24,20 @@ export const DocumentsList: FC<{
             dataIndex: 'title',
             key: 'title'
         },
+
+        {
+            title: t('user'),
+            dataIndex: 'user',
+            key: 'user',
+            render: ((user: { fullName: string }) => (
+                <div>{user.fullName}</div>
+            ))
+        },
+        {
+            title: t('date'),
+            dataIndex: 'date',
+            key: 'date',
+        },
         {
             title: t('status'),
             dataIndex: 'status',

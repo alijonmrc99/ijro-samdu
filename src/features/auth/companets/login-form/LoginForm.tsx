@@ -7,7 +7,7 @@ import './style.scss'
 import { LoadingOutlined } from "@ant-design/icons";
 export const LoginForm: FC = () => {
     const { t } = useTranslation()
-    const { handleLogin, isLoading, control, contextHolder, setValue } = useLogin()
+    const { handleLogin, isLoading, control, contextHolder } = useLogin()
     return (
         <div className="login-form">
             <div className='form-title'>{t('login_title')}</div>

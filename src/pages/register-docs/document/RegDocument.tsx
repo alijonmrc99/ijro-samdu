@@ -29,7 +29,9 @@ export const RegDocument: FC = () => {
 
     useEffect(() => {
         dispatch(RegdocFetchById(id))
+        console.log(!(data?.status === 'approved' || data?.status === 'rejected'))
         return () => { dispatch(registerDocSlice.actions.emptyState()) }
+
     }, [])
 
 
@@ -46,10 +48,13 @@ export const RegDocument: FC = () => {
             <div className="pages__content doc-content" >
                 {
                     isLoading ? <Spin tip="loading" >__</Spin> :
-                        <DocumentView status={data?.status || null} contentText={data?.body || ""} />
+                        <DocumentView job={data?.user.job || ""} user={data?.user.fullName || ""} name={data?.name || ""} status={data?.status || null} contentText={data?.body || ""} />
                 }
             </div>
-            <ConfirmModalDialog id={id || null} />
+            {
+                !(data?.status === 'approved' || data?.status === 'rejected') &&
+                <ConfirmModalDialog id={id || null} />
+            }
         </div>
     )
 }

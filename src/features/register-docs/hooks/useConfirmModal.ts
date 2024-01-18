@@ -36,7 +36,7 @@ export const useConfirmModal = () => {
         console.log(
             values
         );
-
+        setOnSuccess(false)
         values._method = "PUT"
         dispatch(onRegDocuments({ route: `${ENDPOINT_INCOMING}/${values.id}`, values })).then(_ => {
             setOnSuccess(true)

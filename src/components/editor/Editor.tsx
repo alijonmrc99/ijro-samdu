@@ -3,7 +3,7 @@ import ReactQuill from "react-quill";
 import 'quill/dist/quill.snow.css'
 import './styles.scss';
 import { UseFormSetValue } from "react-hook-form";
-import { IDocumentsSend } from "../../features/documents/models";
+import { IDocumentsSend } from "../../features/vise-rector-docs/models";
 
 
 type getParams = {

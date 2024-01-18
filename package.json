@@ -27,6 +27,7 @@
     "react-helmet": "^6.1.0",
     "react-hook-form": "^7.49.2",
     "react-i18next": "^13.5.0",
+    "react-qrcode-logo": "^2.9.0",
     "react-quill": "^2.0.0",
     "react-redux": "^9.0.3",
     "react-router-dom": "^6.20.1",

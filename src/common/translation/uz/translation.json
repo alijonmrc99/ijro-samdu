@@ -33,5 +33,8 @@
     "rejected": "Rad etilgan",
     "approved": "Qabul qilingan",
     "reject-commit": "Rad etish sababi",
-    "close": "Yopish"
+    "close": "Yopish",
+    "incoming": "Kelib tushgan hujjatlar",
+    "user": "Kimdan",
+    "date": "Sanasi"
 }

@@ -47,7 +47,7 @@ export const useDocuments = () => {
                     console.log(responseValues);
 
                     if (responseValues.success) {
-                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/`)
+                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/${values.id}`)
                         // setOnSetSuccess(true);
                     }
                 })

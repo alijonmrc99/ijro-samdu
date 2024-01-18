@@ -1,15 +1,19 @@
 import { FC } from "react";
 import parser from 'html-react-parser';
 import './styles.scss'
-import { Col, Row } from "antd";
+import { Col, Flex, Row } from "antd";
 import emblem from '../../assets/Emblem_of_Uzbekistan.png'
+import { QrCode } from "../qr-code";
 
 interface IContent {
     contentText: string,
     status: "seen" | "approved" | "rejected" | null,
+    name: string,
+    user: string
+    job: string
 }
 
-export const DocumentView: FC<IContent> = ({ contentText, status }) => {
+export const DocumentView: FC<IContent> = ({ contentText, status, name, user, job }) => {
     return (
         <div className="doc-view-container">
             {
@@ -42,9 +46,21 @@ export const DocumentView: FC<IContent> = ({ contentText, status }) => {
                             ITN 201213338, MFI 00278 <br />
                             C/a 400110860184017094100079003</p>
                     </Col>
+                    <Col>
+                        <p className="register-name">{name}</p>
+                    </Col>
                 </Row>
             }
             <div className="content-text">{parser(contentText)}</div>
+            <Row className="footer-text" justify={'space-evenly'}>
+                <Col span={10}><p>{job}</p></Col>
+                <Col span={5}>
+                    <Flex justify="begin">
+                        <QrCode status={status} value={name} />
+                    </Flex>
+                </Col>
+                <Col span={6}><p>{user}</p></Col>
+            </Row>
 
         </div >
     )
