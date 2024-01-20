@@ -10,6 +10,7 @@ import { SidebarProvider } from './common/providers/sidebar.provider.tsx'
 import { PageTitleProvider } from './common/providers/pageTitle.provider.tsx'
 import { PaginationProvider } from './common/providers/pagination.provider.tsx'
 import { ConfigProvider } from 'antd'
+import { FilterProvider } from './common/providers/filter.provider.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
@@ -23,7 +24,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <SidebarProvider>
           <PageTitleProvider>
             <PaginationProvider >
-              <App />
+              <FilterProvider>
+                <App />
+              </FilterProvider>
             </PaginationProvider>
           </PageTitleProvider>
         </SidebarProvider>

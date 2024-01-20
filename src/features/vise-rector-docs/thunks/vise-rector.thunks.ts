@@ -16,9 +16,9 @@ export const onVRDocuments = createAsyncThunk('doc/action',
     })
 
 export const fetchVRDocuments = createAsyncThunk('auth/fetchDocuments',
-    async (payload: { route: string, params: any }, { rejectWithValue }) => {
+    async (params: any, { rejectWithValue }) => {
         try {
-            return await httpApi.get<IResponse<IPageable<IDocuments>>>(payload.route, payload.params)
+            return await httpApi.get<IResponse<IPageable<IDocuments>>>(ENDPOINT_DOCUMENTS, params)
         } catch (error) {
             return rejectWithValue(error);
         }

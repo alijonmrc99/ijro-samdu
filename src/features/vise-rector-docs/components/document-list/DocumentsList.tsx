@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { ROUTE_DASHBOARD, ROUTE_DOCUMENTS } from "../../../../common/constants";
 import { useTranslation } from "react-i18next";
 import { ColumnType } from "antd/es/table";
-import { Button } from "antd";
+import { Badge, Button } from "antd";
 import { DeleteOutlined, EditFilled } from "@ant-design/icons";
 
 export const DocumentsList: FC<{
@@ -28,19 +28,36 @@ export const DocumentsList: FC<{
             dataIndex: 'title',
             key: 'title'
         },
+
         {
-            title: t('is_sent'),
-            dataIndex: 'isSent',
-            key: "isSent",
-            render: (isSent: boolean) => (
-                <div>{isSent ? <Button type="text" style={{ borderColor: "#28A745", color: "#28A745" }}>{t('sent')}</Button> :
-                    <Button type="text" style={{ borderColor: "#ECA52B", color: "#ECA52B" }}>{t('not_sent')}</Button>}  </div>
+            title: t('date'),
+            dataIndex: 'createdAt',
+            key: 'createdAt',
+            render: (date: string) => (
+                <div>{date.split("T")[0]}</div>
             )
         },
         {
             title: t('status'),
             dataIndex: 'status',
-            key: "status"
+            key: "status",
+            render: (status: "seen" | "approved" | "rejected" | null,) => (
+                <div>
+                    {status === 'rejected' ? <Button className="rejected">{t('rejected')}</Button> :
+                        status === "seen" ? <Button className="seen"><Badge style={{ marginRight: "10px" }} status="processing" /> {t('waiting')}</Button> :
+                            status === 'approved' ? <Button className="approved">{t('approved')}</Button> :
+                                ""
+                    }
+                </div>
+            )
+        },
+        {
+            title: t('approved_date'),
+            dataIndex: 'approvedAt',
+            key: "approvedAt",
+            render: (date: string) => (
+                <div>{date?.split(" ")[0]}</div>
+            )
         },
         editColumnsType((id: any) => {
             navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/${id}/edit`)

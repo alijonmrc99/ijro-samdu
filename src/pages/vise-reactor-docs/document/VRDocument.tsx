@@ -76,7 +76,7 @@ export const Document: FC = () => {
             <div className="pages__content doc-content" >
                 {
                     isLoading ? <Spin tip="loading" /> :
-                        <DocumentView status={data?.status || null} contentText={data?.body || ""} />
+                        <DocumentView user={data?.user.fullName || ""} job={data?.user.job || ""} name="1321" status={data?.status || null} contentText={data?.body || ""} />
                 }
 
             </div>

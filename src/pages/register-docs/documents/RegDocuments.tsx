@@ -10,6 +10,8 @@ import { ContentHeader } from "../../../components/content-header";
 import { MainBreadcrumb } from "../../../components/main-breadcamp";
 import { MainPagination } from "../../../components/main-pagination";
 import { IPaginationData, PaginationContext } from "../../../common/contexts/pagination.context";
+import { RegTopMenu } from "../../../components/top-menu";
+import { FilterContext, IFilter } from "../../../common/contexts/filter.context";
 export const http = new HttpApi()
 
 export const RegDocuments: FC = () => {
@@ -18,7 +20,7 @@ export const RegDocuments: FC = () => {
     const { data, isLoading } = useAppSelector(state => state.registerDocs);
     const { setPageTitle } = useContext(PageTitleContext) as IPageTitleContext
     const { pagination, setPagination } = useContext(PaginationContext) as IPaginationData
-
+    const { filter } = useContext(FilterContext) as IFilter
     useEffect(() => {
         setPageTitle(t('my-documents'))
     }, [t])
@@ -29,8 +31,8 @@ export const RegDocuments: FC = () => {
     }
 
     useEffect(() => {
-        dispatch(fetchRegDocuments({ ...pagination }))
-    }, [pagination]);
+        dispatch(fetchRegDocuments({ ...pagination, ...filter }))
+    }, [pagination, filter]);
 
 
     return (
@@ -40,8 +42,8 @@ export const RegDocuments: FC = () => {
                 <div></div>
                 <MainPagination defaultcurrent={data?.meta.currentPage || 1} onChange={onChange} total={data?.meta.total || 1} pageSize={data?.meta.perPage || 30} />
             </ContentHeader>
-
-            <div className="pages__content">
+            <RegTopMenu />
+            <div className="page__content">
                 <DocumentsList list={data?.items || []} isLoading={isLoading} />
             </div>
         </Layout>

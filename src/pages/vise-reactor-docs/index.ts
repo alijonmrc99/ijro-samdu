@@ -1,3 +1,3 @@
-export * from './documents/Documents';
+export * from './documents/VRDocuments';
 export * from './doc-edit/DocumentEdit'
-export * from './document/Document'
+export * from './document/VRDocument'

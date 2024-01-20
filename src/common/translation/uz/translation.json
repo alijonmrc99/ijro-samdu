@@ -16,9 +16,7 @@
     "cancel": "Rad etish",
     "name": "Nomi",
     "status": "Holati",
-    "sent": "Yuborilgan",
     "not_sent": "Yuborilmagan",
-    "is_sent": "Yuborilganlik holati",
     "my-documents": "Mening hujjatlarim",
     "title": "Hujjat nomi",
     "error.message.required": "Ushbu maydon bo'sh bo'lmasligi kerak",
@@ -36,5 +34,12 @@
     "close": "Yopish",
     "incoming": "Kelib tushgan hujjatlar",
     "user": "Kimdan",
-    "date": "Sanasi"
+    "date": "Sanasi",
+    "waiting": "Kutilmoqda",
+    "all_docs": "Barcha hujjatlar",
+    "save_docs": "Saqlanganlar",
+    "sent_docs": "Yuborilganlar",
+    "approved_docs": "Qabul qilinganlar",
+    "rejected_docs": "Rad etilganlar",
+    "approved_date": "Qabul qilingan vaqt"
 }

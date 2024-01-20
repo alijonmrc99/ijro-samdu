@@ -15,6 +15,8 @@ import { useNavigate } from "react-router-dom";
 import { MainPagination } from "../../../components/main-pagination";
 import { IPaginationData, PaginationContext } from "../../../common/contexts/pagination.context";
 import { ROUTE_DASHBOARD, ROUTE_INCOMNG_DOCS, RoleTypeEnums } from "../../../common/constants";
+import { VRTopMenu } from "../../../components/top-menu";
+import { FilterContext, IFilter } from "../../../common/contexts/filter.context";
 export const http = new HttpApi()
 
 export const Documents: FC = () => {
@@ -26,7 +28,7 @@ export const Documents: FC = () => {
     const { data, isLoading } = useAppSelector(state => state.vrDocs);
     const { setPageTitle } = useContext(PageTitleContext) as IPageTitleContext
     const { pagination, setPagination } = useContext(PaginationContext) as IPaginationData
-
+    const { filter } = useContext(FilterContext) as IFilter;
     useEffect(() => {
         setPageTitle(t('my-documents'))
     }, [t])
@@ -35,14 +37,10 @@ export const Documents: FC = () => {
     const onDelete = (id: ID) => {
         setIsDeleting(true);
         http.delete(`${ENDPOINT_DOCUMENTS}/${id}`, {}).then(_ => {
-            dispatch(fetchVRDocuments({ route: ENDPOINT_DOCUMENTS, params: { ...pagination } }))
+            dispatch(fetchVRDocuments({ ...pagination, ...filter }))
         }).finally(() => setIsDeleting(false))
     };
 
-    useEffect(() => {
-        // If user is Register change Route
-        user?.roles.map(role => role.name).includes(RoleTypeEnums.ROLE_REGISTER) && navigate(`${ROUTE_DASHBOARD}/${ROUTE_INCOMNG_DOCS}`)
-    }, [])
 
     const confirm = (id: ID) => {
         Modal.confirm({
@@ -65,11 +63,9 @@ export const Documents: FC = () => {
         if (user?.roles.map(role => role.name).includes(RoleTypeEnums.ROLE_REGISTER))
             navigate(`${ROUTE_DASHBOARD}/${ROUTE_INCOMNG_DOCS}`)
         else {
-            console.log('per pages');
-
-            dispatch(fetchVRDocuments({ route: ENDPOINT_DOCUMENTS, params: { ...pagination } }))
+            dispatch(fetchVRDocuments({ ...pagination, ...filter }))
         }
-    }, [pagination]);
+    }, [pagination, filter]);
 
 
     return (
@@ -80,8 +76,8 @@ export const Documents: FC = () => {
                 <MainPagination defaultcurrent={data?.meta.currentPage || 1} onChange={onChange} total={data?.meta.total || 1} pageSize={data?.meta.perPage || 30} />
                 <Button onClick={() => navigate('/dashboard/documents/create')} type="primary"> <FileAddOutlined />{t('create_doc')}</Button>
             </ContentHeader>
-
             <div className="pages__content">
+                <VRTopMenu />
                 <DocumentsList isDeleting={isDeleting} onDelete={confirm} list={data?.items || []} isLoading={isLoading} />
             </div>
         </Layout>

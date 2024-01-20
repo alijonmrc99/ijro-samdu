@@ -35,8 +35,19 @@ export const DocumentsList: FC<{
         },
         {
             title: t('date'),
-            dataIndex: 'date',
-            key: 'date',
+            dataIndex: 'createdAt',
+            key: 'createdAt',
+            render: (date: string) => (
+                <div>{date.split("T")[0]}</div>
+            )
+        },
+        {
+            title: t('approved_date'),
+            dataIndex: 'approvedAt',
+            key: "approvedAt",
+            render: (date: string) => (
+                <div>{date?.split(" ")[0]}</div>
+            )
         },
         {
             title: t('status'),

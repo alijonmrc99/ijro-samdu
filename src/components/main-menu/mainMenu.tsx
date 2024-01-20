@@ -1,12 +1,11 @@
 import { Menu } from "antd";
 import { FC, useEffect, useMemo, useState } from "react";
-import { ROUTE_DOCUMENT, ROUTE_DOCUMENTS, ROUTE_INCOMNG_DOCS, RoleTypeEnums } from "../../common/constants";
+import { ROUTE_DOCUMENTS, ROUTE_INCOMNG_DOCS, RoleTypeEnums } from "../../common/constants";
 import { FolderOpenOutlined } from '@ant-design/icons'
 import { useTranslation } from "react-i18next";
 import { useAppSelector } from "../../store";
 import { useLocation, useNavigate } from "react-router-dom";
 import './sytle.scss'
-import Sider from "antd/es/layout/Sider";
 export const MainMenu: FC = () => {
     const { data: user } = useAppSelector(state => state.me)
     const { t } = useTranslation()
@@ -16,7 +15,7 @@ export const MainMenu: FC = () => {
             key: ROUTE_DOCUMENTS,
             icon: <FolderOpenOutlined />,
             label: t("documents"),
-            roles: [RoleTypeEnums.ROLE_VISE_RECTOR, RoleTypeEnums.ROLE_REGISTER],
+            roles: [RoleTypeEnums.ROLE_VISE_RECTOR,],
             // children: [
             //     {
             //         key: ROUTE_DOCUMENT,
@@ -29,7 +28,7 @@ export const MainMenu: FC = () => {
             key: ROUTE_INCOMNG_DOCS,
             icon: <FolderOpenOutlined />,
             label: t("documents"),
-            roles: [RoleTypeEnums.ROLE_VISE_RECTOR]
+            roles: [RoleTypeEnums.ROLE_REGISTER]
         },
 
     ], [t])
@@ -53,13 +52,13 @@ export const MainMenu: FC = () => {
     useEffect(() => {
         filterMenu();
     }, [user, t])
-
+    console.log(pathname?.split('/')[2]);
     const onSelect = (selectedMenu: {
         key: string,
         selectedKeys: string[],
         keyPath: string[]
     }) => {
-        console.log(selectedMenu);
+
 
         navigate(selectedMenu.keyPath.reverse().join('/'))
     }
@@ -68,7 +67,7 @@ export const MainMenu: FC = () => {
             <Menu
                 mode="inline"
                 theme="light"
-                defaultOpenKeys={[pathname?.split('/')[2]]}
+                defaultSelectedKeys={[pathname?.split('/')[2]]}
                 items={menuItems}
                 onSelect={onSelect}
             />
