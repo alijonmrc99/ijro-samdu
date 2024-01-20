@@ -1,0 +1,49 @@
+.main-editor {
+    // width: 1160px;
+
+    .quill {
+        width: 100%;
+        height: calc(80vh);
+        max-width: 1160px;
+        min-width: 700px;
+    }
+
+    .ql-container {
+        background-color: #fff;
+        font-family: 'Times New Roman', Times, serif !important;
+        font-size: 20px;
+        margin: auto;
+
+    }
+
+    .ql-editor {
+        padding: 50px 80px;
+
+    }
+
+    p {
+        margin: 0;
+
+        ::first-letter {
+            margin: 20px;
+        }
+    }
+
+    .ql-align-right {
+        text-align: right;
+    }
+
+    .ql-align-center {
+        text-align: center;
+    }
+
+    .ql-align-justify {
+        text-align: justify;
+        margin: 0.5rem 0;
+
+        &::first-letter {
+            display: inline-block;
+            margin-left: 25px;
+        }
+    }
+}

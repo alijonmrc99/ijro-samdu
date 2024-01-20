@@ -1,0 +1,25 @@
+.top-menu {
+    padding: 30px 0px 10px !important;
+    background-color: #fff;
+
+    .ant-menu-overflow {
+        font-weight: 400;
+        font-size: 16px;
+        justify-content: space-evenly !important;
+
+        &::before {
+            content: "";
+            width: 0 !important;
+            overflow: hidden;
+            display: none !important;
+        }
+    }
+
+    .ant-menu-item {
+        .anticon {
+            font-size: 20px;
+        }
+
+
+    }
+}

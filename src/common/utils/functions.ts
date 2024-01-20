@@ -33,3 +33,7 @@ export function typedEntries<T extends {}>(object: T): ReadonlyArray<Entry<T>> {
 export function keysFromObject<T extends object>(object: T): (keyof T)[] {
     return Object.keys(object) as (keyof T)[];
 }
+
+export const printPage = () => {
+    window.print()
+}

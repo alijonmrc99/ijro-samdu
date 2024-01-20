@@ -1,0 +1,40 @@
+.document-form {
+    max-width: 1000px;
+    margin: auto;
+    margin-bottom: 30px;
+
+    .buttons-container {
+        margin-top: 50px;
+        display: flex;
+        justify-content: end;
+    }
+
+    input {
+        border-radius: 0;
+        padding: 7px 15px;
+    }
+
+    .submit-btn {
+        padding: 20px 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+    }
+
+    .danger {
+        background-color: #ff4d4f;
+        color: #fff;
+        border-color: #ff4d4f;
+
+        &:hover {
+            background-color: #fc8d8f;
+            color: #fff !important;
+            border-color: #ff4d4f;
+        }
+    }
+
+
+
+}

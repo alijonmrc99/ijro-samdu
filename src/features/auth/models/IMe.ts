@@ -5,8 +5,8 @@ export interface IMe {
     id: ID;
     fullName: string;
     userName: string;
-    roles: IRole,
+    roles: IRole[],
     job: string
 }
 
-export interface IRole { id: number, name: RoleTypeEnums, title: string }
+export interface IRole { id: number, name: RoleTypeEnums }

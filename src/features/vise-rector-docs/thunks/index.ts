@@ -1,0 +1,1 @@
+export * from './vise-rector.thunks'
