@@ -1,0 +1,23 @@
+.filter-content {
+    padding: 10px 15px 20px;
+
+    input,
+    .ant-picker {
+        border-radius: 0 !important;
+    }
+
+    .filter-title {
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+
+    .ant-checkbox {
+        margin-right: 10px;
+    }
+
+    .filter-label {
+        margin-bottom: 7px;
+        margin-top: 10px;
+    }
+}

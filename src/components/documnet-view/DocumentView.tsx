@@ -52,6 +52,8 @@ export const DocumentView: FC<IContent> = ({ contentText, status, name, user, jo
                 </Row>
             }
             <div className="content-text">{parser(contentText)}</div>
+            <p><br /></p>
+            <p><br /></p>
             <Row className="footer-text" justify={'space-evenly'}>
                 <Col span={10}><p>{job}</p></Col>
                 <Col span={5}>

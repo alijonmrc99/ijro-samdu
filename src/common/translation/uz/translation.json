@@ -14,11 +14,11 @@
     "sent_confirmation_message": "Siz haqiqatdan ham ushbu hujjatni yubormochimisiz?",
     "confirm": "Tasdiqlash",
     "cancel": "Rad etish",
-    "name": "Nomi",
+    "name": "Hujjat nomi",
     "status": "Holati",
     "not_sent": "Yuborilmagan",
     "my-documents": "Mening hujjatlarim",
-    "title": "Hujjat nomi",
+    "title": "Hujjat raqami",
     "error.message.required": "Ushbu maydon bo'sh bo'lmasligi kerak",
     "create_doc": "Hujjat yaratish",
     "back": "Orqaga",
@@ -41,5 +41,9 @@
     "sent_docs": "Yuborilganlar",
     "approved_docs": "Qabul qilinganlar",
     "rejected_docs": "Rad etilganlar",
-    "approved_date": "Qabul qilingan vaqt"
+    "approved_date": "Qabul qilingan vaqt",
+    "equal": "Bir xil",
+    "date_filter": "Sana filterlari",
+    "placeholder_data": "Vaqtni tanlang",
+    "filter": "Filterlar"
 }
