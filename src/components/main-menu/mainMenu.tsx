@@ -1,7 +1,7 @@
 import { Menu } from "antd";
 import { FC, useEffect, useMemo, useState } from "react";
-import { ROUTE_DOCUMENTS, ROUTE_INCOMNG_DOCS, RoleTypeEnums } from "../../common/constants";
-import { FolderOpenOutlined } from '@ant-design/icons'
+import { ROUTE_DOCUMENTS, ROUTE_INCOMNG_DOCS, ROUTE_USERS, RoleTypeEnums } from "../../common/constants";
+import { FolderOpenOutlined, UserOutlined } from '@ant-design/icons'
 import { useTranslation } from "react-i18next";
 import { useAppSelector } from "../../store";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -28,6 +28,12 @@ export const MainMenu: FC = () => {
             key: ROUTE_INCOMNG_DOCS,
             icon: <FolderOpenOutlined />,
             label: t("documents"),
+            roles: [RoleTypeEnums.ROLE_REGISTER]
+        },
+        {
+            key: ROUTE_USERS,
+            icon: <UserOutlined />,
+            label: t("users"),
             roles: [RoleTypeEnums.ROLE_REGISTER]
         },
 

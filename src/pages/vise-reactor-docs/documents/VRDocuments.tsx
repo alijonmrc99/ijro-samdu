@@ -14,7 +14,7 @@ import { MainBreadcrumb } from "../../../components/main-breadcamp";
 import { useNavigate } from "react-router-dom";
 import { MainPagination } from "../../../components/main-pagination";
 import { IPaginationData, PaginationContext } from "../../../common/contexts/pagination.context";
-import { ROUTE_DASHBOARD, ROUTE_INCOMNG_DOCS, RoleTypeEnums } from "../../../common/constants";
+import { ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DOCUMENTS, ROUTE_INCOMNG_DOCS, RoleTypeEnums } from "../../../common/constants";
 import { VRTopMenu } from "../../../components/top-menu";
 import { FilterContext, IFilter } from "../../../common/contexts/filter.context";
 export const http = new HttpApi()
@@ -74,7 +74,7 @@ export const Documents: FC = () => {
                 <MainBreadcrumb />
                 <div></div>
                 <MainPagination defaultcurrent={data?.meta.currentPage || 1} onChange={onChange} total={data?.meta.total || 1} pageSize={data?.meta.perPage || 30} />
-                <Button onClick={() => navigate('/dashboard/documents/create')} type="primary"> <FileAddOutlined />{t('create_doc')}</Button>
+                <Button onClick={() => navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/${ROUTE_CREATE}`)} type="primary"> <FileAddOutlined />{t('create_doc')}</Button>
             </ContentHeader>
             <div className="pages__content">
                 <VRTopMenu />
