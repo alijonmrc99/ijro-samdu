@@ -8,5 +8,5 @@ export interface IUser {
     password: string,
     _method?: string,
     job: string,
-    roles: IRole[]
+    roles?: IRole[] | string
 }

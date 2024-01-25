@@ -23,8 +23,7 @@ export const UserForm: FC = () => {
 
     useEffect(() => {
         if (user) {
-            setValue('id', user.
-            )
+            setValue('id', user.id)
             setValue('fullName', user.fullName)
             setValue('username', user.username)
             setValue('roles', user.roles)

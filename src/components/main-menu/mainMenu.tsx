@@ -1,6 +1,6 @@
 import { Menu } from "antd";
 import { FC, useEffect, useMemo, useState } from "react";
-import { ROUTE_DOCUMENTS, ROUTE_INCOMNG_DOCS, ROUTE_USERS, RoleTypeEnums } from "../../common/constants";
+import { ROUTE_DOCUMENTS, ROUTE_INCOMNG_DOCS, ROUTE_ME, ROUTE_USERS, RoleTypeEnums } from "../../common/constants";
 import { FolderOpenOutlined, UserOutlined } from '@ant-design/icons'
 import { useTranslation } from "react-i18next";
 import { useAppSelector } from "../../store";
@@ -35,6 +35,11 @@ export const MainMenu: FC = () => {
             icon: <UserOutlined />,
             label: t("users"),
             roles: [RoleTypeEnums.ROLE_REGISTER]
+        },
+        {
+            key: ROUTE_ME,
+            icon: <UserOutlined />,
+            label: t("profile"),
         },
 
     ], [t])

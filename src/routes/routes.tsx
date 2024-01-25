@@ -1,5 +1,5 @@
 import { IndexRouteObject, Navigate, NonIndexRouteObject, RouteObject } from "react-router-dom";
-import { ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DOCUMENTS, ROUTE_EDIT, ROUTE_HOME, ROUTE_INCOMNG_DOCS, ROUTE_LOGIN, ROUTE_USERS, RoleTypeEnums } from "../common/constants";
+import { ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DOCUMENTS, ROUTE_EDIT, ROUTE_HOME, ROUTE_INCOMNG_DOCS, ROUTE_LOGIN, ROUTE_ME, ROUTE_USERS, RoleTypeEnums } from "../common/constants";
 import { LoginForm } from "../features/auth/companets/login-form";
 import { HomePage } from "../pages/home-page";
 import { DashboardBase } from "../layouts/DashboardBase";
@@ -8,7 +8,7 @@ import { DocumentEdit } from "../pages/vise-reactor-docs";
 import { Document } from "../pages/vise-reactor-docs";
 import { RegDocuments } from "../pages/register-docs/documents/RegDocuments";
 import { RegDocument } from "../pages/register-docs/document/RegDocument";
-import { User, Users } from "../pages/users";
+import { Profile, User, Users } from "../pages/users";
 
 
 export type RouteObjectType = IndexRouteObject |
@@ -85,6 +85,11 @@ export const routes = (): RouteObjectType[] => {
                     path: `${ROUTE_USERS}/${ROUTE_CREATE}`,
                     roles: [RoleTypeEnums.ROLE_REGISTER],
                     element: <User />
+                },
+                // route account setting
+                {
+                    path: `${ROUTE_ME}/`,
+                    element: <Profile />
                 },
 
 
