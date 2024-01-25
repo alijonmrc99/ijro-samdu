@@ -1,14 +1,24 @@
 .filter-content {
-    padding: 10px 15px 20px;
+    padding: 20px 15px;
+    // display: flex;
+    // justify-content: space-around;
+    // align-items: center;
 
     input,
     .ant-picker {
         border-radius: 0 !important;
     }
 
+    .input-filter {
+        display: flex;
+        padding-right: 20px;
+        // width: 30%;
+    }
+
     .filter-title {
         font-weight: 600;
         font-size: 16px;
+
     }
 
 
@@ -19,5 +29,11 @@
     .filter-label {
         margin-bottom: 7px;
         margin-top: 10px;
+        width: 150px;
+    }
+
+    .ant-btn {
+        border-radius: 0;
+
     }
 }

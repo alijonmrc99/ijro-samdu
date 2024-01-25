@@ -13,6 +13,7 @@ import { IPaginationData, PaginationContext } from "../../../common/contexts/pag
 import { RegTopMenu } from "../../../components/top-menu";
 import { FilterContext, IFilter } from "../../../common/contexts/filter.context";
 import { Helmet } from "react-helmet";
+import { Filter } from "../../../components/filter";
 export const http = new HttpApi()
 
 export const RegDocuments: FC = () => {
@@ -46,7 +47,9 @@ export const RegDocuments: FC = () => {
                 <div></div>
                 <MainPagination defaultcurrent={data?.meta.currentPage || 1} onChange={onChange} total={data?.meta.total || 1} pageSize={data?.meta.perPage || 30} />
             </ContentHeader>
+
             <RegTopMenu />
+            <Filter />
             <div className="page__content">
                 <DocumentsList list={data?.items || []} isLoading={isLoading} />
             </div>

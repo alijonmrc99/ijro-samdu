@@ -14,11 +14,11 @@
     "sent_confirmation_message": "Siz haqiqatdan ham ushbu hujjatni yubormochimisiz?",
     "confirm": "Tasdiqlash",
     "cancel": "Rad etish",
-    "name": "Hujjat nomi",
+    "name": "Hujjat raqami",
     "status": "Holati",
     "not_sent": "Yuborilmagan",
     "my-documents": "Mening hujjatlarim",
-    "title": "Hujjat raqami",
+    "title": "Hujjat nomi",
     "error.message.required": "Ushbu maydon bo'sh bo'lmasligi kerak",
     "create_doc": "Hujjat yaratish",
     "back": "Orqaga",
@@ -58,5 +58,6 @@
     "user_nick": "Login",
     "job": "Lavozimi",
     "choose": "Tanlang",
-    "choose_role": "Foydalanuchi ro'lini tanlang"
+    "choose_role": "Foydalanuchi ro'lini tanlang",
+    "search": "Izlash"
 }

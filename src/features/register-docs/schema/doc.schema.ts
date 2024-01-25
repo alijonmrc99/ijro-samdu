@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { DOC_COMMIT, DOC_NAME, DOC_STATUS } from '../constants';
+import { DOC_COMMENT, DOC_NAME, DOC_STATUS } from '../constants';
 import { MSG_ERROR_REQIURED_FIELD } from '../../../common/constants/error.constants';
 
 
@@ -11,7 +11,7 @@ export const DocumentSchema = yup.object().shape({
         }
         return schema
     }),
-    [DOC_COMMIT]: yup.string().when(DOC_STATUS, ([status], schema) => {
+    [DOC_COMMENT]: yup.string().when(DOC_STATUS, ([status], schema) => {
         if (status === "approved") {
             return schema.required(MSG_ERROR_REQIURED_FIELD)
         }

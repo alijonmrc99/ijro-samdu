@@ -22,7 +22,7 @@ export interface IInnerFilter {
     },
     name?: {
         eq?: string,
-        neq?: string
+        lke?: string
     }
 }
 export interface IFilter {

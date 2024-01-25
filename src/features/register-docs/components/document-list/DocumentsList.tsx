@@ -21,10 +21,9 @@ export const DocumentsList: FC<{
     const columns = useMemo(() => [
         {
             title: t('name'),
-            dataIndex: 'title',
-            key: 'title'
+            dataIndex: 'name',
+            key: 'name'
         },
-
         {
             title: t('user'),
             dataIndex: 'user',
@@ -33,6 +32,13 @@ export const DocumentsList: FC<{
                 <div>{user.fullName}</div>
             ))
         },
+        {
+            title: t('title'),
+            dataIndex: 'title',
+            key: 'title'
+        },
+
+
         {
             title: t('date'),
             dataIndex: 'createdAt',
