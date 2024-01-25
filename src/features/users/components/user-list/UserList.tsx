@@ -3,7 +3,7 @@ import './styles.scss'
 import { IUser } from "../../models";
 import { DataTable } from "../../../../components/data-table/DataTable";
 import { useNavigate } from "react-router-dom";
-import { ROUTE_DASHBOARD, ROUTE_DOCUMENTS, ROUTE_USERS } from "../../../../common/constants";
+import { ROUTE_DASHBOARD, ROUTE_USERS } from "../../../../common/constants";
 import { useTranslation } from "react-i18next";
 import { ColumnType } from "antd/es/table";
 import { Button } from "antd";
@@ -22,7 +22,6 @@ export const UserList: FC<{
     const onSelectRow = (_index: any, value: any) => {
         navigate(`${ROUTE_DASHBOARD}/${ROUTE_USERS}/${value.id}`)
     }
-    console.log(list);
 
     const columns = useMemo(() => [
         {
@@ -40,7 +39,6 @@ export const UserList: FC<{
             dataIndex: 'job',
             key: 'job',
         },
-
         {
             title: t('roles'),
             dataIndex: 'roles',
@@ -54,7 +52,7 @@ export const UserList: FC<{
         editColumnsType((id: any) => {
             navigate(`${ROUTE_DASHBOARD}/${ROUTE_USERS}/${id}`)
         }),
-        deleteColumnsType(!!isDeleting, onDelete),
+        // deleteColumnsType(!!isDeleting, onDelete),
     ], [t, list])
 
     return (

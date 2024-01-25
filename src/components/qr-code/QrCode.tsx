@@ -10,7 +10,7 @@ export const QrCode: FC<{ value: string, status: "seen" | "approved" | "rejected
                 <QRCode value={`${document.location.origin}/${"ads"}`}
                     size={130}
                     logoImage={logo}
-                    logoWidth={45}
+                    logoWidth={30}
                 // eyeRadius={[
                 //     [2, 2, 0, 2], // top/left eye
                 //     [2, 2, 2, 0], // top/right eye

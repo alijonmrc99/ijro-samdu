@@ -17,6 +17,7 @@ import { IPaginationData, PaginationContext } from "../../../common/contexts/pag
 import { ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DOCUMENTS, ROUTE_INCOMNG_DOCS, RoleTypeEnums } from "../../../common/constants";
 import { VRTopMenu } from "../../../components/top-menu";
 import { FilterContext, IFilter } from "../../../common/contexts/filter.context";
+import { Helmet } from "react-helmet";
 export const http = new HttpApi()
 
 export const Documents: FC = () => {
@@ -70,6 +71,9 @@ export const Documents: FC = () => {
 
     return (
         <Layout>
+            <Helmet>
+                <title>{t('documents')}</title>
+            </Helmet>
             <ContentHeader>
                 <MainBreadcrumb />
                 <div></div>

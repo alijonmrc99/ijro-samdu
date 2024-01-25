@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { IPageTitleContext, PageTitleContext } from "../../../common/contexts/pageTitle.context";
@@ -9,15 +9,16 @@ import './sytles.scss';
 import { UserForm } from "../../../features/users/components";
 import { userSlice } from "../../../features/users/sclices/user.slice";
 import { FetchUserById } from "../../../features/users/thunks";
+import { useTranslation } from "react-i18next";
 
 export const User: FC = () => {
     const { id } = useParams();
     const dispatch = useAppDispatch();
     const { setPageTitle } = useContext(PageTitleContext) as IPageTitleContext
-    const { data } = useAppSelector(state => state.registerDoc)
-
+    const { data } = useAppSelector(state => state.user)
+    const { t } = useTranslation();
     useEffect(() => {
-        setPageTitle(data?.title || "");
+        setPageTitle(data?.fullName || "");
     }, [data])
 
     useEffect(() => {
@@ -29,11 +30,9 @@ export const User: FC = () => {
 
     return (
         <div className="pages">
-            <Helmet>
-                <title>Foydalanuchilar</title>
-            </Helmet>
+
             <ContentHeader hasBackAction={true}>
-                <MainBreadcrumb lastItem={{ key: "documnet", title: data?.title || "Loading..." }} />
+                <MainBreadcrumb lastItem={{ key: "documnet", title: t('change_user') || "Loading..." }} />
             </ContentHeader>
             <div className="page__content">
                 <UserForm />

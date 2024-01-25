@@ -12,6 +12,7 @@ import { MainPagination } from "../../../components/main-pagination";
 import { IPaginationData, PaginationContext } from "../../../common/contexts/pagination.context";
 import { RegTopMenu } from "../../../components/top-menu";
 import { FilterContext, IFilter } from "../../../common/contexts/filter.context";
+import { Helmet } from "react-helmet";
 export const http = new HttpApi()
 
 export const RegDocuments: FC = () => {
@@ -37,6 +38,9 @@ export const RegDocuments: FC = () => {
 
     return (
         <Layout>
+            <Helmet>
+                <title>{t('documents')}</title>
+            </Helmet>
             <ContentHeader>
                 <MainBreadcrumb />
                 <div></div>

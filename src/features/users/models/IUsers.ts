@@ -8,5 +8,15 @@ export interface IUser {
     password: string,
     _method?: string,
     job: string,
-    roles?: IRole[] | string
+    roles: IRole[]
+}
+
+export interface IUserSend {
+    id: ID,
+    fullName: string,
+    username: string,
+    password: string,
+    _method?: string,
+    job: string,
+    roles?: ID
 }

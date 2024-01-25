@@ -16,7 +16,7 @@ export const Profile: FC = () => {
     return (
         <div>
             <Helmet>
-                <title>Foydalanuchilar</title>
+                <title>{t('profile')}</title>
             </Helmet>
             <ContentHeader >
                 <MainBreadcrumb />

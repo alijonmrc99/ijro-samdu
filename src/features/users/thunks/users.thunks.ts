@@ -1,13 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ENDPOINT_USERS } from '../endpoints';
 import { HttpApi } from '../../../common/http';
-import { IUser } from '../models';
+import { IUser, IUserSend } from '../models';
 import { IResponse, IPageable } from '../../../common/models';
 const httpApi = new HttpApi();
 export const onUsers = createAsyncThunk('user/action',
-    async (payload: { route: string, values: IUser }, { rejectWithValue }) => {
-        console.log(payload);
-
+    async (payload: { route: string, values: IUserSend }, { rejectWithValue }) => {
         try {
             return await httpApi.post(payload.route, payload.values)
         } catch (error) {

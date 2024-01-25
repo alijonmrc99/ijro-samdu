@@ -16,6 +16,7 @@ import { fetchUsers } from "../../../features/users/thunks";
 import { ID } from "../../../common/models";
 import { useNavigate } from "react-router-dom";
 import { ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_USERS } from "../../../common/constants";
+import { Helmet } from "react-helmet";
 
 export const Users: FC = () => {
     const { t } = useTranslation();
@@ -64,6 +65,9 @@ export const Users: FC = () => {
 
     return (
         <Layout>
+            <Helmet>
+                <title>Foydalanuchilar</title>
+            </Helmet>
             <ContentHeader>
                 <MainBreadcrumb />
                 <div></div>

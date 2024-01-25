@@ -47,6 +47,7 @@
     "placeholder_data": "Vaqtni tanlang",
     "filter": "Filterlar",
     "users": "Foydalanuvchilar",
+    "change_user": "Foydalanuchini tahrirlash",
     "profile": "Mening profilim",
     "admin": "Admin",
     "vise-rector": "Xat yuboruvchi",
@@ -56,5 +57,6 @@
     "user_name": "F.I.SH",
     "user_nick": "Login",
     "job": "Lavozimi",
-    "choose": "Tanlang"
+    "choose": "Tanlang",
+    "choose_role": "Foydalanuchi ro'lini tanlang"
 }

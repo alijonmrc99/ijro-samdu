@@ -5,8 +5,8 @@ import { message } from "antd";
 import { useAppDispatch } from "../../../store";
 import { onUsers } from "../thunks";
 import { ROUTE_DASHBOARD, ROUTE_USERS, } from "../../../common/constants";
-import { ENDPOINT_REGISTER } from "../endpoints";
-import { IUser } from "../models";
+import { ENDPOINT_REGISTER, ENDPOINT_USERS } from "../endpoints";
+import { IUserSend } from "../models";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { DocumentSchema } from "../schema";
 
@@ -15,7 +15,7 @@ export const useDocuments = () => {
     const dispatch = useAppDispatch()
 
     const [isLoading, setIsLoading] = useState(false);
-    const { register, control, handleSubmit, setValue } = useForm<IUser>({
+    const { register, control, handleSubmit, setValue } = useForm<IUserSend>({
         resolver: yupResolver(DocumentSchema),
         mode: 'onBlur'
     })
@@ -29,17 +29,17 @@ export const useDocuments = () => {
         })
     };
 
-    const onSubmit = (values: IUser) => {
+    const onSubmit = (values: IUserSend) => {
         setIsLoading(true);
 
         if (values.id) {
             values["_method"] = "PUT";
-            dispatch(onUsers({ values: values, route: `${ENDPOINT_REGISTER}/${values.id}` })).unwrap()
+            dispatch(onUsers({ values: values, route: `${ENDPOINT_USERS}/${values.id}` })).unwrap()
                 .then((responseValues: any) => {
-                    console.log(responseValues);
+                    console.log(responseValues.success);
 
                     if (responseValues.success) {
-                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_USERS}/${values.id}`)
+                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_USERS}`)
                         // setOnSetSuccess(true);
                     }
                 })
@@ -50,14 +50,13 @@ export const useDocuments = () => {
             dispatch(onUsers({ values: values, route: `${ENDPOINT_REGISTER}` })).unwrap()
                 .then((responseValues: any) => {
                     if (responseValues.success) {
-                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_USERS}/`)
+                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_USERS}`)
                         // setOnSetSuccess(true);
                     }
                 })
                 .catch(handleErrors)
                 .finally(() => { setIsLoading(false) })
         }
-
 
     };
 

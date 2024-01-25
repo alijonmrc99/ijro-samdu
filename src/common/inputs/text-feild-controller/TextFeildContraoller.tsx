@@ -45,7 +45,7 @@ export const TextFieldController: FC<TextFieldControllerProps> = ({
                 <Space style={{ width: '100%' }} size={'small'} direction={'vertical'}>
                     {label && <label className="controller-label">{label}</label>}
                     <ControlledInput {...{ ...props, ...fieldProps }} type="default" />
-                    <small>{error?.message ? t(error.message) : null}</small>
+                    <small style={{ color: "red" }}>{error?.message ? t(error.message) : null}</small>
                 </Space>
             )}
         />

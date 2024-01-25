@@ -19,9 +19,6 @@ export const ProfileForm: FC = () => {
         }
     }, [me])
 
-    console.log(me);
-
-
     useEffect(() => {
         setValue('password', "")
     }, [isLoading])

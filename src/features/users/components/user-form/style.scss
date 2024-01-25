@@ -1,6 +1,7 @@
 .document-form {
     max-width: 1000px;
     margin: auto;
+    padding: 30px 20px;
 
     .buttons-container {
         margin-top: 50px;
@@ -8,10 +9,27 @@
         justify-content: end;
     }
 
-    input {
-        border-radius: 0;
-        padding: 7px 15px;
+
+
+    .ant-space-item {
+        .ant-input-password {
+            border-radius: 0 !important;
+
+            input {
+                padding: 2px 0 !important;
+
+            }
+        }
+
+        input {
+            padding: 7px 15px !important;
+            border-radius: 0 !important;
+
+        }
+
     }
+
+
 
     .submit-btn {
         padding: 20px 40px;

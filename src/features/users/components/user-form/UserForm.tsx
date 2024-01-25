@@ -23,10 +23,11 @@ export const UserForm: FC = () => {
 
     useEffect(() => {
         if (user) {
-            setValue('id', user.id)
-            setValue('fullName', user.fullName)
-            setValue('username', user.username)
-            setValue('roles', user.roles)
+            setValue('id', user.id);
+            setValue('fullName', user.fullName);
+            setValue('username', user.username);
+            setValue('job', user.job);
+            setValue('roles', user.roles[0].id);
         }
     }, [user])
 
@@ -60,7 +61,7 @@ export const UserForm: FC = () => {
                             setValue={setValue}
                             control={control}
                             placeholder={t('choose')}
-                            label="asdfasdfs"
+                            label={t('choose_role')}
                             items={roles?.map(role => ({ value: role.id, label: t(role.name) })) || []}
                             name="roles"
                         />

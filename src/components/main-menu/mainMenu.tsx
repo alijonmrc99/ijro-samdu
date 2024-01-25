@@ -7,6 +7,7 @@ import { useAppSelector } from "../../store";
 import { useLocation, useNavigate } from "react-router-dom";
 import './sytle.scss'
 export const MainMenu: FC = () => {
+    const { pathname } = useLocation();
     const { data: user } = useAppSelector(state => state.me)
     const { t } = useTranslation()
     const navigate = useNavigate();
@@ -15,14 +16,7 @@ export const MainMenu: FC = () => {
             key: ROUTE_DOCUMENTS,
             icon: <FolderOpenOutlined />,
             label: t("documents"),
-            roles: [RoleTypeEnums.ROLE_VISE_RECTOR,],
-            // children: [
-            //     {
-            //         key: ROUTE_DOCUMENT,
-            //         icon: <FolderOpenOutlined />,
-            //         label: t("documents"),
-            //     }
-            // ]
+            roles: [RoleTypeEnums.ROLE_VISE_RECTOR,]
         },
         {
             key: ROUTE_INCOMNG_DOCS,
@@ -45,7 +39,7 @@ export const MainMenu: FC = () => {
     ], [t])
 
     const [menuItems, setMenuItems] = useState(items);
-    const { pathname } = useLocation();
+
     const filterMenu = () => {
         setMenuItems(
             items.filter(menu => {
@@ -62,15 +56,15 @@ export const MainMenu: FC = () => {
 
     useEffect(() => {
         filterMenu();
-    }, [user, t])
-    console.log(pathname?.split('/')[2]);
+        console.log(pathname?.split('/')[2]);
+
+    }, [user, t, pathname])
+
     const onSelect = (selectedMenu: {
         key: string,
         selectedKeys: string[],
         keyPath: string[]
     }) => {
-
-
         navigate(selectedMenu.keyPath.reverse().join('/'))
     }
     return (
