@@ -1,8 +1,5 @@
 .filter-content {
-    padding: 20px 15px;
-    // display: flex;
-    // justify-content: space-around;
-    // align-items: center;
+    padding: 20px 15px 0;
 
     input,
     .ant-picker {
@@ -12,6 +9,7 @@
     .input-filter {
         display: flex;
         padding-right: 20px;
+        padding-bottom: 20px;
         // width: 30%;
     }
 
@@ -34,6 +32,6 @@
 
     .ant-btn {
         border-radius: 0;
-
+        margin-bottom: 15px;
     }
 }

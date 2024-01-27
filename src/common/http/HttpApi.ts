@@ -12,7 +12,7 @@ export class HttpApi extends BaseApi {
         return await this.httpClient
             .get(this.url(route), {
                 params, paramsSerializer: params => {
-                    return qs.stringify(params, { arrayFormat: 'repeat' })
+                    return qs.stringify(params, { arrayFormat: 'repeat', skipNulls: true })
                 }
             },)
             .then((response) => response.data);

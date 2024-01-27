@@ -14,7 +14,7 @@ export interface IInnerFilter {
         lke?: string
     }
     createdAt?: {
-        eq?: string,
+        lke?: string,
         neq?: string,
         gt?: string, //2024-12-12 grater then
         gte?: string, // grater then with current date

@@ -22,20 +22,31 @@ export const DocumentsList: FC<{
         {
             title: t('name'),
             dataIndex: 'name',
-            key: 'name'
+            key: 'name',
+            width: 300,
+            render: (name: string) => (
+                <div className="doc-title">{name}</div>
+            )
+
         },
         {
             title: t('user'),
             dataIndex: 'user',
             key: 'user',
+            width: 180,
             render: ((user: { fullName: string }) => (
                 <div>{user.fullName}</div>
             ))
+
         },
         {
             title: t('title'),
             dataIndex: 'title',
-            key: 'title'
+            key: 'title',
+            width: 350,
+            render: (title: string) => (
+                <div className="doc-title">{title}</div>
+            )
         },
 
 
