@@ -1,7 +1,7 @@
 import { FC, useContext, useMemo, } from "react";
 import { FilterContext, IFilter } from "../../common/contexts/filter.context";
 import { Menu, MenuProps } from "antd";
-import { ClockCircleOutlined, FileDoneOutlined, FileExclamationOutlined, FileTextOutlined } from "@ant-design/icons";
+import { ClockCircleOutlined, FileDoneOutlined, FileExclamationOutlined, FileTextOutlined, InfoCircleOutlined } from "@ant-design/icons";
 import "./sytle.scss"
 import { useTranslation } from "react-i18next";
 import { IPaginationData, PaginationContext } from "../../common/contexts/pagination.context";
@@ -16,6 +16,12 @@ export const RegTopMenu: FC = () => {
             key: 'all',
             title: "all",
             icon: <FileTextOutlined />,
+        },
+        {
+            label: t('not_open'),
+            key: 'null',
+            title: "status",
+            icon: <InfoCircleOutlined />,
         },
         {
             label: t('waiting'),
@@ -35,6 +41,7 @@ export const RegTopMenu: FC = () => {
             title: "status",
             icon: <FileExclamationOutlined />,
         },
+
     ], [setFilter, t])
 
 

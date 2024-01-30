@@ -1,21 +1,18 @@
-import { FC, useContext, useEffect, useRef, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { FilterContext, IFilter, IInnerFilter } from "../../common/contexts/filter.context";
 import { useTranslation } from "react-i18next";
-import { Button, Checkbox, Col, DatePicker, Input, Row } from "antd";
+import { Button, Col, Row } from "antd";
 import './sytle.scss';
-import { SearchOutlined } from "@ant-design/icons";
-import { CheckboxChangeEvent } from "antd/es/checkbox";
-import { formatDate } from "../../common/utils/functions";
+import { RetweetOutlined, SearchOutlined } from "@ant-design/icons";
 import { useForm } from "react-hook-form";
 import { TextFieldController } from "../../common/inputs/text-feild-controller";
 import { DatePickerController } from "../../common/inputs/datepicker-controller";
+import dayjs from "dayjs";
 
 export const Filter: FC = () => {
     const { filter, setFilter } = useContext(FilterContext) as IFilter;
     const { t } = useTranslation();
     const [filterObj, setFilterObj] = useState<IInnerFilter>({});
-    const [inputsName, setInputsName] = useState({ name: "lke", title: "lke" });
-    const [dates, setDates] = useState<{ startDate: any, endDate: any }>({ startDate: null, endDate: null });
     const defaultValues: IInnerFilter = {
         title: {
             lke: ""
@@ -28,7 +25,7 @@ export const Filter: FC = () => {
         }
     }
 
-    const { control, setValue, handleSubmit, reset } = useForm<IInnerFilter>({
+    const { control, getValues, unregister, watch, setValue, handleSubmit, reset } = useForm<IInnerFilter>({
         defaultValues: defaultValues,
     })
 
@@ -41,15 +38,10 @@ export const Filter: FC = () => {
         })
     }
 
-    const checkEqual = (event: CheckboxChangeEvent) => {
-        setInputsName({
-            ...inputsName,
-            [event.target.name || ""]: event.target.checked ? "eq" : "lke"
-        })
-    }
+
 
     const disabledEndDate = (endValue: any) => {
-        const startValue = dates.startDate;
+        const startValue = dayjs(getValues('createdAt.begin'));
         if (!endValue || !startValue) {
             return false;
         }
@@ -57,77 +49,54 @@ export const Filter: FC = () => {
     }
 
     useEffect(() => {
-
-        if (dates.startDate && dates.endDate) {
-            setFilterObj({
-                ...filterObj,
-                createdAt: {
-                    bt: `${formatDate(dates.startDate)}|${formatDate(dates.endDate)}`
-                }
-            })
-        } else if (dates.startDate || dates.endDate) {
-            setFilterObj({
-                ...filterObj,
-                createdAt: {
-                    lke: `${formatDate(dates.startDate || dates.endDate)}`
-                }
-            })
+        if (getValues('createdAt.begin') && getValues('createdAt.end')) {
+            setValue('createdAt.bt', `${getValues('createdAt.begin')}|${getValues('createdAt.end')}`);
+            unregister('createdAt.lke');
+        } else if (getValues('createdAt.begin') || getValues('createdAt.end')) {
+            setValue('createdAt.lke', getValues('createdAt.begin') || getValues('createdAt.end'));
         } else {
-            setFilterObj({
-                ...filterObj,
-                createdAt: {
-                    lke: ""
-                }
-            })
+            setValue('createdAt.lke', "")
+            setValue('createdAt.bt', "")
         }
+    }, [watch('createdAt.begin'), watch('createdAt.end')])
+
+    useEffect(() => {
+        reset()
+    }, [filter.status])
 
 
-    }, [dates])
+    const onSubmit = (value: IInnerFilter) => {
+        delete value.createdAt?.begin;
+        delete value.createdAt?.end;
 
+        const newState = { ...filter, ...value };
 
-    // const handleSubmit = () => {
-    //     setFilterObj({ ...filter, ...filterObj })
+        Object.entries(newState).map(([k, v]: [string, any]) => {
+            if (Object.values(v)[0]?.length === 0) {
+                delete newState[k];
+            }
+        });
 
-    //     Object.entries(filterObj).map(([k, v]: [string, any]) => {
-    //         console.log(Object.values(v)[0]);
-    //         if (Object.values(v)[0].length === 0) {
-    //             delete filterObj[k];
-    //         }
-    //     });
-
-    //     setFilter({
-    //         ...filterObj
-    //     })
-    // }
-
-
+        setFilter({
+            ...newState
+        })
+    }
 
     return (
-        <form onSubmit={handleSubmit((val) => console.log(val))}>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <Row className="filter-content">
-                <Col xs={24} sm={12} xl={7} className="input-filter">
+                <Col xs={24} sm={12} xl={6} className="input-filter">
                     <div className="filter-label">{t('name')}:</div>
                     <div>
-                        <Input
-                            title="name"
-                            placeholder={t('name')}
-                            name={inputsName.name}
-                            onChange={onChange} />
                         <TextFieldController
                             control={control}
                             name="name.lke"
                             placeholder={t('name')}
                             onChange={onChange}
                         />
-                        {/* <Checkbox
-                        title="name"
-                        name="name"
-                        onChange={checkEqual}>
-                        <div className="filter-label">{t('equal')}</div>
-                    </Checkbox> */}
                     </div>
                 </Col>
-                <Col xs={24} sm={12} xl={7} className="input-filter">
+                <Col xs={24} sm={12} xl={6} className="input-filter">
                     <div className="filter-label">{t('title')}:</div>
                     <div>
                         <TextFieldController
@@ -136,53 +105,43 @@ export const Filter: FC = () => {
                             placeholder={t('title')}
                             onChange={onChange}
                         />
-                        <Input
-                            title="title"
-                            placeholder={t('title')}
-                            name={inputsName.title}
-                            onChange={onChange} />
-                        {/* <Checkbox
-                        onChange={checkEqual}
-                        name="title" >
-                        <div className="filter-label">{t('equal')}</div>
-                    </Checkbox> */}
                     </div>
                 </Col>
 
-                <Col xs={24} sm={12} xl={7} className="input-filter">
+                <Col xs={24} sm={12} xl={6} className="input-filter">
                     <div className="filter-label">{t('date')}:</div>
-                    {/* <div> */}
                     <DatePickerController
                         setValue={setValue}
                         control={control}
                         placeholder={t('date')}
-                        name="createdAt.lke"
-                    // onChange={(date) => setDates({ ...dates, startDate: date })}
+                        name="createdAt.begin"
                     />
-                    {/* <DatePicker
-                        style={{ width: "100%" }}
-                        placeholder={t('date')}
-                        name="date1"
-                        onChange={(date) => setDates({ ...dates, startDate: date })}
-                    />
-                    <DatePicker
-                        style={{ width: "100%" }}
-                        placeholder={t('date')}
+
+                    <DatePickerController
                         disabledDate={disabledEndDate}
-                        name="date2"
-                        onChange={(date) => setDates({ ...dates, endDate: date })}
-                    /> */}
-                    {/* <Checkbox ><div className="filter-label">{t('equal')}</div></Checkbox> */}
-                    {/* </div> */}
+                        setValue={setValue}
+                        control={control}
+                        disabled={!getValues('createdAt.begin')}
+                        placeholder={t('date')}
+                        name="createdAt.end"
+                    />
                 </Col>
-                <Col xs={24} sm={12} xl={3} >
-                    <Button
-                        htmlType="submit"
-                        style={{ width: "100%" }} type="primary"><SearchOutlined />{t('search')}</Button>
-                    <Button
-                        htmlType="reset"
-                        onClick={() => reset()}
-                        style={{ width: "100%" }} type="primary"><SearchOutlined />{t('search')}</Button>
+                <Col xs={24} sm={12} xl={6} >
+                    <Row>
+                        <Col span={11}>
+                            <Button
+                                htmlType="submit"
+                                style={{ width: "100%" }} type="primary"><SearchOutlined />{t('search')}</Button>
+                        </Col>
+                        <Col span={2}>
+                        </Col>
+                        <Col span={11}>
+                            <Button
+                                htmlType="reset"
+                                onClick={() => { reset(); onSubmit(defaultValues); }}
+                                style={{ width: "100%" }} danger type="primary"><RetweetOutlined />{t('clear')}</Button>
+                        </Col>
+                    </Row>
                 </Col>
 
             </Row>

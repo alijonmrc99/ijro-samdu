@@ -18,6 +18,7 @@ import { ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DOCUMENTS, ROUTE_INCOMNG_DOCS, Rol
 import { VRTopMenu } from "../../../components/top-menu";
 import { FilterContext, IFilter } from "../../../common/contexts/filter.context";
 import { Helmet } from "react-helmet";
+import { Filter } from "../../../components/filter";
 export const http = new HttpApi()
 
 export const Documents: FC = () => {
@@ -80,8 +81,9 @@ export const Documents: FC = () => {
                 <MainPagination defaultcurrent={data?.meta.currentPage || 1} onChange={onChange} total={data?.meta.total || 1} pageSize={data?.meta.perPage || 30} />
                 <Button onClick={() => navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/${ROUTE_CREATE}`)} type="primary"> <FileAddOutlined />{t('create_doc')}</Button>
             </ContentHeader>
+            <VRTopMenu />
+            <Filter />
             <div className="pages__content">
-                <VRTopMenu />
                 <DocumentsList isDeleting={isDeleting} onDelete={confirm} list={data?.items || []} isLoading={isLoading} />
             </div>
         </Layout>

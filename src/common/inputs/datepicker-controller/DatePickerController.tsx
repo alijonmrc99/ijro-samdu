@@ -18,10 +18,9 @@ export const DatePickerController: FC<DatePickerControllerProps> = ({
     setValue,
     ...props
 }) => {
-    const { t } = useTranslation()
-    const onChange = (date: any, dateString: string) => {
-        console.log(name);
+    const { t } = useTranslation();
 
+    const onChange = (_date: any, dateString: string) => {
         setValue(name, dateString)
     }
 

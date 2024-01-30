@@ -47,7 +47,6 @@ export const RegDocuments: FC = () => {
                 <div></div>
                 <MainPagination defaultcurrent={data?.meta.currentPage || 1} onChange={onChange} total={data?.meta.total || 1} pageSize={data?.meta.perPage || 30} />
             </ContentHeader>
-
             <RegTopMenu />
             <Filter />
             <div className="page__content">
