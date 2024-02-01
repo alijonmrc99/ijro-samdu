@@ -1,9 +1,6 @@
-import { FC, useContext, useEffect } from "react";
-import { Layout } from "antd";
-import { DocumentsList } from "../../../features/register-docs/components/document-list";
+import { FC, useContext, useEffect, useState } from "react";
+import { Layout, Modal } from "antd";
 import { useAppDispatch, useAppSelector } from "../../../store";
-import { fetchRegDocuments } from "../../../features/register-docs/thunks";
-import { HttpApi } from "../../../common/http";
 import { useTranslation } from "react-i18next";
 import { IPageTitleContext, PageTitleContext } from "../../../common/contexts/pageTitle.context";
 import { ContentHeader } from "../../../components/content-header";
@@ -14,18 +11,47 @@ import { RegTopMenu } from "../../../components/top-menu";
 import { FilterContext, IFilter } from "../../../common/contexts/filter.context";
 import { Helmet } from "react-helmet";
 import { Filter } from "../../../components/filter";
-export const http = new HttpApi()
+import { fetchTrips } from "../../../features/busines-trip/thunks";
+import { BusinessTripList } from "../../../features/busines-trip/components";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
+import { ENDPOINT_BUS_TRIP } from "../../../features/busines-trip/endpoints";
+import { ID } from "../../../common/models";
+import { http } from "../../vise-reactor-docs";
+import { IBusinessTrip } from "../../../features/busines-trip/models";
 
-export const RegDocuments: FC = () => {
+export const BusinessTrips: FC = () => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
-    const { data, isLoading } = useAppSelector(state => state.registerDocs);
-    const { setPageTitle } = useContext(PageTitleContext) as IPageTitleContext
-    const { pagination, setPagination } = useContext(PaginationContext) as IPaginationData
-    const { filter } = useContext(FilterContext) as IFilter
+    const { data, isLoading } = useAppSelector(state => state.trips);
+    const [isDeleting, setIsDeleting] = useState(false);
+    const { setPageTitle } = useContext(PageTitleContext) as IPageTitleContext;
+    const { pagination, setPagination } = useContext(PaginationContext) as IPaginationData;
+    const { filter } = useContext(FilterContext) as IFilter;
+
+
     useEffect(() => {
-        setPageTitle(t('my-documents'))
+        setPageTitle(t('users'))
     }, [t])
+
+    const onDelete = (id: ID) => {
+        setIsDeleting(true);
+        http.delete(`${ENDPOINT_BUS_TRIP}/${id}`, {}).then(_ => {
+            dispatch(fetchTrips({ ...pagination, ...filter }))
+        }).finally(() => setIsDeleting(false))
+    };
+
+
+    const confirm = (id: ID) => {
+        Modal.confirm({
+            title: t('attention'),
+            icon: <ExclamationCircleOutlined />,
+            content: t('delete_confirmation_message'),
+            okText: t('confirm'),
+            cancelText: t('cancel'),
+            onCancel: () => { },
+            onOk: () => onDelete(id)
+        })
+    };
 
 
     const onChange = (data: any) => {
@@ -33,24 +59,32 @@ export const RegDocuments: FC = () => {
     }
 
     useEffect(() => {
-        dispatch(fetchRegDocuments({ ...pagination, ...filter }))
+        dispatch(fetchTrips({ ...pagination, ...filter }))
     }, [pagination, filter]);
 
+    const aa: IBusinessTrip[] = [
+        {
+            full_name: "Mamasalayev Ruslan",
+            job: "DFJSHBF",
+            travel_place: "dsfsd",
+            start_date: "2020-12-01",
+            end_date: "2022-12-01"
+        }
+    ]
 
     return (
         <Layout>
             <Helmet>
-                <title>{t('documents')}</title>
+                <title>{t('business_trip')}</title>
             </Helmet>
             <ContentHeader>
                 <MainBreadcrumb />
                 <div></div>
                 <MainPagination defaultcurrent={data?.meta.currentPage || 1} onChange={onChange} total={data?.meta.total || 1} pageSize={data?.meta.perPage || 30} />
             </ContentHeader>
-            <RegTopMenu />
-            <Filter />
+            {/* <Filter /> */}
             <div className="page__content">
-                <DocumentsList list={data?.items || []} isLoading={isLoading} />
+                <BusinessTripList isDeleting={isDeleting} onDelete={confirm} list={aa || []} isLoading={isLoading} />
             </div>
         </Layout>
     )

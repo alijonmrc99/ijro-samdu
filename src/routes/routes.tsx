@@ -1,5 +1,5 @@
 import { IndexRouteObject, Navigate, NonIndexRouteObject, RouteObject } from "react-router-dom";
-import { ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DOCUMENTS, ROUTE_EDIT, ROUTE_HOME, ROUTE_INCOMNG_DOCS, ROUTE_LOGIN, ROUTE_ME, ROUTE_USERS, RoleTypeEnums } from "../common/constants";
+import { ROUTE_BUS_TRIP, ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DOCUMENTS, ROUTE_EDIT, ROUTE_HOME, ROUTE_INCOMNG_DOCS, ROUTE_LOGIN, ROUTE_ME, ROUTE_USERS, RoleTypeEnums } from "../common/constants";
 import { LoginForm } from "../features/auth/companets/login-form";
 import { HomePage } from "../pages/home-page";
 import { DashboardBase } from "../layouts/DashboardBase";
@@ -9,6 +9,7 @@ import { Document } from "../pages/vise-reactor-docs";
 import { RegDocuments } from "../pages/register-docs/documents/RegDocuments";
 import { RegDocument } from "../pages/register-docs/document/RegDocument";
 import { Profile, User, Users } from "../pages/users";
+import { BusinessTrips } from "../pages/business-trip";
 
 
 export type RouteObjectType = IndexRouteObject |
@@ -91,7 +92,22 @@ export const routes = (): RouteObjectType[] => {
                     path: `${ROUTE_ME}/`,
                     element: <Profile />
                 },
-
+                // Route business trips
+                {
+                    path: `${ROUTE_BUS_TRIP}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <BusinessTrips />
+                },
+                {
+                    path: `${ROUTE_BUS_TRIP}/:id`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <User />
+                },
+                {
+                    path: `${ROUTE_BUS_TRIP}/${ROUTE_CREATE}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <User />
+                },
 
             ]
         }

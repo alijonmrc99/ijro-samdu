@@ -1,7 +1,7 @@
 import { Menu } from "antd";
 import { FC, useEffect, useMemo, useState } from "react";
-import { ROUTE_DOCUMENTS, ROUTE_INCOMNG_DOCS, ROUTE_ME, ROUTE_USERS, RoleTypeEnums } from "../../common/constants";
-import { FolderOpenOutlined, UserOutlined } from '@ant-design/icons'
+import { ROUTE_BUS_TRIP, ROUTE_DOCUMENTS, ROUTE_INCOMNG_DOCS, ROUTE_ME, ROUTE_USERS, RoleTypeEnums } from "../../common/constants";
+import { FolderOpenOutlined, ShareAltOutlined, UserOutlined, UsergroupAddOutlined } from '@ant-design/icons'
 import { useTranslation } from "react-i18next";
 import { useAppSelector } from "../../store";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -26,9 +26,15 @@ export const MainMenu: FC = () => {
         },
         {
             key: ROUTE_USERS,
-            icon: <UserOutlined />,
+            icon: <UsergroupAddOutlined />,
             label: t("users"),
             roles: [RoleTypeEnums.ROLE_REGISTER]
+        },
+        {
+            key: ROUTE_BUS_TRIP,
+            icon: <ShareAltOutlined />,
+            label: t("business_trip"),
+            roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY]
         },
         {
             key: ROUTE_ME,

@@ -61,5 +61,9 @@
     "choose_role": "Foydalanuchi ro'lini tanlang",
     "search": "Izlash",
     "clear": "Tozalash",
-    "reason": "Sababi"
+    "reason": "Sababi",
+    "business_trip": "Xizmat safarlarini ro'yxatga olish",
+    "travel_place": "Safar joyi",
+    "start_date": "Boshlanish vaqti",
+    "end_date": "Tugash vaqti"
 }
