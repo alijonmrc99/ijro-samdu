@@ -38,7 +38,7 @@ export const Documents: FC = () => {
 
     const onDelete = (id: ID) => {
         setIsDeleting(true);
-        http.delete(`${ENDPOINT_DOCUMENTS}/${id}`, {}).then(_ => {
+        http.delete(`${ENDPOINT_DOCUMENTS}/${id}`, { _method: "DELETE" }).then(_ => {
             dispatch(fetchVRDocuments({ ...pagination, ...filter }))
         }).finally(() => setIsDeleting(false))
     };

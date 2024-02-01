@@ -19,7 +19,7 @@ export const RegTopMenu: FC = () => {
         },
         {
             label: t('not_open'),
-            key: 'null',
+            key: '',
             title: "status",
             icon: <InfoCircleOutlined />,
         },

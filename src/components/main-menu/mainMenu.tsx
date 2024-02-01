@@ -56,8 +56,6 @@ export const MainMenu: FC = () => {
 
     useEffect(() => {
         filterMenu();
-        console.log(pathname?.split('/')[2]);
-
     }, [user, t, pathname])
 
     const onSelect = (selectedMenu: {

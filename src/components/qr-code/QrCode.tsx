@@ -3,7 +3,6 @@ import { FC } from "react";
 import logo from '../../assets/logo copy.png';
 import { Flex } from 'antd';
 export const QrCode: FC<{ value: string, status: "seen" | "approved" | "rejected" | null }> = ({ value, status }) => {
-    console.log(value);
     if (status === "approved") {
         return (
             <Flex justify='center'>

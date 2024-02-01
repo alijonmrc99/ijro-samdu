@@ -11,7 +11,7 @@ interface IContent {
     status: "seen" | "approved" | "rejected" | null,
     name: string,
     user: string
-    job: string
+    job: string,
 }
 
 export const DocumentView: FC<IContent> = ({ contentText, status, name, user, job }) => {

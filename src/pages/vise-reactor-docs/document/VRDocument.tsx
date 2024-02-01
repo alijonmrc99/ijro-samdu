@@ -3,7 +3,7 @@ import { VRdocFetchById } from "../../../features/vise-rector-docs/thunks";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { DocumentView } from "../../../components/documnet-view";
-import { Button, Modal, Spin } from "antd";
+import { Alert, Button, Modal, Spin } from "antd";
 import { vrDocSlice } from "../../../features/vise-rector-docs/sclices/vise-rector-doc.slice";
 import { IPageTitleContext, PageTitleContext } from "../../../common/contexts/pageTitle.context";
 import { ContentHeader } from "../../../components/content-header";
@@ -57,6 +57,11 @@ export const Document: FC = () => {
         })
     };
 
+    {
+        // console.log(data?.comments[0].text)
+
+    }
+
     return (
         <div className="pages">
             <Helmet>
@@ -66,7 +71,7 @@ export const Document: FC = () => {
                 <MainBreadcrumb lastItem={{ key: "documnet", title: data?.title || "Loading..." }} />
                 <Button className="print" onClick={printPage} > <PrinterOutlined />{t('print')}</Button>
                 <div></div>
-                {!data?.isSent &&
+                {(!data?.isSent || (data?.status === "rejected")) &&
                     <Button onClick={() => navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/${id}/edit`)} type="primary"> <EditOutlined />{t('edit_doc')}</Button>
                 }
                 {!data?.isSent &&
@@ -75,10 +80,19 @@ export const Document: FC = () => {
             </ContentHeader>
             <div className="pages__content doc-content" >
                 {
+                    data?.comments[0]?.text && <Alert
+                        style={{ width: "100%", maxWidth: "1000px", margin: "30px", }}
+                        message={t('rejected')}
+                        description={`${t('reason')}: ${data?.comments[0]?.text}`}
+                        type="error"
+                        showIcon
+                    />
+                }
+
+                {
                     isLoading ? <Spin tip="loading" /> :
                         <DocumentView user={data?.user.fullName || ""} job={data?.user.job || ""} name="1321" status={data?.status || null} contentText={data?.body || ""} />
                 }
-
             </div>
         </div>
     )
