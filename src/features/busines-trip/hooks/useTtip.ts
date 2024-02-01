@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { message } from "antd";
 import { useAppDispatch } from "../../../store";
 import { onTrips } from "../thunks";
-import { ROUTE_DASHBOARD, ROUTE_USERS, } from "../../../common/constants";
+import { ROUTE_BUS_TRIP, ROUTE_DASHBOARD, ROUTE_USERS, } from "../../../common/constants";
 import { ENDPOINT_REGISTER, ENDPOINT_BUS_TRIP } from "../endpoints";
-import { IUserSend } from "../models";
+import { IBusinessTrip } from "../models";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { DocumentSchema } from "../schema";
 
@@ -15,7 +15,7 @@ export const useDocuments = () => {
     const dispatch = useAppDispatch()
 
     const [isLoading, setIsLoading] = useState(false);
-    const { register, control, handleSubmit, setValue } = useForm<IUserSend>({
+    const { register, control, handleSubmit, getValues, setValue } = useForm<IBusinessTrip>({
         resolver: yupResolver(DocumentSchema),
         mode: 'onBlur'
     })
@@ -29,8 +29,9 @@ export const useDocuments = () => {
         })
     };
 
-    const onSubmit = (values: IUserSend) => {
+    const onSubmit = (values: IBusinessTrip) => {
         setIsLoading(true);
+        console.log(values.id);
 
         if (values.id) {
             values["_method"] = "PUT";
@@ -39,7 +40,7 @@ export const useDocuments = () => {
                     console.log(responseValues.success);
 
                     if (responseValues.success) {
-                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_USERS}`)
+                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_BUS_TRIP}`)
                         // setOnSetSuccess(true);
                     }
                 })
@@ -47,10 +48,10 @@ export const useDocuments = () => {
                 .finally(() => { setIsLoading(false) })
         }
         else {
-            dispatch(onTrips({ values: values, route: `${ENDPOINT_REGISTER}` })).unwrap()
+            dispatch(onTrips({ values: values, route: `${ENDPOINT_BUS_TRIP}` })).unwrap()
                 .then((responseValues: any) => {
                     if (responseValues.success) {
-                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_USERS}`)
+                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_BUS_TRIP}`)
                         // setOnSetSuccess(true);
                     }
                 })
@@ -60,8 +61,8 @@ export const useDocuments = () => {
 
     };
 
-    const handleLogin = handleSubmit(onSubmit);
-    return { control, register, setValue, isLoading, handleLogin, contextHolder };
+    const handleTrip = handleSubmit(onSubmit);
+    return { control, register, setValue, isLoading, handleTrip, contextHolder, getValues };
 
 };
 

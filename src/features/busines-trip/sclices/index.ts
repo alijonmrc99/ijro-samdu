@@ -1,1 +1,2 @@
-export * from './trips.slice'
+export * from './trips.slice';
+export * from './trip.slice';

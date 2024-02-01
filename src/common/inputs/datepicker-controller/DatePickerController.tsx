@@ -22,6 +22,7 @@ export const DatePickerController: FC<DatePickerControllerProps> = ({
 
     const onChange = (_date: any, dateString: string) => {
         setValue(name, dateString)
+
     }
 
     return (
@@ -32,7 +33,7 @@ export const DatePickerController: FC<DatePickerControllerProps> = ({
                 <Space style={{ width: "100%" }} size={'small'} direction="vertical">
                     {label && <label className="controller-label">{label}</label>}
                     <DatePicker value={value ? dayjs(value) : undefined} {...fieldProps} onChange={onChange} {...props} ></DatePicker>
-                    <small>{error?.message ? t(error.message) : null}</small>
+                    <small style={{ color: "red" }}>{error?.message ? t(error.message) : null}</small>
                 </Space>
             )}
         ></Controller>

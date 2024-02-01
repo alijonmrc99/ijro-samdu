@@ -20,7 +20,7 @@ export const DocumentEdit: FC = () => {
             setPageTitle(t('edit_doc'))
         }
         else {
-            setPageTitle(t('create_doc'))
+            setPageTitle(t('create'))
 
         }
         return () => { dispatch(vrDocSlice.actions.emptyState()) }
@@ -29,7 +29,7 @@ export const DocumentEdit: FC = () => {
     return (
         <div className="pages">
             <ContentHeader hasBackAction={true}>
-                <MainBreadcrumb lastItem={{ key: "edit", title: `${id ? t('edit_doc') : t('create_doc')}` }} />
+                <MainBreadcrumb lastItem={{ key: "edit", title: `${id ? t('edit_doc') : t('create')}` }} />
                 <div></div>
             </ContentHeader>
             <div className="pages__content">

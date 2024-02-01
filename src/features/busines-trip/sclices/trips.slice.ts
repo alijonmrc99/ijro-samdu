@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IBusinessTrip } from "../models";
+import { IBusinessTrip, IBusinessTripResponse } from "../models";
 import { fetchTrips } from "../thunks";
 import { IPageable } from "../../../common/models";
 
 interface InitialStateProps {
     isLoading: boolean;
-    data: IPageable<IBusinessTrip> | null;
+    data: IPageable<IBusinessTripResponse> | null;
     error: any;
 }
 

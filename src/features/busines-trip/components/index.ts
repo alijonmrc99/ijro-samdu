@@ -1,2 +1,2 @@
-export * from './trip-form/UserForm';
+export * from './trip-form/BusinessTripForm';
 export * from './trips-list/BusinessTripList';

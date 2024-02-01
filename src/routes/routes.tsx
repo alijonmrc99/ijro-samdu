@@ -9,7 +9,7 @@ import { Document } from "../pages/vise-reactor-docs";
 import { RegDocuments } from "../pages/register-docs/documents/RegDocuments";
 import { RegDocument } from "../pages/register-docs/document/RegDocument";
 import { Profile, User, Users } from "../pages/users";
-import { BusinessTrips } from "../pages/business-trip";
+import { BusinessTrip, BusinessTrips } from "../pages/business-trip";
 
 
 export type RouteObjectType = IndexRouteObject |
@@ -101,12 +101,12 @@ export const routes = (): RouteObjectType[] => {
                 {
                     path: `${ROUTE_BUS_TRIP}/:id`,
                     roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
-                    element: <User />
+                    element: <BusinessTrip />
                 },
                 {
                     path: `${ROUTE_BUS_TRIP}/${ROUTE_CREATE}`,
                     roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
-                    element: <User />
+                    element: <BusinessTrip />
                 },
 
             ]

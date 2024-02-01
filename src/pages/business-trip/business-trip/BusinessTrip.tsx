@@ -1,9 +1,7 @@
 import { FC, useContext, useEffect } from "react";
-import { RegdocFetchById } from "../../../features/register-docs/thunks";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../store";
-import { DocumentView } from "../../../components/documnet-view";
-import { Button, Spin } from "antd";
+import { Button } from "antd";
 import { IPageTitleContext, PageTitleContext } from "../../../common/contexts/pageTitle.context";
 import { ContentHeader } from "../../../components/content-header";
 import { MainBreadcrumb } from "../../../components/main-breadcamp";
@@ -11,26 +9,25 @@ import { printPage } from "../../../common/utils/functions";
 import { PrinterOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
-import { registerDocSlice } from "../../../features/register-docs/sclices/registerDoc.slice";
-
+import { BusinessTripForm } from "../../../features/busines-trip/components";
 import './sytles.scss';
-import { ConfirmModalDialog } from "../../../features/register-docs/components/document-form";
+import { FetchTripById } from "../../../features/busines-trip/thunks";
+import { tripsSlice } from "../../../features/busines-trip/sclices";
 
-export const RegDocument: FC = () => {
+export const BusinessTrip: FC = () => {
     const { id } = useParams();
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const { setPageTitle } = useContext(PageTitleContext) as IPageTitleContext
-    const { data, isLoading } = useAppSelector(state => state.registerDoc)
+    const { data } = useAppSelector(state => state.trip)
 
     useEffect(() => {
-        setPageTitle(data?.title || "");
+        setPageTitle(data?.fullName || "");
     }, [data])
 
     useEffect(() => {
-        dispatch(RegdocFetchById(id))
-        console.log(!(data?.status === 'approved' || data?.status === 'rejected'))
-        return () => { dispatch(registerDocSlice.actions.emptyState()) }
+        dispatch(FetchTripById(id))
+        return () => { dispatch(tripsSlice.actions.emptyState()) }
 
     }, [])
 
@@ -38,23 +35,17 @@ export const RegDocument: FC = () => {
     return (
         <div className="pages">
             <Helmet>
-                <title>{data?.title}</title>
+                <title>{data?.fullName || t("create")}</title>
             </Helmet>
             <ContentHeader hasBackAction={true}>
-                <MainBreadcrumb lastItem={{ key: "documnet", title: data?.title || "Loading..." }} />
+                <MainBreadcrumb lastItem={{ key: "documnet", title: data?.fullName || t('create') }} />
                 <Button className="print" onClick={printPage} > <PrinterOutlined />{t('print')}</Button>
                 <div></div>
             </ContentHeader>
             <div className="pages__content doc-content" >
-                {
-                    isLoading ? <Spin tip="loading" >__</Spin> :
-                        <DocumentView job={data?.user.job || ""} user={data?.user.fullName || ""} name={data?.name || ""} status={data?.status || null} contentText={data?.body || ""} />
-                }
+                <BusinessTripForm />
             </div>
-            {
-                !(data?.status === 'approved' || data?.status === 'rejected') &&
-                <ConfirmModalDialog id={id || null} />
-            }
+
         </div>
     )
 }

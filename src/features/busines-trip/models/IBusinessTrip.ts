@@ -9,5 +9,15 @@ export interface IBusinessTrip {
     start_date: string,
     _method?: string
 }
+export interface IBusinessTripResponse {
+    id?: ID,
+    fullName: string,
+    job: string,
+    travelPlace: string,
+    endDate: string,
+    startDate: string,
+}
+
+
 
 

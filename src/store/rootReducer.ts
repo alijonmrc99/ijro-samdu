@@ -8,6 +8,7 @@ import { registerDocSlice } from "../features/register-docs/sclices/registerDoc.
 import { usersSlice } from "../features/users/sclices";
 import { userSlice } from "../features/users/sclices/user.slice";
 import { tripsSlice } from "../features/busines-trip/sclices";
+import { tripSlice } from "../features/busines-trip/sclices";
 
 export const rootReducer = combineReducers({
     notification: notificationSlice.reducer,
@@ -19,4 +20,5 @@ export const rootReducer = combineReducers({
     users: usersSlice.reducer,
     user: userSlice.reducer,
     trips: tripsSlice.reducer,
+    trip: tripSlice.reducer,
 })

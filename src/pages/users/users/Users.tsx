@@ -72,7 +72,7 @@ export const Users: FC = () => {
                 <MainBreadcrumb />
                 <div></div>
                 <MainPagination defaultcurrent={data?.meta?.currentPage || 1} onChange={onChange} total={data?.meta?.total || 1} pageSize={data?.meta?.perPage || 30} />
-                <Button onClick={() => navigate(`${ROUTE_DASHBOARD}/${ROUTE_USERS}/${ROUTE_CREATE}`)} type="primary"> <FileAddOutlined />{t('add_user')}</Button>
+                <Button onClick={() => navigate(`${ROUTE_DASHBOARD}/${ROUTE_USERS}/${ROUTE_CREATE}`)} type="primary"> <FileAddOutlined />{t('create')}</Button>
             </ContentHeader>
             <div className="page__content">
                 <UserList isDeleting={isDeleting} onDelete={confirm} list={data?.items || []} isLoading={isLoading} />

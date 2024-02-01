@@ -1,9 +1,9 @@
 import { FC, useMemo } from "react";
 import './styles.scss'
-import { IBusinessTrip } from "../../models";
+import { IBusinessTrip, IBusinessTripResponse } from "../../models";
 import { DataTable } from "../../../../components/data-table/DataTable";
 import { useNavigate } from "react-router-dom";
-import { ROUTE_DASHBOARD, ROUTE_USERS } from "../../../../common/constants";
+import { ROUTE_BUS_TRIP, ROUTE_DASHBOARD } from "../../../../common/constants";
 import { useTranslation } from "react-i18next";
 import { ColumnType } from "antd/es/table";
 import { Button } from "antd";
@@ -12,7 +12,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 
 export const BusinessTripList: FC<{
     isLoading: boolean,
-    list: IBusinessTrip[],
+    list: IBusinessTripResponse[],
     onDelete: (id: any) => void,
     isDeleting?: boolean
 }> = ({ isLoading, list, onDelete, isDeleting }) => {
@@ -20,19 +20,19 @@ export const BusinessTripList: FC<{
     const navigate = useNavigate();
 
     const onSelectRow = (_index: any, value: any) => {
-        navigate(`${ROUTE_DASHBOARD}/${ROUTE_USERS}/${value.id}`)
+        navigate(`${ROUTE_DASHBOARD}/${ROUTE_BUS_TRIP}/${value.id}`)
     }
 
     const columns = useMemo(() => [
         {
             title: t('name'),
-            dataIndex: 'full_name',
-            key: 'full_name'
+            dataIndex: 'fullName',
+            key: 'fullName'
         },
         {
             title: t('travel_place'),
-            dataIndex: 'travel_place',
-            key: 'travel_place',
+            dataIndex: 'travelPlace',
+            key: 'travelPlace',
         },
         {
             title: t('job'),
@@ -41,13 +41,13 @@ export const BusinessTripList: FC<{
         },
         {
             title: t('start_date'),
-            dataIndex: 'start_date',
+            dataIndex: 'startDate',
             key: 'start_date',
         },
         {
             title: t('end_date'),
-            dataIndex: 'end_date',
-            key: 'end_date',
+            dataIndex: 'endDate',
+            key: 'endDate',
         },
 
         deleteColumnsType(!!isDeleting, onDelete),

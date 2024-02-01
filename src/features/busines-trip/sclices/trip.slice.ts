@@ -1,21 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IUser } from "../models";
+import { IBusinessTrip, IBusinessTripResponse } from "../models";
 import { FetchTripById, onTrips } from "../thunks";
 
 interface InitialStateProps {
-    data: IUser | null
+    data: IBusinessTripResponse | null
     error: any,
+    response: IBusinessTrip | null,
     isLoading: boolean
 };
 
 const initialState: InitialStateProps = {
     data: null,
     error: null,
+    response: null,
     isLoading: false,
 }
 
-export const userSlice = createSlice({
-    name: 'userSlice',
+export const tripSlice = createSlice({
+    name: 'tripSlice',
     initialState,
     reducers: {
         emptyState: (state) => {
@@ -32,7 +34,6 @@ export const userSlice = createSlice({
         builder.addCase(onTrips.fulfilled, (state) => ({
             ...state,
             isLoading: false,
-            data: null,
             error: null
         }));
         builder.addCase(onTrips.rejected, (state, { error }) => ({
