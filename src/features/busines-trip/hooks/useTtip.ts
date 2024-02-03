@@ -12,10 +12,17 @@ import { DocumentSchema } from "../schema";
 
 export const useDocuments = () => {
     const navigate = useNavigate();
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
+    const defaultValues: IBusinessTrip = {
+        full_name: '',
+        travel_place: '',
+        job: '',
+        start_date: '',
+        end_date: ''
+    }
 
     const [isLoading, setIsLoading] = useState(false);
-    const { register, control, handleSubmit, getValues, setValue } = useForm<IBusinessTrip>({
+    const { register, control, handleSubmit, getValues, setValue, reset } = useForm<IBusinessTrip>({
         resolver: yupResolver(DocumentSchema),
         mode: 'onBlur'
     })
@@ -31,7 +38,6 @@ export const useDocuments = () => {
 
     const onSubmit = (values: IBusinessTrip) => {
         setIsLoading(true);
-        console.log(values.id);
 
         if (values.id) {
             values["_method"] = "PUT";
@@ -61,8 +67,14 @@ export const useDocuments = () => {
 
     };
 
+    const handleReset = () => {
+        console.log('default');
+
+        reset(defaultValues)
+    }
+
     const handleTrip = handleSubmit(onSubmit);
-    return { control, register, setValue, isLoading, handleTrip, contextHolder, getValues };
+    return { control, register, setValue, handleReset, isLoading, handleTrip, contextHolder, getValues };
 
 };
 

@@ -1,5 +1,4 @@
 import { FC, useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { Button } from "antd";
 import { IPageTitleContext, PageTitleContext } from "../../../common/contexts/pageTitle.context";
@@ -11,11 +10,9 @@ import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 import { BusinessTripForm } from "../../../features/busines-trip/components";
 import './sytles.scss';
-import { FetchTripById } from "../../../features/busines-trip/thunks";
-import { tripsSlice } from "../../../features/busines-trip/sclices";
+import { tripSlice } from "../../../features/busines-trip/sclices";
 
 export const BusinessTrip: FC = () => {
-    const { id } = useParams();
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const { setPageTitle } = useContext(PageTitleContext) as IPageTitleContext
@@ -26,9 +23,7 @@ export const BusinessTrip: FC = () => {
     }, [data])
 
     useEffect(() => {
-        dispatch(FetchTripById(id))
-        return () => { dispatch(tripsSlice.actions.emptyState()) }
-
+        return () => { dispatch(tripSlice.actions.emptyState()) }
     }, [])
 
 

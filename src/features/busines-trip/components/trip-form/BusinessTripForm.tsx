@@ -3,18 +3,33 @@ import { useDocuments } from "../../hooks/useTtip";
 import { TextFieldController } from "../../../../common/inputs/text-feild-controller";
 import { JOB, TRAVEL_PLACE, END_DATE, USER_NAME, START_DATE } from "../../constants";
 import { useTranslation } from "react-i18next";
-import { useAppSelector } from "../../../../store";
+import { useAppDispatch, useAppSelector } from "../../../../store";
 import './style.scss'
 import { Button, Flex } from "antd"; import { DatePickerController } from "../../../../common/inputs/datepicker-controller";
 import dayjs from "dayjs";
+import { useParams } from "react-router-dom";
+import { FetchTripById } from "../../thunks";
 ;
 export const BusinessTripForm: FC = () => {
-
-    const { t } = useTranslation()
-    const { handleTrip, isLoading, control, contextHolder, getValues, setValue } = useDocuments();
+    const { id } = useParams();
+    const { t } = useTranslation();
+    const dispatch = useAppDispatch();
+    const { handleTrip, isLoading, handleReset, control, contextHolder, getValues, setValue } = useDocuments();
     const { data: trip } = useAppSelector(state => state.trip);
 
     useEffect(() => {
+        if (id) {
+            console.log(id);
+
+            dispatch(FetchTripById(id))
+        } else {
+            handleReset()
+        }
+    }, [id])
+
+    useEffect(() => {
+        console.log(trip);
+
         if (trip) {
             setValue('id', trip.id);
             setValue('full_name', trip.fullName);
@@ -22,6 +37,8 @@ export const BusinessTripForm: FC = () => {
             setValue('travel_place', trip.travelPlace);
             setValue('end_date', trip.endDate);
             setValue('start_date', trip.startDate);
+        } else {
+            handleReset();
         }
     }, [trip])
 

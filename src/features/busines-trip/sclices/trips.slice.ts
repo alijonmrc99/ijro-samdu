@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IBusinessTrip, IBusinessTripResponse } from "../models";
+import { IBusinessTripResponse } from "../models";
 import { fetchTrips } from "../thunks";
 import { IPageable } from "../../../common/models";
 
@@ -19,7 +19,9 @@ export const tripsSlice = createSlice({
     name: "tripsSlice",
     initialState,
     reducers: {
-        emptyState: (state) => ({ ...state, data: null })
+        emptyState: (state) => {
+            return ({ ...state, data: null })
+        }
     },
 
     extraReducers: (builder) => {
