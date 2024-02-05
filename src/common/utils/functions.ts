@@ -1,3 +1,7 @@
+import { http } from "../../pages/vise-reactor-docs";
+import { IFile } from "../constants";
+import { IResponse } from "../models";
+
 type TupleEntry<T extends readonly unknown[], I extends unknown[] = [], R = never> =
     T extends readonly [infer Head, ...infer Tail] ?
     TupleEntry<Tail, [...I, unknown], R | [`${I['length']}`, Head]> :
@@ -48,4 +52,25 @@ export const formatDate = (date: Date) => {
     if (mm < 10) mm = '0' + mm;
 
     return yyyy + '-' + mm + '-' + dd;
+}
+
+export const uploadFile = async (file: any, type: string) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('model', type);
+
+    try {
+        const result: IResponse<IFile> = await http.post('/file/store', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        if (result.success) {
+            return { id: result.data.fileName }
+        }
+    } catch (err) {
+        console.log(err);
+
+    }
+
 }

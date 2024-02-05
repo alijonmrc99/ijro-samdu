@@ -23,6 +23,9 @@ const createAxiosInstance = (config: AxiosRequestConfig) => {
       )
     });
 
+    console.log(config.formData);
+
+
     if (config.formData) {
       const formData = new FormData();
 
@@ -36,6 +39,8 @@ const createAxiosInstance = (config: AxiosRequestConfig) => {
         config.data = formData;
       });
     }
+
+
     return {
       ...config,
       baseURL: `${currentUrl.protocol}//${currentUrl.host}`,

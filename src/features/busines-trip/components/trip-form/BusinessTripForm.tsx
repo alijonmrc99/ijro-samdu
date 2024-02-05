@@ -9,6 +9,8 @@ import { Button, Flex } from "antd"; import { DatePickerController } from "../..
 import dayjs from "dayjs";
 import { useParams } from "react-router-dom";
 import { FetchTripById } from "../../thunks";
+import { FileUploader } from "../../../../common/inputs/file-uploader";
+import { ENDPOINT_BUS_TRIP } from "../../endpoints";
 ;
 export const BusinessTripForm: FC = () => {
     const { id } = useParams();
@@ -84,6 +86,7 @@ export const BusinessTripForm: FC = () => {
                             placeholder={t('end_date')}
                         />
                     </Flex>
+                    <FileUploader setValue={setValue} name={"name"} filePath={'BusinessTrip'} />
                 </div>
                 {contextHolder}
                 <div className="buttons-container">
