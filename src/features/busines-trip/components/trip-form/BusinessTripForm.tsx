@@ -10,19 +10,16 @@ import dayjs from "dayjs";
 import { useParams } from "react-router-dom";
 import { FetchTripById } from "../../thunks";
 import { FileUploader } from "../../../../common/inputs/file-uploader";
-import { ENDPOINT_BUS_TRIP } from "../../endpoints";
 ;
 export const BusinessTripForm: FC = () => {
     const { id } = useParams();
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
-    const { handleTrip, isLoading, handleReset, control, contextHolder, getValues, setValue } = useDocuments();
+    const { handleTrip, isLoading, handleReset, control, errors, contextHolder, getValues, setValue } = useDocuments();
     const { data: trip } = useAppSelector(state => state.trip);
 
     useEffect(() => {
         if (id) {
-            console.log(id);
-
             dispatch(FetchTripById(id))
         } else {
             handleReset()
@@ -30,8 +27,6 @@ export const BusinessTripForm: FC = () => {
     }, [id])
 
     useEffect(() => {
-        console.log(trip);
-
         if (trip) {
             setValue('id', trip.id);
             setValue('full_name', trip.fullName);
@@ -43,6 +38,9 @@ export const BusinessTripForm: FC = () => {
             handleReset();
         }
     }, [trip])
+
+
+
 
     const disabledEndDate = (endValue: any) => {
         const startValue = dayjs(getValues('start_date'));
@@ -86,7 +84,12 @@ export const BusinessTripForm: FC = () => {
                             placeholder={t('end_date')}
                         />
                     </Flex>
-                    <FileUploader setValue={setValue} name={"name"} filePath={'BusinessTrip'} />
+
+                    <FileUploader
+                        errorsMassage={errors?.fileId?.message || ""}
+                        setValue={setValue}
+                        name={"fileId"}
+                        filePath={'BusinessTrip'} />
                 </div>
                 {contextHolder}
                 <div className="buttons-container">

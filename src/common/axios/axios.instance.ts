@@ -23,8 +23,6 @@ const createAxiosInstance = (config: AxiosRequestConfig) => {
       )
     });
 
-    console.log(config.formData);
-
 
     if (config.formData) {
       const formData = new FormData();

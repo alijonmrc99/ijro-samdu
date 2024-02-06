@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { message } from "antd";
 import { useAppDispatch } from "../../../store";
 import { onTrips } from "../thunks";
-import { ROUTE_BUS_TRIP, ROUTE_DASHBOARD, ROUTE_USERS, } from "../../../common/constants";
-import { ENDPOINT_REGISTER, ENDPOINT_BUS_TRIP } from "../endpoints";
+import { ROUTE_BUS_TRIP, ROUTE_DASHBOARD } from "../../../common/constants";
+import { ENDPOINT_BUS_TRIP } from "../endpoints";
 import { IBusinessTrip } from "../models";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { DocumentSchema } from "../schema";
@@ -17,15 +17,18 @@ export const useDocuments = () => {
         full_name: '',
         travel_place: '',
         job: '',
+        fileId: '',
         start_date: '',
         end_date: ''
     }
 
     const [isLoading, setIsLoading] = useState(false);
-    const { register, control, handleSubmit, getValues, setValue, reset } = useForm<IBusinessTrip>({
+    const { register, getValues, control, handleSubmit, watch, formState: { errors }, setValue, reset } = useForm<IBusinessTrip>({
         resolver: yupResolver(DocumentSchema),
         mode: 'onBlur'
     })
+
+
 
     const [messageApi, contextHolder] = message.useMessage();
 
@@ -43,8 +46,6 @@ export const useDocuments = () => {
             values["_method"] = "PUT";
             dispatch(onTrips({ values: values, route: `${ENDPOINT_BUS_TRIP}/${values.id}` })).unwrap()
                 .then((responseValues: any) => {
-                    console.log(responseValues.success);
-
                     if (responseValues.success) {
                         navigate(`${ROUTE_DASHBOARD}/${ROUTE_BUS_TRIP}`)
                         // setOnSetSuccess(true);
@@ -67,14 +68,12 @@ export const useDocuments = () => {
 
     };
 
-    const handleReset = () => {
-        console.log('default');
+    const handleReset = () => reset(defaultValues)
 
-        reset(defaultValues)
-    }
 
     const handleTrip = handleSubmit(onSubmit);
-    return { control, register, setValue, handleReset, isLoading, handleTrip, contextHolder, getValues };
+
+    return { control, register, setValue, errors, handleReset, isLoading, handleTrip, contextHolder, getValues };
 
 };
 

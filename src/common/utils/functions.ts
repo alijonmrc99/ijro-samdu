@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import { http } from "../../pages/vise-reactor-docs";
 import { IFile } from "../constants";
 import { IResponse } from "../models";
@@ -66,10 +67,13 @@ export const uploadFile = async (file: any, type: string) => {
             }
         })
         if (result.success) {
-            return { id: result.data.fileName }
+            return { id: "result.data.fileName" }
         }
     } catch (err) {
-        console.log(err);
+        const error = err as AxiosError;
+
+
+        return { error: error.message }
 
     }
 

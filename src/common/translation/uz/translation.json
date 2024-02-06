@@ -64,5 +64,7 @@
     "business_trip": "Xizmat safarlarini ro'yxatga olish",
     "travel_place": "Safar joyi",
     "start_date": "Boshlanish vaqti",
-    "end_date": "Tugash vaqti"
+    "end_date": "Tugash vaqti",
+    "file-upload": "Fayl yuklash",
+    "choose_file": "Faylni tanlang..."
 }

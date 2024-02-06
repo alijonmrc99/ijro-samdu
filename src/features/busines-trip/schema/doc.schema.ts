@@ -8,4 +8,5 @@ export const DocumentSchema = yup.object().shape({
     [TRAVEL_PLACE]: yup.string().required(MSG_ERROR_REQIURED_FIELD),
     [START_DATE]: yup.string().required(MSG_ERROR_REQIURED_FIELD),
     [END_DATE]: yup.string().required(MSG_ERROR_REQIURED_FIELD),
+    ['fileId']: yup.string().required(MSG_ERROR_REQIURED_FIELD),
 });
