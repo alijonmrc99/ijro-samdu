@@ -66,5 +66,6 @@
     "start_date": "Boshlanish vaqti",
     "end_date": "Tugash vaqti",
     "file-upload": "Fayl yuklash",
-    "choose_file": "Faylni tanlang..."
+    "choose_file": "Faylni tanlang...",
+    "not_found": "Sahifa topilmadi"
 }

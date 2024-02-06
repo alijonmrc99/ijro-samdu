@@ -1,0 +1,19 @@
+.page-404 {
+    height: 100vh;
+    background-color: #fff;
+    background-image: url('/src/assets/404.jpg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .page-404-header {
+        font-size: 48px;
+        color: #fff;
+        // text-shadow: 3px 3px rgba($color: #000000, $alpha: 0.3);
+    }
+}
