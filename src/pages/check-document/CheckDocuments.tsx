@@ -13,7 +13,7 @@ export const CheckDocuments: FC = () => {
     const [isLoading, setIsLoading] = useState(false)
     useEffect(() => {
         setIsLoading(true);
-        http.get<IResponse<IDocuments>>(`/check/${id?.toUpperCase()}`, {}).then(response => {
+        http.get<IResponse<IDocuments>>(`/check/${id}`, {}).then(response => {
             setDoc(response.data);
         }).catch(err => console.log(err))
             .finally(() => setIsLoading(false))
