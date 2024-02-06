@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, useState } from "react";
-import { UseFormSetValue, set } from "react-hook-form";
+import { UseFormSetValue } from "react-hook-form";
 import { uploadFile } from "../../utils/functions";
 import { CloudUploadOutlined } from "@ant-design/icons";
 import { Col, Row } from "antd";
@@ -18,10 +18,9 @@ export const FileUploader: FC<FileUploaderProps> = ({ setValue, name, filePath, 
     const onChange = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files.length) {
 
-            console.log(setValue(name, 1312));
-
             uploadFile(event.target.files[0], filePath).then(data => {
                 if (data?.id) {
+                    setValue(name, data?.id);
                 }
                 setFileStatus(data?.id || data?.error || "")
             })

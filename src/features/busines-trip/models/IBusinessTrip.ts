@@ -3,7 +3,7 @@ import { ID } from "../../../common/models/baseTypes";
 export interface IBusinessTrip {
     id?: ID,
     full_name: string,
-    fileId: string
+    file_name: string
     job: string,
     travel_place: string,
     end_date: string,

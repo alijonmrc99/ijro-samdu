@@ -1,6 +1,6 @@
 import { FC, useMemo } from "react";
 import './styles.scss'
-import { IBusinessTrip, IBusinessTripResponse } from "../../models";
+import { IBusinessTripResponse } from "../../models";
 import { DataTable } from "../../../../components/data-table/DataTable";
 import { useNavigate } from "react-router-dom";
 import { ROUTE_BUS_TRIP, ROUTE_DASHBOARD } from "../../../../common/constants";
@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import { ColumnType } from "antd/es/table";
 import { Button } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
+import { DownlaodFile } from "../../../../components/download-file";
 
 
 export const BusinessTripList: FC<{
@@ -49,7 +50,7 @@ export const BusinessTripList: FC<{
             dataIndex: 'endDate',
             key: 'endDate',
         },
-
+        downloadColumnsType(),
         deleteColumnsType(!!isDeleting, onDelete),
     ], [t, list])
 
@@ -70,6 +71,18 @@ export const deleteColumnsType = (isDeleting: boolean, onDelete: (id: any) => vo
             icon={<DeleteOutlined />}
             onClick={(e) => { e.stopPropagation(); onDelete(item.id) }}
         />,
+    }
+}
+
+export const downloadColumnsType = (): ColumnType<any> => {
+    return {
+        title: "",
+        width: 64,
+        key: 'action',
+        fixed: 'right',
+        render: (item: any) => {
+            return (<DownlaodFile fileName={item.file_name} path={ROUTE_BUS_TRIP} />)
+        }
     }
 }
 

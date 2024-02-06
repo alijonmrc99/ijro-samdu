@@ -17,13 +17,13 @@ export const useDocuments = () => {
         full_name: '',
         travel_place: '',
         job: '',
-        fileId: '',
+        file_name: '',
         start_date: '',
         end_date: ''
     }
 
     const [isLoading, setIsLoading] = useState(false);
-    const { register, getValues, control, handleSubmit, watch, formState: { errors }, setValue, reset } = useForm<IBusinessTrip>({
+    const { register, getValues, control, handleSubmit, formState: { errors }, setValue, reset } = useForm<IBusinessTrip>({
         resolver: yupResolver(DocumentSchema),
         mode: 'onBlur'
     })
@@ -41,6 +41,7 @@ export const useDocuments = () => {
 
     const onSubmit = (values: IBusinessTrip) => {
         setIsLoading(true);
+        console.log(values);
 
         if (values.id) {
             values["_method"] = "PUT";
@@ -59,7 +60,6 @@ export const useDocuments = () => {
                 .then((responseValues: any) => {
                     if (responseValues.success) {
                         navigate(`${ROUTE_DASHBOARD}/${ROUTE_BUS_TRIP}`)
-                        // setOnSetSuccess(true);
                     }
                 })
                 .catch(handleErrors)

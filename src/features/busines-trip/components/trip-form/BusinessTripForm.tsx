@@ -10,6 +10,7 @@ import dayjs from "dayjs";
 import { useParams } from "react-router-dom";
 import { FetchTripById } from "../../thunks";
 import { FileUploader } from "../../../../common/inputs/file-uploader";
+import { ROUTE_BUS_TRIP } from "../../../../common/constants";
 ;
 export const BusinessTripForm: FC = () => {
     const { id } = useParams();
@@ -86,10 +87,10 @@ export const BusinessTripForm: FC = () => {
                     </Flex>
 
                     <FileUploader
-                        errorsMassage={errors?.fileId?.message || ""}
+                        errorsMassage={errors?.file_name?.message || ""}
                         setValue={setValue}
-                        name={"fileId"}
-                        filePath={'BusinessTrip'} />
+                        name={"file_name"}
+                        filePath={ROUTE_BUS_TRIP} />
                 </div>
                 {contextHolder}
                 <div className="buttons-container">

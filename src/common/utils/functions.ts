@@ -58,16 +58,15 @@ export const formatDate = (date: Date) => {
 export const uploadFile = async (file: any, type: string) => {
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('model', type);
 
     try {
-        const result: IResponse<IFile> = await http.post('/file/store', formData, {
+        const result: IResponse<IFile> = await http.post(`/file/${type}/store`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         })
         if (result.success) {
-            return { id: "result.data.fileName" }
+            return { id: result.data.fileName }
         }
     } catch (err) {
         const error = err as AxiosError;

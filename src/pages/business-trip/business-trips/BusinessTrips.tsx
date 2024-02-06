@@ -16,7 +16,6 @@ import { ExclamationCircleOutlined, FileAddOutlined } from "@ant-design/icons";
 import { ENDPOINT_BUS_TRIP } from "../../../features/busines-trip/endpoints";
 import { ID } from "../../../common/models";
 import { http } from "../../vise-reactor-docs";
-import { IBusinessTrip } from "../../../features/busines-trip/models";
 import { useNavigate } from "react-router-dom";
 import { ROUTE_BUS_TRIP, ROUTE_CREATE, ROUTE_DASHBOARD } from "../../../common/constants";
 
@@ -61,16 +60,6 @@ export const BusinessTrips: FC = () => {
         dispatch(fetchTrips({ ...pagination, ...filter }))
     }, [pagination, filter]);
 
-    const aa: IBusinessTrip[] = [
-        {
-            id: 1,
-            full_name: "Mamasalayev Ruslan",
-            job: "DFJSHBF",
-            travel_place: "dsfsd",
-            start_date: "2020-12-01",
-            end_date: "2022-12-01"
-        }
-    ]
 
     return (
         <Layout>

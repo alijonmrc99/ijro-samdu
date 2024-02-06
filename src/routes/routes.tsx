@@ -1,5 +1,5 @@
-import { IndexRouteObject, Navigate, NonIndexRouteObject, RouteObject } from "react-router-dom";
-import { ROUTE_BUS_TRIP, ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DOCUMENTS, ROUTE_EDIT, ROUTE_HOME, ROUTE_INCOMNG_DOCS, ROUTE_LOGIN, ROUTE_ME, ROUTE_USERS, RoleTypeEnums } from "../common/constants";
+import { IndexRouteObject, Navigate, NonIndexRouteObject, Outlet, RouteObject } from "react-router-dom";
+import { ROUTE_BUS_TRIP, ROUTE_CHECK_DOC, ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DOCUMENTS, ROUTE_EDIT, ROUTE_HOME, ROUTE_INCOMNG_DOCS, ROUTE_LOGIN, ROUTE_ME, ROUTE_USERS, RoleTypeEnums } from "../common/constants";
 import { LoginForm } from "../features/auth/companets/login-form";
 import { HomePage } from "../pages/home-page";
 import { DashboardBase } from "../layouts/DashboardBase";
@@ -10,6 +10,7 @@ import { RegDocuments } from "../pages/register-docs/documents/RegDocuments";
 import { RegDocument } from "../pages/register-docs/document/RegDocument";
 import { Profile, User, Users } from "../pages/users";
 import { BusinessTrip, BusinessTrips } from "../pages/business-trip";
+import { CheckDocuments } from "../pages/check-document";
 
 
 export type RouteObjectType = IndexRouteObject |
@@ -19,6 +20,18 @@ export const routes = (): RouteObjectType[] => {
     // const { data: user } = useAppSelector(state => state.me)
     return [
         {
+            path: ROUTE_CHECK_DOC,
+            element: <Outlet></Outlet>,
+            caseSensitive: true,
+            children: [
+                {
+                    path: ":id",
+                    element: <CheckDocuments />,
+                    caseSensitive: true,
+                }
+            ]
+        },
+        {
             path: ROUTE_HOME,
             caseSensitive: true,
             element: <HomePage />,
@@ -26,6 +39,10 @@ export const routes = (): RouteObjectType[] => {
                 {
                     path: ROUTE_LOGIN,
                     element: <LoginForm />
+                },
+                // Route chech documents
+                {
+
                 }
             ]
         },
