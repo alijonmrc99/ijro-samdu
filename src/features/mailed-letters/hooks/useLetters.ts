@@ -3,28 +3,26 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { message } from "antd";
 import { useAppDispatch } from "../../../store";
-import { onTrips } from "../thunks";
-import { ROUTE_BUS_TRIP, ROUTE_DASHBOARD } from "../../../common/constants";
-import { ENDPOINT_BUSINESS_TRIP } from "../endpoints";
-import { IBusinessTrip } from "../models";
+import { onLetters } from "../thunks";
+import { ROUTE_DASHBOARD, ROUTE_MAILED_LETTER } from "../../../common/constants";
+import { ENDPOINT_MAILED_LETTERS } from "../endpoints";
+import { IMailledLetters } from "../models";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { DocumentSchema } from "../schema";
+import { LettersSchema } from "../schema";
 
 export const useDocuments = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const defaultValues: IBusinessTrip = {
-        full_name: '',
-        travel_place: '',
-        job: '',
-        file_name: '',
-        start_date: '',
-        end_date: ''
+    const defaultValues: IMailledLetters = {
+        sent_place_person: "",
+        sent_at: "",
+        comment: "",
+        cost: 0
     }
 
     const [isLoading, setIsLoading] = useState(false);
-    const { register, getValues, control, handleSubmit, formState: { errors }, setValue, reset } = useForm<IBusinessTrip>({
-        resolver: yupResolver(DocumentSchema),
+    const { register, getValues, control, handleSubmit, formState: { errors }, setValue, reset } = useForm<IMailledLetters>({
+        resolver: yupResolver(LettersSchema),
         mode: 'onBlur'
     })
 
@@ -39,16 +37,16 @@ export const useDocuments = () => {
         })
     };
 
-    const onSubmit = (values: IBusinessTrip) => {
+    const onSubmit = (values: IMailledLetters) => {
         setIsLoading(true);
         console.log(values);
 
         if (values.id) {
             values["_method"] = "PUT";
-            dispatch(onTrips({ values: values, route: `${ENDPOINT_BUSINESS_TRIP}/${values.id}` })).unwrap()
+            dispatch(onLetters({ values: values, route: `${ENDPOINT_MAILED_LETTERS}/${values.id}` })).unwrap()
                 .then((responseValues: any) => {
                     if (responseValues.success) {
-                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_BUS_TRIP}`)
+                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_MAILED_LETTER}`)
                         // setOnSetSuccess(true);
                     }
                 })
@@ -56,10 +54,10 @@ export const useDocuments = () => {
                 .finally(() => { setIsLoading(false) })
         }
         else {
-            dispatch(onTrips({ values: values, route: `${ENDPOINT_BUSINESS_TRIP}` })).unwrap()
+            dispatch(onLetters({ values: values, route: `${ENDPOINT_MAILED_LETTERS}` })).unwrap()
                 .then((responseValues: any) => {
                     if (responseValues.success) {
-                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_BUS_TRIP}`)
+                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_MAILED_LETTER}`)
                     }
                 })
                 .catch(handleErrors)

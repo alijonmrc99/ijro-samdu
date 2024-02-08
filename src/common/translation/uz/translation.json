@@ -67,5 +67,10 @@
     "end_date": "Tugash vaqti",
     "file-upload": "Fayl yuklash",
     "choose_file": "Faylni tanlang...",
-    "not_found": "Sahifa topilmadi"
+    "not_found": "Sahifa topilmadi",
+    "mailed_letters": "Pochtadan yuborilgan xatlar",
+    "place_person": "Kimga va qayerga",
+    "cost": "Narxi",
+    "comment": "Izoh",
+    "edit": "Tahirilash"
 }

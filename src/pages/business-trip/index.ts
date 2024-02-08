@@ -1,2 +1,2 @@
-export * from './business-trip/BusinessTrip'
-export * from './business-trips/BusinessTrips'
+export * from './business-trip/BusinessTrip';
+export * from './business-trips/BusinessTrips';

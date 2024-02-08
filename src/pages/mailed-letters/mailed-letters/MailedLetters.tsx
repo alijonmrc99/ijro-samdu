@@ -9,20 +9,20 @@ import { MainPagination } from "../../../components/main-pagination";
 import { IPaginationData, PaginationContext } from "../../../common/contexts/pagination.context";
 import { FilterContext, IFilter } from "../../../common/contexts/filter.context";
 import { Helmet } from "react-helmet";
-import { Filter } from "../../../components/filter";
 import { fetchTrips } from "../../../features/busines-trip/thunks";
-import { BusinessTripList } from "../../../features/busines-trip/components";
 import { ExclamationCircleOutlined, FileAddOutlined } from "@ant-design/icons";
-import { ENDPOINT_BUSINESS_TRIP } from "../../../features/busines-trip/endpoints";
 import { ID } from "../../../common/models";
 import { http } from "../../vise-reactor-docs";
 import { useNavigate } from "react-router-dom";
-import { ROUTE_BUS_TRIP, ROUTE_CREATE, ROUTE_DASHBOARD } from "../../../common/constants";
+import { ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_MAILED_LETTER } from "../../../common/constants";
+import { MailedLettersList } from "../../../features/mailed-letters/components";
+import { fetchLetters } from "../../../features/mailed-letters/thunks";
+import { ENDPOINT_MAILED_LETTERS } from "../../../features/mailed-letters/endpoints";
 
-export const BusinessTrips: FC = () => {
+export const MailedLetters: FC = () => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
-    const { data, isLoading } = useAppSelector(state => state.trips);
+    const { data, isLoading } = useAppSelector(state => state.letters);
     const [isDeleting, setIsDeleting] = useState(false);
     const { setPageTitle } = useContext(PageTitleContext) as IPageTitleContext;
     const { pagination, setPagination } = useContext(PaginationContext) as IPaginationData;
@@ -30,14 +30,14 @@ export const BusinessTrips: FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        setPageTitle(t('users'))
+        setPageTitle(t('mailed_letters'))
     }, [t])
 
     const onDelete = (id: ID) => {
         setIsDeleting(true);
-        http.delete(`${ENDPOINT_BUSINESS_TRIP}/${id}`, {}).then(_ => {
-            dispatch(fetchTrips({ ...pagination, ...filter }))
-        }).finally(() => setIsDeleting(false))
+        http.delete(`${ENDPOINT_MAILED_LETTERS}/${id}`, {}).then(_ => {
+            dispatch(fetchTrips({ ...pagination, ...filter }));
+        }).finally(() => setIsDeleting(false));
     };
 
     const confirm = (id: ID) => {
@@ -54,27 +54,26 @@ export const BusinessTrips: FC = () => {
 
     const onChange = (data: any) => {
         setPagination(data)
-    }
+    };
 
     useEffect(() => {
-        dispatch(fetchTrips({ ...pagination, ...filter }))
+        dispatch(fetchLetters({ ...pagination, ...filter }))
     }, [pagination, filter]);
 
 
     return (
         <Layout>
             <Helmet>
-                <title>{t('business_trip')}</title>
+                <title>{t('mailed_letters')}</title>
             </Helmet>
             <ContentHeader>
                 <MainBreadcrumb />
                 <div></div>
                 <MainPagination defaultcurrent={data?.meta.currentPage || 1} onChange={onChange} total={data?.meta.total || 1} pageSize={data?.meta.perPage || 30} />
-                <Button onClick={() => navigate(`${ROUTE_DASHBOARD}/${ROUTE_BUS_TRIP}/${ROUTE_CREATE}`)} type="primary"> <FileAddOutlined />{t('create')}</Button>
+                <Button onClick={() => navigate(`${ROUTE_DASHBOARD}/${ROUTE_MAILED_LETTER}/${ROUTE_CREATE}`)} type="primary"> <FileAddOutlined />{t('create')}</Button>
             </ContentHeader>
-            {/* <Filter /> */}
             <div className="page__content">
-                <BusinessTripList isDeleting={isDeleting} onDelete={confirm} list={data?.items || []} isLoading={isLoading} />
+                <MailedLettersList isDeleting={isDeleting} onDelete={confirm} list={data?.items || []} isLoading={isLoading} />
             </div>
         </Layout>
     )
