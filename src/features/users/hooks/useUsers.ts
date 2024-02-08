@@ -36,11 +36,8 @@ export const useDocuments = () => {
             values["_method"] = "PUT";
             dispatch(onUsers({ values: values, route: `${ENDPOINT_USERS}/${values.id}` })).unwrap()
                 .then((responseValues: any) => {
-                    console.log(responseValues.success);
-
                     if (responseValues.success) {
-                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_USERS}`)
-                        // setOnSetSuccess(true);
+                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_USERS}`);
                     }
                 })
                 .catch(handleErrors)
@@ -50,8 +47,7 @@ export const useDocuments = () => {
             dispatch(onUsers({ values: values, route: `${ENDPOINT_REGISTER}` })).unwrap()
                 .then((responseValues: any) => {
                     if (responseValues.success) {
-                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_USERS}`)
-                        // setOnSetSuccess(true);
+                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_USERS}`);
                     }
                 })
                 .catch(handleErrors)

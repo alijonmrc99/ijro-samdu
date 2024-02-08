@@ -24,10 +24,10 @@ export const UserForm: FC = () => {
     useEffect(() => {
         if (user) {
             setValue('id', user.id);
-            setValue('fullName', user.fullName);
+            setValue('full_name', user.fullName);
             setValue('username', user.username);
             setValue('job', user.job);
-            setValue('roles', user.roles[0].id);
+            setValue('role_id', user.roles[0].id);
         }
     }, [user])
 
@@ -63,7 +63,7 @@ export const UserForm: FC = () => {
                             placeholder={t('choose')}
                             label={t('choose_role')}
                             items={roles?.map(role => ({ value: role.id, label: t(role.name) })) || []}
-                            name="roles"
+                            name="role_id"
                         />
                     </div>
                 </div>
