@@ -2,7 +2,7 @@ import { ID } from "../../../common/models/baseTypes";
 
 export interface IMailledLetters {
     id?: ID,
-    comment: string,
+    comment?: string,
     sent_place_person: string,
     sent_at: string,
     cost: number

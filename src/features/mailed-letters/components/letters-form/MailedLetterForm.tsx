@@ -63,7 +63,7 @@ export const MailedLetterForm: FC = () => {
                         name={'sent_at'}
                         label={t('date')}
                         setValue={setValue}
-                        placeholder={t('placeholder_data')}
+                        placeholder={t('placeholder_date')}
                     />
                 </div>
                 {contextHolder}

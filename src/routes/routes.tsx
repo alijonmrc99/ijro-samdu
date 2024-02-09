@@ -1,5 +1,5 @@
 import { IndexRouteObject, Navigate, NonIndexRouteObject, Outlet, RouteObject } from "react-router-dom";
-import { ROUTE_BUS_TRIP, ROUTE_CHECK_DOC, ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DOCUMENTS, ROUTE_EDIT, ROUTE_HOME, ROUTE_INCOMNG_DOCS, ROUTE_LOGIN, ROUTE_MAILED_LETTER, ROUTE_ME, ROUTE_USERS, RoleTypeEnums } from "../common/constants";
+import { ROUTE_BUS_TRIP, ROUTE_CHECK_DOC, ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DOCUMENTS, ROUTE_EDIT, ROUTE_EXECUTIVE_ORDER, ROUTE_HOME, ROUTE_INCOMNG_DOCS, ROUTE_LOGIN, ROUTE_MAILED_LETTER, ROUTE_ME, ROUTE_USERS, RoleTypeEnums } from "../common/constants";
 import { LoginForm } from "../features/auth/companets/login-form";
 import { HomePage } from "../pages/home-page";
 import { DashboardBase } from "../layouts/DashboardBase";
@@ -12,6 +12,7 @@ import { Profile, User, Users } from "../pages/users";
 import { BusinessTrip, BusinessTrips } from "../pages/business-trip";
 import { CheckDocuments } from "../pages/check-document";
 import { MailedLetter, MailedLetters } from "../pages/mailed-letters";
+import { ExecutiveOrder, ExecutiveOrders } from "../pages/exucutive-order";
 
 
 export type RouteObjectType = IndexRouteObject |
@@ -110,7 +111,7 @@ export const routes = (): RouteObjectType[] => {
                     path: `${ROUTE_ME}/`,
                     element: <Profile />
                 },
-                // Route business trips
+                // Route business trips // Xizmat safarlarni ro'yxatga olish
                 {
                     path: `${ROUTE_BUS_TRIP}`,
                     roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
@@ -126,7 +127,7 @@ export const routes = (): RouteObjectType[] => {
                     roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
                     element: <BusinessTrip />
                 },
-                // Route mailed letters
+                // Route mailed letters // Universitetdan jo'natilgan xatlar
                 {
                     path: `${ROUTE_MAILED_LETTER}`,
                     roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
@@ -141,6 +142,22 @@ export const routes = (): RouteObjectType[] => {
                     path: `${ROUTE_MAILED_LETTER}/${ROUTE_CREATE}`,
                     roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
                     element: <MailedLetter />
+                },
+                // Route executive orders // Ijro buyruqlari qayd etish
+                {
+                    path: `${ROUTE_EXECUTIVE_ORDER}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <ExecutiveOrders />
+                },
+                {
+                    path: `${ROUTE_EXECUTIVE_ORDER}/:id`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <ExecutiveOrder />
+                },
+                {
+                    path: `${ROUTE_EXECUTIVE_ORDER}/${ROUTE_CREATE}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <ExecutiveOrder />
                 },
 
             ]
