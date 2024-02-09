@@ -1,5 +1,5 @@
 import { IndexRouteObject, Navigate, NonIndexRouteObject, Outlet, RouteObject } from "react-router-dom";
-import { ROUTE_BUS_TRIP, ROUTE_CHECK_DOC, ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DOCUMENTS, ROUTE_EDIT, ROUTE_EXECUTIVE_ORDER, ROUTE_HOME, ROUTE_INCOMNG_DOCS, ROUTE_LOGIN, ROUTE_MAILED_LETTER, ROUTE_ME, ROUTE_USERS, RoleTypeEnums } from "../common/constants";
+import { ROUTE_BUS_TRIP, ROUTE_CHECK_DOC, ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DECREE, ROUTE_DOCUMENTS, ROUTE_EDIT, ROUTE_EXECUTIVE_ORDER, ROUTE_HOME, ROUTE_INCOMNG_DOCS, ROUTE_LOGIN, ROUTE_MAILED_LETTER, ROUTE_ME, ROUTE_USERS, RoleTypeEnums } from "../common/constants";
 import { LoginForm } from "../features/auth/companets/login-form";
 import { HomePage } from "../pages/home-page";
 import { DashboardBase } from "../layouts/DashboardBase";
@@ -13,6 +13,7 @@ import { BusinessTrip, BusinessTrips } from "../pages/business-trip";
 import { CheckDocuments } from "../pages/check-document";
 import { MailedLetter, MailedLetters } from "../pages/mailed-letters";
 import { ExecutiveOrder, ExecutiveOrders } from "../pages/exucutive-order";
+import { Decrees } from "../pages/decree";
 
 
 export type RouteObjectType = IndexRouteObject |
@@ -148,6 +149,22 @@ export const routes = (): RouteObjectType[] => {
                     path: `${ROUTE_EXECUTIVE_ORDER}`,
                     roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
                     element: <ExecutiveOrders />
+                },
+                {
+                    path: `${ROUTE_EXECUTIVE_ORDER}/:id`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <ExecutiveOrder />
+                },
+                {
+                    path: `${ROUTE_EXECUTIVE_ORDER}/${ROUTE_CREATE}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <ExecutiveOrder />
+                },
+                // Route decree // Farmoyishlarni qayd etish
+                {
+                    path: `${ROUTE_DECREE}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <Decrees />
                 },
                 {
                     path: `${ROUTE_EXECUTIVE_ORDER}/:id`,

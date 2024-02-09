@@ -1,7 +1,7 @@
 import { Menu } from "antd";
 import { FC, useEffect, useMemo, useState } from "react";
-import { ROUTE_BUS_TRIP, ROUTE_DOCUMENTS, ROUTE_EXECUTIVE_ORDER, ROUTE_INCOMNG_DOCS, ROUTE_MAILED_LETTER, ROUTE_ME, ROUTE_USERS, RoleTypeEnums } from "../../common/constants";
-import { CheckSquareOutlined, FolderOpenOutlined, MailOutlined, ShareAltOutlined, UserOutlined, UsergroupAddOutlined } from '@ant-design/icons'
+import { ROUTE_BUS_TRIP, ROUTE_DECREE, ROUTE_DOCUMENTS, ROUTE_EXECUTIVE_ORDER, ROUTE_INCOMNG_DOCS, ROUTE_MAILED_LETTER, ROUTE_ME, ROUTE_USERS, RoleTypeEnums } from "../../common/constants";
+import { CheckSquareOutlined, FileProtectOutlined, FolderOpenOutlined, MailOutlined, ShareAltOutlined, UserOutlined, UsergroupAddOutlined } from '@ant-design/icons'
 import { useTranslation } from "react-i18next";
 import { useAppSelector } from "../../store";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -46,6 +46,12 @@ export const MainMenu: FC = () => {
             key: ROUTE_EXECUTIVE_ORDER,
             icon: <CheckSquareOutlined />,
             label: t("executive_orders"),
+            roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY]
+        },
+        {
+            key: ROUTE_DECREE,
+            icon: <FileProtectOutlined />,
+            label: t("decree"),
             roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY]
         },
         {

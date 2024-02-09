@@ -11,6 +11,7 @@ import { tripsSlice } from "../features/busines-trip/sclices";
 import { tripSlice } from "../features/busines-trip/sclices";
 import { letterSlice, lettersSlice } from "../features/mailed-letters/sclices";
 import { executiveOrderSlice, executiveOrdersSlice } from "../features/executive-orders/sclices";
+import { decreeSlice, decreesSlice } from "../features/decrees/sclices";
 
 export const rootReducer = combineReducers({
     notification: notificationSlice.reducer,
@@ -27,5 +28,7 @@ export const rootReducer = combineReducers({
     letter: letterSlice.reducer,
     executiveOrders: executiveOrdersSlice.reducer,
     executiveOrder: executiveOrderSlice.reducer,
+    decrees: decreesSlice.reducer,
+    decree: decreeSlice.reducer
 
 })
