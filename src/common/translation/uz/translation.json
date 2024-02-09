@@ -73,5 +73,9 @@
     "cost": "Narxi",
     "comment": "Izoh",
     "edit": "Tahirilash",
-    "executive_orders": "Ijro buyruqlarini qayd qilish"
+    "executive_orders": "Ijro buyruqlarini qayd qilish",
+    "number": "Raqami",
+    "summary": "Buyruqning qisqacha mazmuni",
+    "project_introducer": "Loyxa kirituvchi",
+    "executor": "Ijro etuvchi"
 }

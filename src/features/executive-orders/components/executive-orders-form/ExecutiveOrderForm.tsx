@@ -50,8 +50,8 @@ export const ExecutiveOrderForm: FC = () => {
                     />
                     <TextFieldController control={control}
                         name={'number'}
-                        label={t('order_number')}
-                        placeholder={t('order_number')} />
+                        label={t('number')}
+                        placeholder={t('number')} />
 
                     <TextFieldController control={control}
                         name={'summary'}
