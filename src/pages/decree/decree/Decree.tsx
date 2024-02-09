@@ -6,10 +6,10 @@ import { MainBreadcrumb } from "../../../components/main-breadcamp";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 import './sytles.scss';
-import { ExecutiveOrderForm } from "../../../features/executive-orders/components";
 import { executiveOrderSlice } from "../../../features/executive-orders/sclices";
+import { DecreeForm } from "../../../features/decrees/components";
 
-export const ExecutiveOrder: FC = () => {
+export const Decree: FC = () => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const { setPageTitle } = useContext(PageTitleContext) as IPageTitleContext
@@ -32,7 +32,7 @@ export const ExecutiveOrder: FC = () => {
                 <MainBreadcrumb lastItem={{ key: "documnet", title: data?.number || t('create') }} />
             </ContentHeader>
             <div className="pages__content doc-content" >
-                <ExecutiveOrderForm />
+                <DecreeForm />
             </div>
 
         </div>

@@ -1,2 +1,2 @@
-export * from './decrees-form/ExecutiveOrderForm';
+export * from './decrees-form/DecreeForm';
 export * from './decrees-list/DecreesList';

@@ -7,7 +7,7 @@ export interface IExecutiveOrders {
     summary: string,
     owner: string,
     executor: string,
-    file_name: string
+    file_name?: string
     _method?: string
 }
 export interface IExecutiveOrdersResponse {
@@ -18,6 +18,7 @@ export interface IExecutiveOrdersResponse {
     owner: string,
     executor: string,
     fileName: string
+    file_name: string
 }
 
 

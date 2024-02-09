@@ -35,6 +35,7 @@ export const BusinessTripForm: FC = () => {
             setValue('travel_place', trip.travelPlace);
             setValue('end_date', trip.endDate);
             setValue('start_date', trip.startDate);
+            setValue('file_name', trip.file_name)
         } else {
             handleReset();
         }

@@ -7,5 +7,4 @@ export const formSchema = yup.object().shape({
     ['summary']: yup.string().required(MSG_ERROR_REQIURED_FIELD),
     ['executor']: yup.string().required(MSG_ERROR_REQIURED_FIELD),
     ['owner']: yup.string().required(MSG_ERROR_REQIURED_FIELD),
-    ['file_name']: yup.string().required(MSG_ERROR_REQIURED_FIELD),
 });

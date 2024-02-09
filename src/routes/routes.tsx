@@ -13,7 +13,7 @@ import { BusinessTrip, BusinessTrips } from "../pages/business-trip";
 import { CheckDocuments } from "../pages/check-document";
 import { MailedLetter, MailedLetters } from "../pages/mailed-letters";
 import { ExecutiveOrder, ExecutiveOrders } from "../pages/exucutive-order";
-import { Decrees } from "../pages/decree";
+import { Decree, Decrees } from "../pages/decree";
 
 
 export type RouteObjectType = IndexRouteObject |
@@ -167,14 +167,14 @@ export const routes = (): RouteObjectType[] => {
                     element: <Decrees />
                 },
                 {
-                    path: `${ROUTE_EXECUTIVE_ORDER}/:id`,
+                    path: `${ROUTE_DECREE}/:id`,
                     roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
-                    element: <ExecutiveOrder />
+                    element: <Decree />
                 },
                 {
-                    path: `${ROUTE_EXECUTIVE_ORDER}/${ROUTE_CREATE}`,
+                    path: `${ROUTE_DECREE}/${ROUTE_CREATE}`,
                     roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
-                    element: <ExecutiveOrder />
+                    element: <Decree />
                 },
 
             ]

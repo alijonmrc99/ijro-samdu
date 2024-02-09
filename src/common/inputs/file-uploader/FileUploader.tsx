@@ -17,7 +17,6 @@ export const FileUploader: FC<FileUploaderProps> = ({ setValue, name, filePath, 
 
     const onChange = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files.length) {
-
             uploadFile(event.target.files[0], filePath).then(data => {
                 if (data?.id) {
                     setValue(name, data?.id);
@@ -26,6 +25,8 @@ export const FileUploader: FC<FileUploaderProps> = ({ setValue, name, filePath, 
             })
         }
     };
+
+
 
     return (
         <div className="file-uploader">

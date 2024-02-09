@@ -1,7 +1,7 @@
 .page-404 {
     height: 100vh;
     background-color: #fff;
-    background-image: url('/src/assets/404.jpg');
+    background-image: url('/src/assets/404.png');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -12,8 +12,9 @@
     flex-direction: column;
 
     .page-404-header {
-        font-size: 48px;
-        color: #fff;
+        font-size: 72px;
+        color: #A3D0D8;
+        line-height: 1;
         // text-shadow: 3px 3px rgba($color: #000000, $alpha: 0.3);
     }
 }

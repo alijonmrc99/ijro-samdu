@@ -33,6 +33,7 @@ export const ExecutiveOrderForm: FC = () => {
             setValue('summary', executiveOrder.summary);
             setValue('owner', executiveOrder.owner);
             setValue('executor', executiveOrder.executor);
+            setValue('file_name', executiveOrder.file_name)
         }
     }, [executiveOrder])
 

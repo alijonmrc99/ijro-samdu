@@ -6,7 +6,7 @@ export interface IDecree {
     number: string,
     summary: string,
     owner: string,
-    file_name: string
+    file_name?: string
     _method?: string
 }
 export interface IDecreeResponse {

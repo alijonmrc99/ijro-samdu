@@ -3,7 +3,7 @@ import './styles.scss'
 import { IDecreeResponse } from "../../models";
 import { DataTable } from "../../../../components/data-table/DataTable";
 import { useNavigate } from "react-router-dom";
-import { ROUTE_DASHBOARD, ROUTE_DECREE, ROUTE_EXECUTIVE_ORDER } from "../../../../common/constants";
+import { ROUTE_DASHBOARD, ROUTE_DECREE } from "../../../../common/constants";
 import { useTranslation } from "react-i18next";
 import { ColumnType } from "antd/es/table";
 import { Button } from "antd";

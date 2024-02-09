@@ -1,1 +1,1 @@
-export * from "./executive-orders.schema"
+export * from "./decree.schema"

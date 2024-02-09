@@ -11,12 +11,10 @@ import { FilterContext, IFilter } from "../../../common/contexts/filter.context"
 import { Helmet } from "react-helmet";
 import { fetchTrips } from "../../../features/busines-trip/thunks";
 import { ExclamationCircleOutlined, FileAddOutlined } from "@ant-design/icons";
-import { ENDPOINT_BUSINESS_TRIP } from "../../../features/busines-trip/endpoints";
 import { ID } from "../../../common/models";
 import { http } from "../../vise-reactor-docs";
 import { useNavigate } from "react-router-dom";
-import { ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_EXECUTIVE_ORDER } from "../../../common/constants";
-import { fetchExecutiveOrders } from "../../../features/executive-orders/thunks";
+import { ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DECREE } from "../../../common/constants";
 import { DecreesList } from "../../../features/decrees/components";
 import { ENDPOINT_DECREEE } from "../../../features/decrees/endpoints";
 import { fetchDecrees } from "../../../features/decrees/thunks";
@@ -72,7 +70,7 @@ export const Decrees: FC = () => {
                 <MainBreadcrumb />
                 <div></div>
                 <MainPagination defaultcurrent={data?.meta.currentPage || 1} onChange={onChange} total={data?.meta.total || 1} pageSize={data?.meta.perPage || 30} />
-                <Button onClick={() => navigate(`${ROUTE_DASHBOARD}/${ROUTE_EXECUTIVE_ORDER}/${ROUTE_CREATE}`)} type="primary"> <FileAddOutlined />{t('create')}</Button>
+                <Button onClick={() => navigate(`${ROUTE_DASHBOARD}/${ROUTE_DECREE}/${ROUTE_CREATE}`)} type="primary"> <FileAddOutlined />{t('create')}</Button>
             </ContentHeader>
             {/* <Filter /> */}
             <div className="page__content">

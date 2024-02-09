@@ -12,6 +12,7 @@ interface DownloadFileProps {
 
 
 export const DownlaodFile: FC<DownloadFileProps> = ({ path, fileName }) => {
+
     const onDownload = async () => {
         try {
             downloadFile(path, fileName)
@@ -22,6 +23,7 @@ export const DownlaodFile: FC<DownloadFileProps> = ({ path, fileName }) => {
     return <Flex align="center">
         <Button
             type="primary"
+            disabled={!fileName}
             icon={<DownloadOutlined />}
             onClick={(e) => { e.stopPropagation(); onDownload() }}
         />
@@ -58,6 +60,6 @@ export const downloadFile = async (path: string, fileName: string, params?: any)
         link.click()
 
     } catch (err) {
-        console.log(err);
+        return err
     }
 } 

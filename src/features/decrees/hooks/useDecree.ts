@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { message } from "antd";
 import { useAppDispatch } from "../../../store";
 import { onDecrees } from "../thunks";
-import { ROUTE_DASHBOARD, ROUTE_EXECUTIVE_ORDER } from "../../../common/constants";
+import { ROUTE_DASHBOARD, ROUTE_DECREE } from "../../../common/constants";
 import { ENDPOINT_DECREEE } from "../endpoints";
 import { IDecree } from "../models";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formSchema } from "../schema";
 
-export const useExecutiveOrders = () => {
+export const useDecree = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const defaultValues: IDecree = {
@@ -18,7 +18,6 @@ export const useExecutiveOrders = () => {
         number: '',
         summary: '',
         owner: '',
-        executor: '',
         file_name: '',
     }
 
@@ -41,14 +40,13 @@ export const useExecutiveOrders = () => {
 
     const onSubmit = (values: IDecree) => {
         setIsLoading(true);
-        console.log(values);
 
         if (values.id) {
             values["_method"] = "PUT";
             dispatch(onDecrees({ values: values, route: `${ENDPOINT_DECREEE}/${values.id}` })).unwrap()
                 .then((responseValues: any) => {
                     if (responseValues.success) {
-                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_EXECUTIVE_ORDER}`)
+                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_DECREE}`)
                         // setOnSetSuccess(true);
                     }
                 })
@@ -59,7 +57,7 @@ export const useExecutiveOrders = () => {
             dispatch(onDecrees({ values: values, route: `${ENDPOINT_DECREEE}` })).unwrap()
                 .then((responseValues: any) => {
                     if (responseValues.success) {
-                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_EXECUTIVE_ORDER}`)
+                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_DECREE}`)
                     }
                 })
                 .catch(handleErrors)
