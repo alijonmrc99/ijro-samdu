@@ -31,6 +31,22 @@ export const Documents: FC = () => {
     const { setPageTitle } = useContext(PageTitleContext) as IPageTitleContext
     const { pagination, setPagination } = useContext(PaginationContext) as IPaginationData
     const { filter } = useContext(FilterContext) as IFilter;
+
+
+    console.log(user?.roles.map(role => role.name).includes(RoleTypeEnums.ROLE_SECRETARY));
+    useEffect(() => {
+        // If user is Register change Route
+
+        if (user?.roles.map(role => role.name).includes(RoleTypeEnums.ROLE_SECRETARY))
+            navigate(`${ROUTE_DASHBOARD}/${ROUTE_BUS_TRIP}`)
+        else if (user?.roles.map(role => role.name).includes(RoleTypeEnums.ROLE_REGISTER))
+            navigate(`${ROUTE_DASHBOARD}/${ROUTE_INCOMNG_DOCS}`)
+        else {
+            dispatch(fetchVRDocuments({ ...pagination, ...filter }))
+        }
+    }, [pagination, filter, user]);
+
+
     useEffect(() => {
         setPageTitle(t('my-documents'))
     }, [t])
@@ -60,18 +76,7 @@ export const Documents: FC = () => {
         setPagination(data)
     }
 
-    useEffect(() => {
-        // If user is Register change Route
-        console.log(user?.roles.map(role => role.name).includes(RoleTypeEnums.ROLE_REGISTER));
-        if (user?.roles.map(role => role.name).includes(RoleTypeEnums.ROLE_SECRETARY))
-            navigate(`${ROUTE_DASHBOARD}/${ROUTE_BUS_TRIP}`)
-        if (user?.roles.map(role => role.name).includes(RoleTypeEnums.ROLE_REGISTER))
-            navigate(`${ROUTE_DASHBOARD}/${ROUTE_INCOMNG_DOCS}`)
 
-        else {
-            dispatch(fetchVRDocuments({ ...pagination, ...filter }))
-        }
-    }, [pagination, filter, user]);
 
 
     return (

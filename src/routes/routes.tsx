@@ -60,7 +60,7 @@ export const routes = (): RouteObjectType[] => {
                 },
                 {
                     path: ROUTE_DOCUMENTS,
-                    roles: [RoleTypeEnums.ROLE_VISE_RECTOR, RoleTypeEnums.ROLE_REGISTER],
+                    roles: [RoleTypeEnums.ROLE_VISE_RECTOR, RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
                     element: <Documents />
                 },
                 {
