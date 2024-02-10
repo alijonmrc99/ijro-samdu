@@ -81,7 +81,7 @@ export const downloadColumnsType = (): ColumnType<any> => {
         key: 'action',
         fixed: 'right',
         render: (item: any) => {
-            return (<DownlaodFile fileName={item.file_name} path={ROUTE_EXECUTIVE_ORDER} />)
+            return (<DownlaodFile fileName={item.fileName} path={ROUTE_EXECUTIVE_ORDER} />)
         }
     }
 }

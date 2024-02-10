@@ -14,7 +14,7 @@ import { MainBreadcrumb } from "../../../components/main-breadcamp";
 import { useNavigate } from "react-router-dom";
 import { MainPagination } from "../../../components/main-pagination";
 import { IPaginationData, PaginationContext } from "../../../common/contexts/pagination.context";
-import { ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DOCUMENTS, ROUTE_INCOMNG_DOCS, RoleTypeEnums } from "../../../common/constants";
+import { ROUTE_BUS_TRIP, ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DOCUMENTS, ROUTE_INCOMNG_DOCS, RoleTypeEnums } from "../../../common/constants";
 import { VRTopMenu } from "../../../components/top-menu";
 import { FilterContext, IFilter } from "../../../common/contexts/filter.context";
 import { Helmet } from "react-helmet";
@@ -62,12 +62,16 @@ export const Documents: FC = () => {
 
     useEffect(() => {
         // If user is Register change Route
+        console.log(user?.roles.map(role => role.name).includes(RoleTypeEnums.ROLE_REGISTER));
+        if (user?.roles.map(role => role.name).includes(RoleTypeEnums.ROLE_SECRETARY))
+            navigate(`${ROUTE_DASHBOARD}/${ROUTE_BUS_TRIP}`)
         if (user?.roles.map(role => role.name).includes(RoleTypeEnums.ROLE_REGISTER))
             navigate(`${ROUTE_DASHBOARD}/${ROUTE_INCOMNG_DOCS}`)
+
         else {
             dispatch(fetchVRDocuments({ ...pagination, ...filter }))
         }
-    }, [pagination, filter]);
+    }, [pagination, filter, user]);
 
 
     return (

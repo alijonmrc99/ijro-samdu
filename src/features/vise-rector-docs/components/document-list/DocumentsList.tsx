@@ -26,7 +26,14 @@ export const DocumentsList: FC<{
         {
             title: t('name'),
             dataIndex: 'title',
+            width: 300,
             key: 'title'
+        },
+        {
+            title: t('title'),
+            dataIndex: 'name',
+            width: 300,
+            key: 'name'
         },
 
         {

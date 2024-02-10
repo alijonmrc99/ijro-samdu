@@ -57,10 +57,6 @@ export const Document: FC = () => {
         })
     };
 
-    {
-        // console.log(data?.comments[0].text)
-
-    }
 
     return (
         <div className="pages">

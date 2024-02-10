@@ -27,7 +27,6 @@ export const DocumentsList: FC<{
             render: (name: string) => (
                 <div className="doc-title">{name}</div>
             )
-
         },
         {
             title: t('user'),

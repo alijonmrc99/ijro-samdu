@@ -18,5 +18,5 @@ export interface IUserSend {
     password: string,
     _method?: string,
     job: string,
-    role_id?: ID
+    role?: ID
 }
