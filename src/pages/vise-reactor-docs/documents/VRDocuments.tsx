@@ -14,9 +14,11 @@ import { MainBreadcrumb } from "../../../components/main-breadcamp";
 import { useNavigate } from "react-router-dom";
 import { MainPagination } from "../../../components/main-pagination";
 import { IPaginationData, PaginationContext } from "../../../common/contexts/pagination.context";
-import { ROUTE_DASHBOARD, ROUTE_INCOMNG_DOCS, RoleTypeEnums } from "../../../common/constants";
+import { ROUTE_BUS_TRIP, ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DOCUMENTS, ROUTE_INCOMNG_DOCS, RoleTypeEnums } from "../../../common/constants";
 import { VRTopMenu } from "../../../components/top-menu";
 import { FilterContext, IFilter } from "../../../common/contexts/filter.context";
+import { Helmet } from "react-helmet";
+import { Filter } from "../../../components/filter";
 export const http = new HttpApi()
 
 export const Documents: FC = () => {
@@ -29,6 +31,22 @@ export const Documents: FC = () => {
     const { setPageTitle } = useContext(PageTitleContext) as IPageTitleContext
     const { pagination, setPagination } = useContext(PaginationContext) as IPaginationData
     const { filter } = useContext(FilterContext) as IFilter;
+
+
+    console.log(user?.roles.map(role => role.name).includes(RoleTypeEnums.ROLE_SECRETARY));
+    useEffect(() => {
+        // If user is Register change Route
+
+        if (user?.roles.map(role => role.name).includes(RoleTypeEnums.ROLE_SECRETARY))
+            navigate(`${ROUTE_DASHBOARD}/${ROUTE_BUS_TRIP}`)
+        else if (user?.roles.map(role => role.name).includes(RoleTypeEnums.ROLE_REGISTER))
+            navigate(`${ROUTE_DASHBOARD}/${ROUTE_INCOMNG_DOCS}`)
+        else {
+            dispatch(fetchVRDocuments({ ...pagination, ...filter }))
+        }
+    }, [pagination, filter, user]);
+
+
     useEffect(() => {
         setPageTitle(t('my-documents'))
     }, [t])
@@ -36,7 +54,7 @@ export const Documents: FC = () => {
 
     const onDelete = (id: ID) => {
         setIsDeleting(true);
-        http.delete(`${ENDPOINT_DOCUMENTS}/${id}`, {}).then(_ => {
+        http.delete(`${ENDPOINT_DOCUMENTS}/${id}`, { _method: "DELETE" }).then(_ => {
             dispatch(fetchVRDocuments({ ...pagination, ...filter }))
         }).finally(() => setIsDeleting(false))
     };
@@ -58,26 +76,23 @@ export const Documents: FC = () => {
         setPagination(data)
     }
 
-    useEffect(() => {
-        // If user is Register change Route
-        if (user?.roles.map(role => role.name).includes(RoleTypeEnums.ROLE_REGISTER))
-            navigate(`${ROUTE_DASHBOARD}/${ROUTE_INCOMNG_DOCS}`)
-        else {
-            dispatch(fetchVRDocuments({ ...pagination, ...filter }))
-        }
-    }, [pagination, filter]);
+
 
 
     return (
         <Layout>
+            <Helmet>
+                <title>{t('documents')}</title>
+            </Helmet>
             <ContentHeader>
                 <MainBreadcrumb />
                 <div></div>
                 <MainPagination defaultcurrent={data?.meta.currentPage || 1} onChange={onChange} total={data?.meta.total || 1} pageSize={data?.meta.perPage || 30} />
-                <Button onClick={() => navigate('/dashboard/documents/create')} type="primary"> <FileAddOutlined />{t('create_doc')}</Button>
+                <Button onClick={() => navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/${ROUTE_CREATE}`)} type="primary"> <FileAddOutlined />{t('create')}</Button>
             </ContentHeader>
+            <VRTopMenu />
+            <Filter />
             <div className="pages__content">
-                <VRTopMenu />
                 <DocumentsList isDeleting={isDeleting} onDelete={confirm} list={data?.items || []} isLoading={isLoading} />
             </div>
         </Layout>

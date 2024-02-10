@@ -2,6 +2,7 @@
     .doc-content {
         display: flex;
         align-items: center;
+        flex-direction: column;
         justify-content: center;
         min-height: 80vh
     }

@@ -1,5 +1,5 @@
-import { IndexRouteObject, Navigate, NonIndexRouteObject, RouteObject } from "react-router-dom";
-import { ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DOCUMENTS, ROUTE_EDIT, ROUTE_HOME, ROUTE_INCOMNG_DOCS, ROUTE_LOGIN, RoleTypeEnums } from "../common/constants";
+import { IndexRouteObject, Navigate, NonIndexRouteObject, Outlet, RouteObject } from "react-router-dom";
+import { ROUTE_BUS_TRIP, ROUTE_CHECK_DOC, ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DECREE, ROUTE_DOCUMENTS, ROUTE_EDIT, ROUTE_EXECUTIVE_ORDER, ROUTE_HOME, ROUTE_INCOMNG_DOCS, ROUTE_LOGIN, ROUTE_MAILED_LETTER, ROUTE_ME, ROUTE_USERS, RoleTypeEnums } from "../common/constants";
 import { LoginForm } from "../features/auth/companets/login-form";
 import { HomePage } from "../pages/home-page";
 import { DashboardBase } from "../layouts/DashboardBase";
@@ -8,6 +8,12 @@ import { DocumentEdit } from "../pages/vise-reactor-docs";
 import { Document } from "../pages/vise-reactor-docs";
 import { RegDocuments } from "../pages/register-docs/documents/RegDocuments";
 import { RegDocument } from "../pages/register-docs/document/RegDocument";
+import { Profile, User, Users } from "../pages/users";
+import { BusinessTrip, BusinessTrips } from "../pages/business-trip";
+import { CheckDocuments } from "../pages/check-document";
+import { MailedLetter, MailedLetters } from "../pages/mailed-letters";
+import { ExecutiveOrder, ExecutiveOrders } from "../pages/exucutive-order";
+import { Decree, Decrees } from "../pages/decree";
 
 
 export type RouteObjectType = IndexRouteObject |
@@ -17,6 +23,18 @@ export const routes = (): RouteObjectType[] => {
     // const { data: user } = useAppSelector(state => state.me)
     return [
         {
+            path: ROUTE_CHECK_DOC,
+            element: <Outlet></Outlet>,
+            caseSensitive: true,
+            children: [
+                {
+                    path: ":id",
+                    element: <CheckDocuments />,
+                    caseSensitive: true,
+                }
+            ]
+        },
+        {
             path: ROUTE_HOME,
             caseSensitive: true,
             element: <HomePage />,
@@ -24,6 +42,10 @@ export const routes = (): RouteObjectType[] => {
                 {
                     path: ROUTE_LOGIN,
                     element: <LoginForm />
+                },
+                // Route chech documents
+                {
+
                 }
             ]
         },
@@ -38,7 +60,7 @@ export const routes = (): RouteObjectType[] => {
                 },
                 {
                     path: ROUTE_DOCUMENTS,
-                    roles: [RoleTypeEnums.ROLE_VISE_RECTOR, RoleTypeEnums.ROLE_REGISTER],
+                    roles: [RoleTypeEnums.ROLE_VISE_RECTOR, RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
                     element: <Documents />
                 },
                 {
@@ -69,7 +91,91 @@ export const routes = (): RouteObjectType[] => {
                     element: <RegDocument />
                 },
 
-
+                // Route users
+                {
+                    path: `${ROUTE_USERS}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER],
+                    element: <Users />
+                },
+                {
+                    path: `${ROUTE_USERS}/:id`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER],
+                    element: <User />
+                },
+                {
+                    path: `${ROUTE_USERS}/${ROUTE_CREATE}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER],
+                    element: <User />
+                },
+                // route account setting
+                {
+                    path: `${ROUTE_ME}/`,
+                    element: <Profile />
+                },
+                // Route business trips // Xizmat safarlarni ro'yxatga olish
+                {
+                    path: `${ROUTE_BUS_TRIP}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <BusinessTrips />
+                },
+                {
+                    path: `${ROUTE_BUS_TRIP}/:id`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <BusinessTrip />
+                },
+                {
+                    path: `${ROUTE_BUS_TRIP}/${ROUTE_CREATE}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <BusinessTrip />
+                },
+                // Route mailed letters // Universitetdan jo'natilgan xatlar
+                {
+                    path: `${ROUTE_MAILED_LETTER}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <MailedLetters />
+                },
+                {
+                    path: `${ROUTE_MAILED_LETTER}/:id`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <MailedLetter />
+                },
+                {
+                    path: `${ROUTE_MAILED_LETTER}/${ROUTE_CREATE}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <MailedLetter />
+                },
+                // Route executive orders // Ijro buyruqlari qayd etish
+                {
+                    path: `${ROUTE_EXECUTIVE_ORDER}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <ExecutiveOrders />
+                },
+                {
+                    path: `${ROUTE_EXECUTIVE_ORDER}/:id`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <ExecutiveOrder />
+                },
+                {
+                    path: `${ROUTE_EXECUTIVE_ORDER}/${ROUTE_CREATE}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <ExecutiveOrder />
+                },
+                // Route decree // Farmoyishlarni qayd etish
+                {
+                    path: `${ROUTE_DECREE}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <Decrees />
+                },
+                {
+                    path: `${ROUTE_DECREE}/:id`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <Decree />
+                },
+                {
+                    path: `${ROUTE_DECREE}/${ROUTE_CREATE}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <Decree />
+                },
 
             ]
         }

@@ -4,7 +4,7 @@ import { useConfirmModal } from "../../hooks";
 import { Button, Col, Flex, Modal } from "antd";
 import './style.scss';
 import { TextFieldController } from "../../../../common/inputs/text-feild-controller";
-import { DOC_COMMIT, DOC_NAME } from "../../constants";
+import { DOC_COMMENT, DOC_NAME } from "../../constants";
 import { useAppDispatch, useAppSelector } from "../../../../store";
 import { RegdocFetchById } from "../../thunks";
 import { ID } from "../../../../common/models";
@@ -55,7 +55,7 @@ export const ConfirmModalDialog: FC<{ id: ID }> = ({ id }) => {
         e.stopPropagation();
         setStatus(null);
         setOpen(false);
-        setValue('commit', "");
+        setValue('comment', "");
         setValue('name', "");
     };
 
@@ -100,7 +100,7 @@ export const ConfirmModalDialog: FC<{ id: ID }> = ({ id }) => {
                             <TextFieldController
                                 inputCompound="TextArea"
                                 control={control}
-                                name={DOC_COMMIT}
+                                name={DOC_COMMENT}
                                 label={t('reject-commit')}
                                 placeholder={t("reject-commit")}
                             />

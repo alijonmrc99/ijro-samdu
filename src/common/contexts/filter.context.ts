@@ -14,15 +14,17 @@ export interface IInnerFilter {
         lke?: string
     }
     createdAt?: {
-        eq?: string,
+        lke?: string,
         neq?: string,
+        begin?: string,
+        end?: string,
         gt?: string, //2024-12-12 grater then
         gte?: string, // grater then with current date
         bt?: string, // 2024-12-12|2024-12-25,
     },
     name?: {
         eq?: string,
-        neq?: string
+        lke?: string
     }
 }
 export interface IFilter {

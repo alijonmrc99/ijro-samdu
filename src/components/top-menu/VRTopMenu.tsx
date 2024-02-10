@@ -62,7 +62,7 @@ export const VRTopMenu: FC = () => {
         } else if (event.key === "isSend=false") {
             setFilter({
                 isSent: {
-                    neq: true
+                    eq: false
                 }
             })
         } else if (event.item.props.title === "status") {

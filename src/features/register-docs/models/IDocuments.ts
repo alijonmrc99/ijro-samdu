@@ -17,7 +17,7 @@ export interface IDocumentsSave {
     id?: ID,
     _method?: string,
     name: string,
-    commit: string,
+    comment: string,
     status: "seen" | "approved" | "rejected" | null,
 }
 

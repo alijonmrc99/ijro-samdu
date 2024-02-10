@@ -50,6 +50,7 @@ h1 {
 }
 
 .pages__content {
+  padding: 20px 0;
   border-left: 1px solid #f1f1f1;
 }
 

@@ -7,6 +7,7 @@ export interface IDocuments {
     isSent: boolean,
     status: "seen" | "approved" | "rejected" | null,
     name: string,
+    comments: { text: string }[],
     user: {
         fullName: string,
         job: string

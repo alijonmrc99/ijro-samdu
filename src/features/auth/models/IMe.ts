@@ -4,7 +4,7 @@ import { ID } from "../../../common/models/baseTypes";
 export interface IMe {
     id: ID;
     fullName: string;
-    userName: string;
+    username: string;
     roles: IRole[],
     job: string
 }

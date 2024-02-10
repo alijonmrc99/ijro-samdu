@@ -10,7 +10,7 @@ export const DashboardBase: FC = withAuthorized(() => {
         <Layout>
             <MainHeader />
             <Row className="main-view">
-                <Col span={4}>
+                <Col className="sidebar" span={4}>
                     <MainMenu />
                 </Col>
                 <Col className="main-content" span={20}>
