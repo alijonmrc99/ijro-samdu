@@ -14,6 +14,7 @@ import { executiveOrderSlice, executiveOrdersSlice } from "../features/executive
 import { decreeSlice, decreesSlice } from "../features/decrees/sclices";
 import { sendDocSlice, sendDocsSlice } from "../features/send-documents-from-unver/sclices";
 import { appealSlice, appealsSlice } from "../features/appeals/sclices";
+import { distributionSlice, distributionsSlice } from "../features/distributions/sclices";
 
 export const rootReducer = combineReducers({
     notification: notificationSlice.reducer,
@@ -36,5 +37,7 @@ export const rootReducer = combineReducers({
     sendDoc: sendDocSlice.reducer,
     appeal: appealSlice.reducer,
     appeals: appealsSlice.reducer,
+    distribution: distributionSlice.reducer,
+    distributions: distributionsSlice.reducer,
 
 })

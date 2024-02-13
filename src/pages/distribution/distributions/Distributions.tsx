@@ -13,15 +13,16 @@ import { ExclamationCircleOutlined, FileAddOutlined } from "@ant-design/icons";
 import { ID } from "../../../common/models";
 import { http } from "../../vise-reactor-docs";
 import { useNavigate } from "react-router-dom";
-import { ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DECREE } from "../../../common/constants";
-import { DecreesList } from "../../../features/decrees/components";
-import { ENDPOINT_DECREE } from "../../../features/decrees/endpoints";
-import { fetchDecrees } from "../../../features/decrees/thunks";
+import { ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DISTRIBUTION } from "../../../common/constants";
 
-export const Decrees: FC = () => {
+import { DistributionsList } from "../../../features/distributions/components";
+import { fetchDistributions } from "../../../features/distributions/thunks";
+import { ENDPOINT_DISTRIBUTION } from "../../../features/distributions/endpoints";
+
+export const Distributions: FC = () => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
-    const { data, isLoading } = useAppSelector(state => state.decrees);
+    const { data, isLoading } = useAppSelector(state => state.distributions);
     const [isDeleting, setIsDeleting] = useState(false);
     const { setPageTitle } = useContext(PageTitleContext) as IPageTitleContext;
     const { pagination, setPagination } = useContext(PaginationContext) as IPaginationData;
@@ -29,13 +30,13 @@ export const Decrees: FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        setPageTitle(t('decree'))
+        setPageTitle(t('distribution'))
     }, [t])
 
     const onDelete = (id: ID) => {
         setIsDeleting(true);
-        http.delete(`${ENDPOINT_DECREE}/${id}`, {}).then(_ => {
-            dispatch(fetchDecrees({ ...pagination, ...filter }))
+        http.delete(`${ENDPOINT_DISTRIBUTION}/${id}`, {}).then(_ => {
+            dispatch(fetchDistributions({ ...pagination, ...filter }))
         }).finally(() => setIsDeleting(false))
     };
 
@@ -56,24 +57,23 @@ export const Decrees: FC = () => {
     }
 
     useEffect(() => {
-        dispatch(fetchDecrees({ ...pagination, ...filter }))
+        dispatch(fetchDistributions({ ...pagination, ...filter }))
     }, [pagination, filter]);
 
 
     return (
         <Layout>
             <Helmet>
-                <title>{t('decree')}</title>
+                <title>{t('distribution')}</title>
             </Helmet>
             <ContentHeader>
                 <MainBreadcrumb />
                 <div></div>
                 <MainPagination defaultcurrent={data?.meta.currentPage || 1} onChange={onChange} total={data?.meta.total || 1} pageSize={data?.meta.perPage || 30} />
-                <Button onClick={() => navigate(`${ROUTE_DASHBOARD}/${ROUTE_DECREE}/${ROUTE_CREATE}`)} type="primary"> <FileAddOutlined />{t('create')}</Button>
+                <Button onClick={() => navigate(`${ROUTE_DASHBOARD}/${ROUTE_DISTRIBUTION}/${ROUTE_CREATE}`)} type="primary"> <FileAddOutlined />{t('create')}</Button>
             </ContentHeader>
-            {/* <Filter /> */}
             <div className="page__content">
-                <DecreesList isDeleting={isDeleting} onDelete={confirm} list={data?.items || []} isLoading={isLoading} />
+                <DistributionsList isDeleting={isDeleting} onDelete={confirm} list={data?.items || []} isLoading={isLoading} />
             </div>
         </Layout>
     )

@@ -88,5 +88,9 @@
     "title_or_summary": "Hujjat sarlovhasi yo qisqa mazmuni",
     "resolution": "Rezulyutsiyasi",
     "performer_date": "Ijro uchun kimga qachon berildi",
-    "executed_sign": "Ijro etilganligi haqidagi belgi"
+    "executed_sign": "Ijro etilganligi haqidagi belgi",
+    "distribution": "Bo'limlarga tegishli hujjatlarni tarqatish",
+    "applicant": "Murojatchi ismi",
+    "recipent": "Qabul qilib olgan shaxs",
+    "structure": "Tarkibiy bo'lim yoki manzili"
 }

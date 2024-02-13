@@ -3,26 +3,26 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { message } from "antd";
 import { useAppDispatch } from "../../../store";
-import { onDecrees } from "../thunks";
-import { ROUTE_DASHBOARD, ROUTE_DECREE } from "../../../common/constants";
-import { ENDPOINT_DECREE } from "../endpoints";
-import { IDecree } from "../models";
+import { onDistributions } from "../thunks";
+import { ROUTE_DASHBOARD, ROUTE_DISTRIBUTION } from "../../../common/constants";
+import { ENDPOINT_DISTRIBUTION } from "../endpoints";
+import { IDistribution } from "../models";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formSchema } from "../schema";
 
-export const useDecree = () => {
+export const useDistribution = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const defaultValues: IDecree = {
+    const defaultValues: IDistribution = {
         date: '',
-        number: '',
-        summary: '',
-        owner: '',
+        structure: '',
+        applicant: '',
+        recipent: '',
         file_name: '',
     }
 
     const [isLoading, setIsLoading] = useState(false);
-    const { register, getValues, control, handleSubmit, formState: { errors }, setValue, reset } = useForm<IDecree>({
+    const { register, getValues, control, handleSubmit, formState: { errors }, setValue, reset } = useForm<IDistribution>({
         resolver: yupResolver(formSchema),
         mode: 'onBlur'
     })
@@ -38,26 +38,25 @@ export const useDecree = () => {
         })
     };
 
-    const onSubmit = (values: IDecree) => {
+    const onSubmit = (values: IDistribution) => {
         setIsLoading(true);
 
         if (values.id) {
             values["_method"] = "PUT";
-            dispatch(onDecrees({ values: values, route: `${ENDPOINT_DECREE}/${values.id}` })).unwrap()
+            dispatch(onDistributions({ values: values, route: `${ENDPOINT_DISTRIBUTION}/${values.id}` })).unwrap()
                 .then((responseValues: any) => {
                     if (responseValues.success) {
-                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_DECREE}`)
-                        // setOnSetSuccess(true);
+                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_DISTRIBUTION}`)
                     }
                 })
                 .catch(handleErrors)
                 .finally(() => { setIsLoading(false) })
         }
         else {
-            dispatch(onDecrees({ values: values, route: `${ENDPOINT_DECREE}` })).unwrap()
+            dispatch(onDistributions({ values: values, route: `${ENDPOINT_DISTRIBUTION}` })).unwrap()
                 .then((responseValues: any) => {
                     if (responseValues.success) {
-                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_DECREE}`)
+                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_DISTRIBUTION}`)
                     }
                 })
                 .catch(handleErrors)
