@@ -9,7 +9,6 @@ import { MainPagination } from "../../../components/main-pagination";
 import { IPaginationData, PaginationContext } from "../../../common/contexts/pagination.context";
 import { FilterContext, IFilter } from "../../../common/contexts/filter.context";
 import { Helmet } from "react-helmet";
-import { fetchTrips } from "../../../features/busines-trip/thunks";
 import { ExclamationCircleOutlined, FileAddOutlined } from "@ant-design/icons";
 import { ENDPOINT_BUSINESS_TRIP } from "../../../features/busines-trip/endpoints";
 import { ID } from "../../../common/models";
@@ -36,7 +35,7 @@ export const SendDocumentsFromUniver: FC = () => {
     const onDelete = (id: ID) => {
         setIsDeleting(true);
         http.delete(`${ENDPOINT_BUSINESS_TRIP}/${id}`, {}).then(_ => {
-            dispatch(fetchTrips({ ...pagination, ...filter }))
+            dispatch(fetchSendDocs({ ...pagination, ...filter }))
         }).finally(() => setIsDeleting(false))
     };
 

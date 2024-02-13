@@ -1,5 +1,5 @@
 import { IndexRouteObject, Navigate, NonIndexRouteObject, Outlet, RouteObject } from "react-router-dom";
-import { ROUTE_BUS_TRIP, ROUTE_CHECK_DOC, ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DECREE, ROUTE_DOCUMENTS, ROUTE_EDIT, ROUTE_EXECUTIVE_ORDER, ROUTE_HOME, ROUTE_INCOMNG_DOCS, ROUTE_LOGIN, ROUTE_MAILED_LETTER, ROUTE_ME, ROUTE_SEND_FROM_UNIVER, ROUTE_USERS, RoleTypeEnums } from "../common/constants";
+import { ROUTE_APPEAL, ROUTE_BUS_TRIP, ROUTE_CHECK_DOC, ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DECREE, ROUTE_DOCUMENTS, ROUTE_EDIT, ROUTE_EXECUTIVE_ORDER, ROUTE_HOME, ROUTE_INCOMNG_DOCS, ROUTE_LOGIN, ROUTE_MAILED_LETTER, ROUTE_ME, ROUTE_SEND_FROM_UNIVER, ROUTE_USERS, RoleTypeEnums } from "../common/constants";
 import { LoginForm } from "../features/auth/companets/login-form";
 import { HomePage } from "../pages/home-page";
 import { DashboardBase } from "../layouts/DashboardBase";
@@ -15,6 +15,7 @@ import { MailedLetter, MailedLetters } from "../pages/mailed-letters";
 import { ExecutiveOrder, ExecutiveOrders } from "../pages/exucutive-order";
 import { Decree, Decrees } from "../pages/decree";
 import { SendDocfromUniver, SendDocumentsFromUniver } from "../pages/send-document-from-univer";
+import { Appeal, Appeals } from "../pages/appeals";
 
 
 export type RouteObjectType = IndexRouteObject |
@@ -189,6 +190,22 @@ export const routes = (): RouteObjectType[] => {
                     path: `${ROUTE_SEND_FROM_UNIVER}/${ROUTE_CREATE}`,
                     roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
                     element: <SendDocfromUniver />
+                },
+                // Route record appeals // Jismoniy va yuridik shaxlardan tushgan murojaatlarini qayd qilish
+                {
+                    path: `${ROUTE_APPEAL}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <Appeals />
+                },
+                {
+                    path: `${ROUTE_APPEAL}/:id`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <Appeal />
+                },
+                {
+                    path: `${ROUTE_APPEAL}/${ROUTE_CREATE}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <Appeal />
                 },
 
             ]

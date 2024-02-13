@@ -9,19 +9,19 @@ import { MainPagination } from "../../../components/main-pagination";
 import { IPaginationData, PaginationContext } from "../../../common/contexts/pagination.context";
 import { FilterContext, IFilter } from "../../../common/contexts/filter.context";
 import { Helmet } from "react-helmet";
-import { fetchTrips } from "../../../features/busines-trip/thunks";
-import { BusinessTripList } from "../../../features/busines-trip/components";
 import { ExclamationCircleOutlined, FileAddOutlined } from "@ant-design/icons";
 import { ENDPOINT_BUSINESS_TRIP } from "../../../features/busines-trip/endpoints";
 import { ID } from "../../../common/models";
 import { http } from "../../vise-reactor-docs";
 import { useNavigate } from "react-router-dom";
-import { ROUTE_BUS_TRIP, ROUTE_CREATE, ROUTE_DASHBOARD } from "../../../common/constants";
+import { ROUTE_APPEAL, ROUTE_CREATE, ROUTE_DASHBOARD } from "../../../common/constants";
+import { AppealList } from "../../../features/appeals/components";
+import { fetchAppeals } from "../../../features/appeals/thunks";
 
-export const BusinessTrips: FC = () => {
+export const Appeals: FC = () => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
-    const { data, isLoading } = useAppSelector(state => state.trips);
+    const { data, isLoading } = useAppSelector(state => state.appeals);
     const [isDeleting, setIsDeleting] = useState(false);
     const { setPageTitle } = useContext(PageTitleContext) as IPageTitleContext;
     const { pagination, setPagination } = useContext(PaginationContext) as IPaginationData;
@@ -29,13 +29,13 @@ export const BusinessTrips: FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        setPageTitle(t('business_trip'))
+        setPageTitle(t('appeal'))
     }, [t])
 
     const onDelete = (id: ID) => {
         setIsDeleting(true);
         http.delete(`${ENDPOINT_BUSINESS_TRIP}/${id}`, {}).then(_ => {
-            dispatch(fetchTrips({ ...pagination, ...filter }))
+            dispatch(fetchAppeals({ ...pagination, ...filter }))
         }).finally(() => setIsDeleting(false))
     };
 
@@ -56,23 +56,23 @@ export const BusinessTrips: FC = () => {
     }
 
     useEffect(() => {
-        dispatch(fetchTrips({ ...pagination, ...filter }))
+        dispatch(fetchAppeals({ ...pagination, ...filter }))
     }, [pagination, filter]);
 
 
     return (
         <Layout>
             <Helmet>
-                <title>{t('business_trip')}</title>
+                <title>{t('appeal_short')}</title>
             </Helmet>
             <ContentHeader>
                 <MainBreadcrumb />
                 <div></div>
                 <MainPagination defaultcurrent={data?.meta.currentPage || 1} onChange={onChange} total={data?.meta.total || 1} pageSize={data?.meta.perPage || 30} />
-                <Button onClick={() => navigate(`${ROUTE_DASHBOARD}/${ROUTE_BUS_TRIP}/${ROUTE_CREATE}`)} type="primary"> <FileAddOutlined />{t('create')}</Button>
+                <Button onClick={() => navigate(`${ROUTE_DASHBOARD}/${ROUTE_APPEAL}/${ROUTE_CREATE}`)} type="primary"> <FileAddOutlined />{t('create')}</Button>
             </ContentHeader>
             <div className="page__content">
-                <BusinessTripList isDeleting={isDeleting} onDelete={confirm} list={data?.items || []} isLoading={isLoading} />
+                <AppealList isDeleting={isDeleting} onDelete={confirm} list={data?.items || []} isLoading={isLoading} />
             </div>
         </Layout>
     )

@@ -80,5 +80,13 @@
     "executor": "Ijro etuvchi",
     "decree": "Farmoyishlarni qayd qilish",
     "send_from_univer": "Universitetdan jo'natilgan hujjatlar",
-    "sent_place": "Yuborilgan manzili"
+    "sent_place": "Yuborilgan manzili",
+    "appeal_short": "Shaxlardan tushgan murojaatlar",
+    "appeal": "Jismoniy va yuridik shaxlardan tushgan murojaatlarini qayd qilish",
+    "index_and_date": "Hujjat qabul qilingan sanasi yoki indexsi",
+    "creator": "Hujjat muallifi",
+    "title_or_summary": "Hujjat sarlovhasi yo qisqa mazmuni",
+    "resolution": "Rezulyutsiyasi",
+    "performer_date": "Ijro uchun kimga qachon berildi",
+    "executed_sign": "Ijro etilganligi haqidagi belgi"
 }

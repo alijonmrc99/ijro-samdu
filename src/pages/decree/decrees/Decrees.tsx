@@ -9,7 +9,6 @@ import { MainPagination } from "../../../components/main-pagination";
 import { IPaginationData, PaginationContext } from "../../../common/contexts/pagination.context";
 import { FilterContext, IFilter } from "../../../common/contexts/filter.context";
 import { Helmet } from "react-helmet";
-import { fetchTrips } from "../../../features/busines-trip/thunks";
 import { ExclamationCircleOutlined, FileAddOutlined } from "@ant-design/icons";
 import { ID } from "../../../common/models";
 import { http } from "../../vise-reactor-docs";
@@ -36,7 +35,7 @@ export const Decrees: FC = () => {
     const onDelete = (id: ID) => {
         setIsDeleting(true);
         http.delete(`${ENDPOINT_DECREEE}/${id}`, {}).then(_ => {
-            dispatch(fetchTrips({ ...pagination, ...filter }))
+            dispatch(fetchDecrees({ ...pagination, ...filter }))
         }).finally(() => setIsDeleting(false))
     };
 
