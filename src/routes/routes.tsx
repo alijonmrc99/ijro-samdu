@@ -1,5 +1,5 @@
 import { IndexRouteObject, Navigate, NonIndexRouteObject, Outlet, RouteObject } from "react-router-dom";
-import { ROUTE_BUS_TRIP, ROUTE_CHECK_DOC, ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DECREE, ROUTE_DOCUMENTS, ROUTE_EDIT, ROUTE_EXECUTIVE_ORDER, ROUTE_HOME, ROUTE_INCOMNG_DOCS, ROUTE_LOGIN, ROUTE_MAILED_LETTER, ROUTE_ME, ROUTE_USERS, RoleTypeEnums } from "../common/constants";
+import { ROUTE_BUS_TRIP, ROUTE_CHECK_DOC, ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DECREE, ROUTE_DOCUMENTS, ROUTE_EDIT, ROUTE_EXECUTIVE_ORDER, ROUTE_HOME, ROUTE_INCOMNG_DOCS, ROUTE_LOGIN, ROUTE_MAILED_LETTER, ROUTE_ME, ROUTE_SEND_FROM_UNIVER, ROUTE_USERS, RoleTypeEnums } from "../common/constants";
 import { LoginForm } from "../features/auth/companets/login-form";
 import { HomePage } from "../pages/home-page";
 import { DashboardBase } from "../layouts/DashboardBase";
@@ -14,6 +14,7 @@ import { CheckDocuments } from "../pages/check-document";
 import { MailedLetter, MailedLetters } from "../pages/mailed-letters";
 import { ExecutiveOrder, ExecutiveOrders } from "../pages/exucutive-order";
 import { Decree, Decrees } from "../pages/decree";
+import { SendDocfromUniver, SendDocumentsFromUniver } from "../pages/send-document-from-univer";
 
 
 export type RouteObjectType = IndexRouteObject |
@@ -22,6 +23,7 @@ export type RouteObjectType = IndexRouteObject |
 export const routes = (): RouteObjectType[] => {
     // const { data: user } = useAppSelector(state => state.me)
     return [
+        // Route chech documents
         {
             path: ROUTE_CHECK_DOC,
             element: <Outlet></Outlet>,
@@ -42,10 +44,6 @@ export const routes = (): RouteObjectType[] => {
                 {
                     path: ROUTE_LOGIN,
                     element: <LoginForm />
-                },
-                // Route chech documents
-                {
-
                 }
             ]
         },
@@ -175,6 +173,22 @@ export const routes = (): RouteObjectType[] => {
                     path: `${ROUTE_DECREE}/${ROUTE_CREATE}`,
                     roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
                     element: <Decree />
+                },
+                // Route send documents form university // Universitetdan jo'natilgan hujjatlar
+                {
+                    path: `${ROUTE_SEND_FROM_UNIVER}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <SendDocumentsFromUniver />
+                },
+                {
+                    path: `${ROUTE_SEND_FROM_UNIVER}/:id`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <SendDocfromUniver />
+                },
+                {
+                    path: `${ROUTE_SEND_FROM_UNIVER}/${ROUTE_CREATE}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <SendDocfromUniver />
                 },
 
             ]
