@@ -1,2 +1,2 @@
-export const ENDPOINT_DECREEE = '/record-decree';
+export const ENDPOINT_DECREE = '/record-decree';
 

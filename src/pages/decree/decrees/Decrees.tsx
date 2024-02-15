@@ -9,14 +9,13 @@ import { MainPagination } from "../../../components/main-pagination";
 import { IPaginationData, PaginationContext } from "../../../common/contexts/pagination.context";
 import { FilterContext, IFilter } from "../../../common/contexts/filter.context";
 import { Helmet } from "react-helmet";
-import { fetchTrips } from "../../../features/busines-trip/thunks";
 import { ExclamationCircleOutlined, FileAddOutlined } from "@ant-design/icons";
 import { ID } from "../../../common/models";
 import { http } from "../../vise-reactor-docs";
 import { useNavigate } from "react-router-dom";
 import { ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DECREE } from "../../../common/constants";
 import { DecreesList } from "../../../features/decrees/components";
-import { ENDPOINT_DECREEE } from "../../../features/decrees/endpoints";
+import { ENDPOINT_DECREE } from "../../../features/decrees/endpoints";
 import { fetchDecrees } from "../../../features/decrees/thunks";
 
 export const Decrees: FC = () => {
@@ -35,8 +34,8 @@ export const Decrees: FC = () => {
 
     const onDelete = (id: ID) => {
         setIsDeleting(true);
-        http.delete(`${ENDPOINT_DECREEE}/${id}`, {}).then(_ => {
-            dispatch(fetchTrips({ ...pagination, ...filter }))
+        http.delete(`${ENDPOINT_DECREE}/${id}`, {}).then(_ => {
+            dispatch(fetchDecrees({ ...pagination, ...filter }))
         }).finally(() => setIsDeleting(false))
     };
 

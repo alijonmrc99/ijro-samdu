@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ENDPOINT_DECREEE } from '../endpoints';
+import { ENDPOINT_DECREE } from '../endpoints';
 import { HttpApi } from '../../../common/http';
 import { IDecreeResponse } from '../models';
 import { IResponse, IPageable } from '../../../common/models';
@@ -16,7 +16,7 @@ export const onDecrees = createAsyncThunk('executiveOrders/action',
 export const fetchDecrees = createAsyncThunk('fetch/executiveOrders',
     async (params: any, { rejectWithValue }) => {
         try {
-            return await httpApi.get<IResponse<IPageable<IDecreeResponse>>>(ENDPOINT_DECREEE, params)
+            return await httpApi.get<IResponse<IPageable<IDecreeResponse>>>(ENDPOINT_DECREE, params)
         } catch (error) {
             return rejectWithValue(error);
         }
@@ -25,7 +25,7 @@ export const fetchDecrees = createAsyncThunk('fetch/executiveOrders',
 export const fetchDecreeById = createAsyncThunk('executiveOrders/FetchById',
     async (id: any, { rejectWithValue }) => {
         try {
-            return await httpApi.get<IResponse<IDecreeResponse>>(`${ENDPOINT_DECREEE}/${id}`, {})
+            return await httpApi.get<IResponse<IDecreeResponse>>(`${ENDPOINT_DECREE}/${id}`, {})
         } catch (error) {
             return rejectWithValue(error);
         }

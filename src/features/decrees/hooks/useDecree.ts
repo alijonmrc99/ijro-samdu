@@ -5,7 +5,7 @@ import { message } from "antd";
 import { useAppDispatch } from "../../../store";
 import { onDecrees } from "../thunks";
 import { ROUTE_DASHBOARD, ROUTE_DECREE } from "../../../common/constants";
-import { ENDPOINT_DECREEE } from "../endpoints";
+import { ENDPOINT_DECREE } from "../endpoints";
 import { IDecree } from "../models";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formSchema } from "../schema";
@@ -43,7 +43,7 @@ export const useDecree = () => {
 
         if (values.id) {
             values["_method"] = "PUT";
-            dispatch(onDecrees({ values: values, route: `${ENDPOINT_DECREEE}/${values.id}` })).unwrap()
+            dispatch(onDecrees({ values: values, route: `${ENDPOINT_DECREE}/${values.id}` })).unwrap()
                 .then((responseValues: any) => {
                     if (responseValues.success) {
                         navigate(`${ROUTE_DASHBOARD}/${ROUTE_DECREE}`)
@@ -54,7 +54,7 @@ export const useDecree = () => {
                 .finally(() => { setIsLoading(false) })
         }
         else {
-            dispatch(onDecrees({ values: values, route: `${ENDPOINT_DECREEE}` })).unwrap()
+            dispatch(onDecrees({ values: values, route: `${ENDPOINT_DECREE}` })).unwrap()
                 .then((responseValues: any) => {
                     if (responseValues.success) {
                         navigate(`${ROUTE_DASHBOARD}/${ROUTE_DECREE}`)

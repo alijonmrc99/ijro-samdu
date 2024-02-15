@@ -1,5 +1,5 @@
 import { IndexRouteObject, Navigate, NonIndexRouteObject, Outlet, RouteObject } from "react-router-dom";
-import { ROUTE_BUS_TRIP, ROUTE_CHECK_DOC, ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DECREE, ROUTE_DOCUMENTS, ROUTE_EDIT, ROUTE_EXECUTIVE_ORDER, ROUTE_HOME, ROUTE_INCOMNG_DOCS, ROUTE_LOGIN, ROUTE_MAILED_LETTER, ROUTE_ME, ROUTE_USERS, RoleTypeEnums } from "../common/constants";
+import { ROUTE_APPEAL, ROUTE_BUS_TRIP, ROUTE_CHECK_DOC, ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DECREE, ROUTE_DISTRIBUTION, ROUTE_DOCUMENTS, ROUTE_EDIT, ROUTE_EXECUTIVE_ORDER, ROUTE_HOME, ROUTE_INCOMNG_DOCS, ROUTE_INNER_APPEAL, ROUTE_LOGIN, ROUTE_MAILED_LETTER, ROUTE_ME, ROUTE_SEND_FROM_UNIVER, ROUTE_USERS, RoleTypeEnums } from "../common/constants";
 import { LoginForm } from "../features/auth/companets/login-form";
 import { HomePage } from "../pages/home-page";
 import { DashboardBase } from "../layouts/DashboardBase";
@@ -14,6 +14,10 @@ import { CheckDocuments } from "../pages/check-document";
 import { MailedLetter, MailedLetters } from "../pages/mailed-letters";
 import { ExecutiveOrder, ExecutiveOrders } from "../pages/exucutive-order";
 import { Decree, Decrees } from "../pages/decree";
+import { SendDocfromUniver, SendDocumentsFromUniver } from "../pages/send-document-from-univer";
+import { Appeal, Appeals } from "../pages/appeals";
+import { Distribution, Distributions } from "../pages/distribution";
+import { InnerAppeal, InnerAppeals } from "../pages/appeals-student";
 
 
 export type RouteObjectType = IndexRouteObject |
@@ -22,6 +26,7 @@ export type RouteObjectType = IndexRouteObject |
 export const routes = (): RouteObjectType[] => {
     // const { data: user } = useAppSelector(state => state.me)
     return [
+        // Route chech documents
         {
             path: ROUTE_CHECK_DOC,
             element: <Outlet></Outlet>,
@@ -42,10 +47,6 @@ export const routes = (): RouteObjectType[] => {
                 {
                     path: ROUTE_LOGIN,
                     element: <LoginForm />
-                },
-                // Route chech documents
-                {
-
                 }
             ]
         },
@@ -175,6 +176,70 @@ export const routes = (): RouteObjectType[] => {
                     path: `${ROUTE_DECREE}/${ROUTE_CREATE}`,
                     roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
                     element: <Decree />
+                },
+                // Route send documents form university // Universitetdan jo'natilgan hujjatlar
+                {
+                    path: `${ROUTE_SEND_FROM_UNIVER}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <SendDocumentsFromUniver />
+                },
+                {
+                    path: `${ROUTE_SEND_FROM_UNIVER}/:id`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <SendDocfromUniver />
+                },
+                {
+                    path: `${ROUTE_SEND_FROM_UNIVER}/${ROUTE_CREATE}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <SendDocfromUniver />
+                },
+                // Route record appeals // Jismoniy va yuridik shaxlardan tushgan murojaatlarini qayd qilish
+                {
+                    path: `${ROUTE_APPEAL}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <Appeals />
+                },
+                {
+                    path: `${ROUTE_APPEAL}/:id`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <Appeal />
+                },
+                {
+                    path: `${ROUTE_APPEAL}/${ROUTE_CREATE}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <Appeal />
+                },
+                // Route distributions  // Bo'limlarga tegishli hujjatlarni tarqatish
+                {
+                    path: `${ROUTE_DISTRIBUTION}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <Distributions />
+                },
+                {
+                    path: `${ROUTE_DISTRIBUTION}/:id`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <Distribution />
+                },
+                {
+                    path: `${ROUTE_DISTRIBUTION}/${ROUTE_CREATE}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <Distribution />
+                },
+                // Route inner appeals  // Prof-O'qituvchilari, xodimlari va talabalaridan kelgan murojatlar
+                {
+                    path: `${ROUTE_INNER_APPEAL}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <InnerAppeals />
+                },
+                {
+                    path: `${ROUTE_INNER_APPEAL}/:id`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <InnerAppeal />
+                },
+                {
+                    path: `${ROUTE_INNER_APPEAL}/${ROUTE_CREATE}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <InnerAppeal />
                 },
 
             ]

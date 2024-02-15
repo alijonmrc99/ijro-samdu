@@ -9,7 +9,6 @@ import { MainPagination } from "../../../components/main-pagination";
 import { IPaginationData, PaginationContext } from "../../../common/contexts/pagination.context";
 import { FilterContext, IFilter } from "../../../common/contexts/filter.context";
 import { Helmet } from "react-helmet";
-import { Filter } from "../../../components/filter";
 import { fetchTrips } from "../../../features/busines-trip/thunks";
 import { BusinessTripList } from "../../../features/busines-trip/components";
 import { ExclamationCircleOutlined, FileAddOutlined } from "@ant-design/icons";
@@ -72,7 +71,6 @@ export const BusinessTrips: FC = () => {
                 <MainPagination defaultcurrent={data?.meta.currentPage || 1} onChange={onChange} total={data?.meta.total || 1} pageSize={data?.meta.perPage || 30} />
                 <Button onClick={() => navigate(`${ROUTE_DASHBOARD}/${ROUTE_BUS_TRIP}/${ROUTE_CREATE}`)} type="primary"> <FileAddOutlined />{t('create')}</Button>
             </ContentHeader>
-            {/* <Filter /> */}
             <div className="page__content">
                 <BusinessTripList isDeleting={isDeleting} onDelete={confirm} list={data?.items || []} isLoading={isLoading} />
             </div>
