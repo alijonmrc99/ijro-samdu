@@ -13,15 +13,15 @@ import { ExclamationCircleOutlined, FileAddOutlined } from "@ant-design/icons";
 import { ID } from "../../../common/models";
 import { http } from "../../vise-reactor-docs";
 import { useNavigate } from "react-router-dom";
-import { ROUTE_APPEAL, ROUTE_CREATE, ROUTE_DASHBOARD } from "../../../common/constants";
-import { AppealList } from "../../../features/appeals/components";
-import { fetchAppeals } from "../../../features/appeals/thunks";
-import { ENDPOINT_APPEAL } from "../../../features/appeals/endpoints";
+import { ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_INNER_APPEAL } from "../../../common/constants";
+import { InnerAppealList } from "../../../features/inner-appeals/components";
+import { ENDPOINT_INNER_APPEAL } from "../../../features/inner-appeals/endpoints";
+import { fetchInnerAppeals } from "../../../features/inner-appeals/thunks";
 
-export const Appeals: FC = () => {
+export const InnerAppeals: FC = () => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
-    const { data, isLoading } = useAppSelector(state => state.appeals);
+    const { data, isLoading } = useAppSelector(state => state.innerAppeals);
     const [isDeleting, setIsDeleting] = useState(false);
     const { setPageTitle } = useContext(PageTitleContext) as IPageTitleContext;
     const { pagination, setPagination } = useContext(PaginationContext) as IPaginationData;
@@ -29,13 +29,13 @@ export const Appeals: FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        setPageTitle(t('appeal'))
+        setPageTitle(t('inner_appeal'))
     }, [t])
 
     const onDelete = (id: ID) => {
         setIsDeleting(true);
-        http.delete(`${ENDPOINT_APPEAL}/${id}`, {}).then(_ => {
-            dispatch(fetchAppeals({ ...pagination, ...filter }))
+        http.delete(`${ENDPOINT_INNER_APPEAL}/${id}`, {}).then(_ => {
+            dispatch(fetchInnerAppeals({ ...pagination, ...filter }))
         }).finally(() => setIsDeleting(false))
     };
 
@@ -56,23 +56,23 @@ export const Appeals: FC = () => {
     }
 
     useEffect(() => {
-        dispatch(fetchAppeals({ ...pagination, ...filter }))
+        dispatch(fetchInnerAppeals({ ...pagination, ...filter }))
     }, [pagination, filter]);
 
 
     return (
         <Layout>
             <Helmet>
-                <title>{t('appeal_short')}</title>
+                <title>{t('inner_appeal')}</title>
             </Helmet>
             <ContentHeader>
                 <MainBreadcrumb />
                 <div></div>
                 <MainPagination defaultcurrent={data?.meta.currentPage || 1} onChange={onChange} total={data?.meta.total || 1} pageSize={data?.meta.perPage || 30} />
-                <Button onClick={() => navigate(`${ROUTE_DASHBOARD}/${ROUTE_APPEAL}/${ROUTE_CREATE}`)} type="primary"> <FileAddOutlined />{t('create')}</Button>
+                <Button onClick={() => navigate(`${ROUTE_DASHBOARD}/${ROUTE_INNER_APPEAL}/${ROUTE_CREATE}`)} type="primary"> <FileAddOutlined />{t('create')}</Button>
             </ContentHeader>
             <div className="page__content">
-                <AppealList isDeleting={isDeleting} onDelete={confirm} list={data?.items || []} isLoading={isLoading} />
+                <InnerAppealList isDeleting={isDeleting} onDelete={confirm} list={data?.items || []} isLoading={isLoading} />
             </div>
         </Layout>
     )

@@ -1,7 +1,7 @@
 import { Menu } from "antd";
 import { FC, useEffect, useMemo, useState } from "react";
-import { ROUTE_APPEAL, ROUTE_BUS_TRIP, ROUTE_DECREE, ROUTE_DISTRIBUTION, ROUTE_DOCUMENTS, ROUTE_EXECUTIVE_ORDER, ROUTE_INCOMNG_DOCS, ROUTE_MAILED_LETTER, ROUTE_ME, ROUTE_SEND_FROM_UNIVER, ROUTE_USERS, RoleTypeEnums } from "../../common/constants";
-import { CheckSquareOutlined, FileProtectOutlined, FolderOpenOutlined, MailOutlined, SendOutlined, ShareAltOutlined, SolutionOutlined, SplitCellsOutlined, UserOutlined, UsergroupAddOutlined } from '@ant-design/icons'
+import { ROUTE_APPEAL, ROUTE_BUS_TRIP, ROUTE_DECREE, ROUTE_DISTRIBUTION, ROUTE_DOCUMENTS, ROUTE_EXECUTIVE_ORDER, ROUTE_INCOMNG_DOCS, ROUTE_INNER_APPEAL, ROUTE_MAILED_LETTER, ROUTE_ME, ROUTE_SEND_FROM_UNIVER, ROUTE_USERS, RoleTypeEnums } from "../../common/constants";
+import { CheckSquareOutlined, FileProtectOutlined, FileSyncOutlined, FolderOpenOutlined, MailOutlined, SendOutlined, ShareAltOutlined, SolutionOutlined, SplitCellsOutlined, UserOutlined, UsergroupAddOutlined } from '@ant-design/icons'
 import { useTranslation } from "react-i18next";
 import { useAppSelector } from "../../store";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -70,6 +70,12 @@ export const MainMenu: FC = () => {
             key: ROUTE_DISTRIBUTION,
             icon: <SplitCellsOutlined />,
             label: t("distribution"),
+            roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY]
+        },
+        {
+            key: ROUTE_INNER_APPEAL,
+            icon: <FileSyncOutlined />,
+            label: t("inner_appeal"),
             roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY]
         },
         {
