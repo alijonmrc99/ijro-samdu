@@ -8,7 +8,7 @@ import { Button } from "antd"; import { DatePickerController } from "../../../..
 import { useParams } from "react-router-dom";
 import { fetchDistributionsById } from "../../thunks";
 import { FileUploader } from "../../../../common/inputs/file-uploader";
-import { ROUTE_DECREE } from "../../../../common/constants";
+import { ENDPOINT_DISTRIBUTION } from "../../endpoints";
 
 export const DistributionForm: FC = () => {
     const { id } = useParams();
@@ -68,7 +68,7 @@ export const DistributionForm: FC = () => {
                         errorsMassage={errors?.file_name?.message || ""}
                         setValue={setValue}
                         name={"file_name"}
-                        filePath={ROUTE_DECREE} />
+                        filePath={ENDPOINT_DISTRIBUTION} />
                 </div>
                 {contextHolder}
                 <div className="buttons-container">

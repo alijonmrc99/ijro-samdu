@@ -9,6 +9,7 @@ import { ColumnType } from "antd/es/table";
 import { Button } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { DownlaodFile } from "../../../../components/download-file";
+import { ENDPOINT_EXECUTIVE_ORDERS } from "../../endpoints";
 
 
 export const ExecutiveOrdersList: FC<{
@@ -81,7 +82,7 @@ export const downloadColumnsType = (): ColumnType<any> => {
         key: 'action',
         fixed: 'right',
         render: (item: any) => {
-            return (<DownlaodFile fileName={item.fileName} path={ROUTE_EXECUTIVE_ORDER} />)
+            return (<DownlaodFile fileName={item.fileName} path={ENDPOINT_EXECUTIVE_ORDERS.slice(1)} />)
         }
     }
 }

@@ -9,6 +9,7 @@ import { ColumnType } from "antd/es/table";
 import { Button } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { DownlaodFile } from "../../../../components/download-file";
+import { ENDPOINT_DECREE } from "../../endpoints";
 
 
 export const DecreesList: FC<{
@@ -76,7 +77,7 @@ export const downloadColumnsType = (): ColumnType<any> => {
         key: 'action',
         fixed: 'right',
         render: (item: any) => {
-            return (<DownlaodFile fileName={item.fileName} path={ROUTE_DECREE} />)
+            return (<DownlaodFile fileName={item.fileName} path={ENDPOINT_DECREE.slice(1)} />)
         }
     }
 }

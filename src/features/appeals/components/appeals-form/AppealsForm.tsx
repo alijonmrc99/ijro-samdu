@@ -8,7 +8,7 @@ import { Button } from "antd"; import { DatePickerController } from "../../../..
 import { useParams } from "react-router-dom";
 import { fetchAppealById } from "../../thunks";
 import { FileUploader } from "../../../../common/inputs/file-uploader";
-import { ROUTE_EXECUTIVE_ORDER } from "../../../../common/constants";
+import { ENDPOINT_APPEAL } from "../../endpoints";
 
 export const AppealForm: FC = () => {
     const { id } = useParams();
@@ -88,7 +88,7 @@ export const AppealForm: FC = () => {
                         errorsMassage={errors?.file_name?.message || ""}
                         setValue={setValue}
                         name={"file_name"}
-                        filePath={ROUTE_EXECUTIVE_ORDER} />
+                        filePath={ENDPOINT_APPEAL} />
                 </div>
                 {contextHolder}
                 <div className="buttons-container">

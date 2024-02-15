@@ -4,11 +4,11 @@ import { TextFieldController } from "../../../../common/inputs/text-feild-contro
 import { useTranslation } from "react-i18next";
 import { useAppDispatch, useAppSelector } from "../../../../store";
 import './style.scss'
-import { Button } from "antd"; import { DatePickerController } from "../../../../common/inputs/datepicker-controller";
+import { Button } from "antd";
 import { useParams } from "react-router-dom";
 import { FetchSendDocById } from "../../thunks";
 import { FileUploader } from "../../../../common/inputs/file-uploader";
-import { ROUTE_EXECUTIVE_ORDER } from "../../../../common/constants";
+import { ENDPOINT_SEND_DOCS_FROM_UNVER } from "../../endpoints";
 
 export const SendDocsFromUniverForm: FC = () => {
     const { id } = useParams();
@@ -56,20 +56,11 @@ export const SendDocsFromUniverForm: FC = () => {
                         inputCompound={'TextArea'}
                         label={t('summary')}
                         placeholder={t('summary')} />
-
-                    <DatePickerController
-                        control={control}
-                        style={{ width: "100%", height: "38px" }}
-                        name={'createdAt'}
-                        label={t('date')}
-                        setValue={setValue}
-                        placeholder={t('placeholder_date')}
-                    />
                     <FileUploader
                         errorsMassage={errors?.file_name?.message || ""}
                         setValue={setValue}
                         name={"file_name"}
-                        filePath={ROUTE_EXECUTIVE_ORDER} />
+                        filePath={ENDPOINT_SEND_DOCS_FROM_UNVER} />
                 </div>
                 {contextHolder}
                 <div className="buttons-container">

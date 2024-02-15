@@ -3,12 +3,13 @@ import './styles.scss'
 import { ISendDocResponse } from "../../models";
 import { DataTable } from "../../../../components/data-table/DataTable";
 import { useNavigate } from "react-router-dom";
-import { ROUTE_DASHBOARD, ROUTE_EXECUTIVE_ORDER, ROUTE_SEND_FROM_UNIVER } from "../../../../common/constants";
+import { ROUTE_DASHBOARD, ROUTE_SEND_FROM_UNIVER } from "../../../../common/constants";
 import { useTranslation } from "react-i18next";
 import { ColumnType } from "antd/es/table";
 import { Button } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { DownlaodFile } from "../../../../components/download-file";
+import { ENDPOINT_SEND_DOCS_FROM_UNVER } from "../../endpoints";
 
 export const SendDocFromUniverList: FC<{
     isLoading: boolean,
@@ -70,7 +71,7 @@ export const downloadColumnsType = (): ColumnType<any> => {
         key: 'action',
         fixed: 'right',
         render: (item: any) => {
-            return (<DownlaodFile fileName={item.fileName} path={ROUTE_EXECUTIVE_ORDER} />)
+            return (<DownlaodFile fileName={item.fileName} path={ENDPOINT_SEND_DOCS_FROM_UNVER.slice(1)} />)
         }
     }
 }

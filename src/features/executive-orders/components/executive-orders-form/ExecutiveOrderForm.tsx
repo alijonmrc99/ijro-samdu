@@ -8,7 +8,7 @@ import { Button } from "antd"; import { DatePickerController } from "../../../..
 import { useParams } from "react-router-dom";
 import { FetchExecutiveOrderById } from "../../thunks";
 import { FileUploader } from "../../../../common/inputs/file-uploader";
-import { ROUTE_EXECUTIVE_ORDER } from "../../../../common/constants";
+import { ENDPOINT_EXECUTIVE_ORDERS } from "../../endpoints";
 
 export const ExecutiveOrderForm: FC = () => {
     const { id } = useParams();
@@ -75,7 +75,7 @@ export const ExecutiveOrderForm: FC = () => {
                         errorsMassage={errors?.file_name?.message || ""}
                         setValue={setValue}
                         name={"file_name"}
-                        filePath={ROUTE_EXECUTIVE_ORDER} />
+                        filePath={ENDPOINT_EXECUTIVE_ORDERS} />
                 </div>
                 {contextHolder}
                 <div className="buttons-container">
