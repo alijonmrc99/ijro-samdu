@@ -52,7 +52,7 @@ export const UserList: FC<{
         editColumnsType((id: any) => {
             navigate(`${ROUTE_DASHBOARD}/${ROUTE_USERS}/${id}`)
         }),
-        // deleteColumnsType(!!isDeleting, onDelete),
+        deleteColumnsType(!!isDeleting, onDelete),
     ], [t, list])
 
     return (
