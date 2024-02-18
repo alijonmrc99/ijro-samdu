@@ -10,7 +10,7 @@ import { IAppeals } from "../models";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formSchema } from "../schema";
 
-export const useExecutiveOrders = () => {
+export const useInnerAppeals = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const defaultValues: IAppeals = {

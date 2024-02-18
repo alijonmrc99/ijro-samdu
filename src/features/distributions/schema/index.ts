@@ -1,1 +1,1 @@
-export * from "./decree.schema"
+export * from "./distributions.schema"

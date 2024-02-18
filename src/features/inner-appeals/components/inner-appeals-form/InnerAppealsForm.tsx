@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { useExecutiveOrders } from "../../hooks/useAppeals";
+import { useInnerAppeals } from "../../hooks/useInnerAppeals";
 import { TextFieldController } from "../../../../common/inputs/text-feild-controller";
 import { useTranslation } from "react-i18next";
 import { useAppDispatch, useAppSelector } from "../../../../store";
@@ -14,7 +14,7 @@ export const InnerAppealForm: FC = () => {
     const { id } = useParams();
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
-    const { handleTrip, isLoading, handleReset, control, errors, contextHolder, setValue } = useExecutiveOrders();
+    const { handleTrip, isLoading, handleReset, control, errors, contextHolder, setValue } = useInnerAppeals();
     const { data: executiveOrder } = useAppSelector(state => state.innerAppeal);
 
     useEffect(() => {
