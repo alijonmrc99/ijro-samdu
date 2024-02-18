@@ -16,6 +16,7 @@ import { sendDocSlice, sendDocsSlice } from "../features/send-documents-from-unv
 import { appealSlice, appealsSlice } from "../features/appeals/sclices";
 import { distributionSlice, distributionsSlice } from "../features/distributions/sclices";
 import { innerAppealSlice, innerAppealsSlice } from "../features/inner-appeals/sclices";
+import { financialOrderSlice, financialOrdersSlice } from "../features/financial-orders/sclices";
 
 export const rootReducer = combineReducers({
     notification: notificationSlice.reducer,
@@ -41,6 +42,8 @@ export const rootReducer = combineReducers({
     distribution: distributionSlice.reducer,
     distributions: distributionsSlice.reducer,
     innerAppeals: innerAppealsSlice.reducer,
-    innerAppeal: innerAppealSlice.reducer
+    innerAppeal: innerAppealSlice.reducer,
+    financialOrder: financialOrderSlice.reducer,
+    financialOrders: financialOrdersSlice.reducer
 
 })

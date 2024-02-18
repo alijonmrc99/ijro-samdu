@@ -1,20 +1,20 @@
 import { FC, useMemo } from "react";
 import './styles.scss'
-import { IAppealsResponse } from "../../models";
+import { IFinancialOrdersResponse } from "../../models";
 import { DataTable } from "../../../../components/data-table/DataTable";
 import { useNavigate } from "react-router-dom";
-import { ROUTE_APPEAL, ROUTE_DASHBOARD } from "../../../../common/constants";
+import { ROUTE_DASHBOARD, ROUTE_FINANCIAL_ORDER } from "../../../../common/constants";
 import { useTranslation } from "react-i18next";
 import { ColumnType } from "antd/es/table";
 import { Button } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { DownlaodFile } from "../../../../components/download-file";
-import { ENDPOINT_APPEAL } from "../../endpoints";
+import { ENDPOINT_FINANCIAL_ORDERS } from "../../endpoints";
 
 
-export const AppealList: FC<{
+export const FinancialOrdersList: FC<{
     isLoading: boolean,
-    list: IAppealsResponse[],
+    list: IFinancialOrdersResponse[],
     onDelete: (id: any) => void,
     isDeleting?: boolean
 }> = ({ isLoading, list, onDelete, isDeleting }) => {
@@ -22,45 +22,29 @@ export const AppealList: FC<{
     const navigate = useNavigate();
 
     const onSelectRow = (_index: any, value: any) => {
-        navigate(`${ROUTE_DASHBOARD}/${ROUTE_APPEAL}/${value.id}`)
+        navigate(`${ROUTE_DASHBOARD}/${ROUTE_FINANCIAL_ORDER}/${value.id}`)
     }
 
     const columns = useMemo(() => [
         {
-            title: t('index_and_date'),
-            dataIndex: 'indexAndCreatedAt',
-            key: 'indexAndCreatedAt',
-            width: "200px"
+            title: t('number'),
+            dataIndex: 'number',
+            key: 'number'
         },
         {
             title: t('date'),
-            dataIndex: 'handOverDate',
-            key: 'handOverDate',
+            dataIndex: 'date',
+            key: 'date',
         },
         {
-            title: t('creator'),
-            dataIndex: 'creator',
-            key: 'creator',
+            title: t('comment'),
+            dataIndex: 'comment',
+            key: 'comment',
         },
         {
-            title: t('title_or_summary'),
-            dataIndex: 'titleOrSummary',
-            key: 'titleOrSummary',
-        },
-        {
-            title: t('resolution'),
-            dataIndex: 'resolution',
-            key: 'resolution',
-        },
-        {
-            title: t('performer_date'),
-            dataIndex: 'performerAndGivenDate',
-            key: 'performerAndGivenDate',
-        },
-        {
-            title: t('executed_sign'),
-            dataIndex: 'executedSign',
-            key: 'executedSign',
+            title: t('summary'),
+            dataIndex: 'summary',
+            key: 'summary',
         },
         downloadColumnsType(),
         deleteColumnsType(!!isDeleting, onDelete),
@@ -93,7 +77,7 @@ export const downloadColumnsType = (): ColumnType<any> => {
         key: 'action',
         fixed: 'right',
         render: (item: any) => {
-            return (<DownlaodFile fileName={item.fileName} path={ENDPOINT_APPEAL.slice(1)} />)
+            return (<DownlaodFile fileName={item.fileName} path={ENDPOINT_FINANCIAL_ORDERS.slice(1)} />)
         }
     }
 }

@@ -1,1 +1,1 @@
-export * from './useAppeals';
+export * from './useInnerAppeals';

@@ -1,1 +1,1 @@
-export * from "./doc.schema"
+export * from "./trips.schema"

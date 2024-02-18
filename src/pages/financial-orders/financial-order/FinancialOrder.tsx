@@ -6,21 +6,21 @@ import { MainBreadcrumb } from "../../../components/main-breadcamp";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 import './sytles.scss';
-import { InnerAppealForm } from "../../../features/inner-appeals/components";
-import { innerAppealSlice } from "../../../features/inner-appeals/sclices";
+import { FinancialOrdersForm } from "../../../features/financial-orders/components";
+import { financialOrderSlice } from "../../../features/financial-orders/sclices";
 
-export const InnerAppeal: FC = () => {
+export const FinancialOrder: FC = () => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const { setPageTitle } = useContext(PageTitleContext) as IPageTitleContext
-    const { data } = useAppSelector(state => state.innerAppeal)
+    const { data } = useAppSelector(state => state.appeal)
 
     useEffect(() => {
         setPageTitle(data?.acceptedDateAndIndex || "");
     }, [data])
 
     useEffect(() => {
-        return () => { dispatch(innerAppealSlice.actions.emptyState()) }
+        return () => { dispatch(financialOrderSlice.actions.emptyState()) }
     }, [])
 
 
@@ -33,7 +33,7 @@ export const InnerAppeal: FC = () => {
                 <MainBreadcrumb lastItem={{ key: "documnet", title: data?.acceptedDateAndIndex || t('create') }} />
             </ContentHeader>
             <div className="pages__content doc-content" >
-                <InnerAppealForm />
+                <FinancialOrdersForm />
             </div>
 
         </div>

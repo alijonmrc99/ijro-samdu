@@ -28,13 +28,13 @@ export const InnerAppealList: FC<{
     const columns = useMemo(() => [
         {
             title: t('index_and_date'),
-            dataIndex: 'accepted_date_and_index',
-            key: 'accepted_date_and_index'
+            dataIndex: 'acceptedDateAndIndex',
+            key: 'acceptedDateAndIndex'
         },
         {
             title: t('date'),
-            dataIndex: 'given_date',
-            key: 'given_date',
+            dataIndex: 'givenDate',
+            key: 'givenDate',
         },
         {
             title: t('creator'),
@@ -53,13 +53,13 @@ export const InnerAppealList: FC<{
         },
         {
             title: t('performer_date'),
-            dataIndex: 'performer_and_date',
-            key: 'performer_and_date',
+            dataIndex: 'performerAndDate',
+            key: 'performerAndDate',
         },
         {
             title: t('executed_sign'),
-            dataIndex: 'performed_sign',
-            key: 'performed_sign',
+            dataIndex: 'performedSign',
+            key: 'performedSign',
         },
         downloadColumnsType(),
         deleteColumnsType(!!isDeleting, onDelete),

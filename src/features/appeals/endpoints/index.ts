@@ -1,1 +1,1 @@
-export * from './executive-orders.endpoints'
+export * from './appeals.endpoints'

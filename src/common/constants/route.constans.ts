@@ -7,6 +7,7 @@ export const ROUTE_DOCUMENT = "document";
 export const ROUTE_MAILED_LETTER = "mailed_letters";
 export const ROUTE_EXECUTIVE_ORDER = "executive_orders";
 export const ROUTE_DECREE = "decree";
+export const ROUTE_FINANCIAL_ORDER = "financial_order";
 export const ROUTE_SEND_FROM_UNIVER = "send_from_univer";
 export const ROUTE_APPEAL = "appeal";
 export const ROUTE_DISTRIBUTION = "distribution";

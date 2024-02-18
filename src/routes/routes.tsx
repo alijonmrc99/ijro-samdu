@@ -1,5 +1,5 @@
 import { IndexRouteObject, Navigate, NonIndexRouteObject, Outlet, RouteObject } from "react-router-dom";
-import { ROUTE_APPEAL, ROUTE_BUS_TRIP, ROUTE_CHECK_DOC, ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DECREE, ROUTE_DISTRIBUTION, ROUTE_DOCUMENTS, ROUTE_EDIT, ROUTE_EXECUTIVE_ORDER, ROUTE_HOME, ROUTE_INCOMNG_DOCS, ROUTE_INNER_APPEAL, ROUTE_LOGIN, ROUTE_MAILED_LETTER, ROUTE_ME, ROUTE_SEND_FROM_UNIVER, ROUTE_USERS, RoleTypeEnums } from "../common/constants";
+import { ROUTE_APPEAL, ROUTE_BUS_TRIP, ROUTE_CHECK_DOC, ROUTE_CREATE, ROUTE_DASHBOARD, ROUTE_DECREE, ROUTE_DISTRIBUTION, ROUTE_DOCUMENTS, ROUTE_EDIT, ROUTE_EXECUTIVE_ORDER, ROUTE_FINANCIAL_ORDER, ROUTE_HOME, ROUTE_INCOMNG_DOCS, ROUTE_INNER_APPEAL, ROUTE_LOGIN, ROUTE_MAILED_LETTER, ROUTE_ME, ROUTE_SEND_FROM_UNIVER, ROUTE_USERS, RoleTypeEnums } from "../common/constants";
 import { LoginForm } from "../features/auth/companets/login-form";
 import { HomePage } from "../pages/home-page";
 import { DashboardBase } from "../layouts/DashboardBase";
@@ -18,6 +18,7 @@ import { SendDocfromUniver, SendDocumentsFromUniver } from "../pages/send-docume
 import { Appeal, Appeals } from "../pages/appeals";
 import { Distribution, Distributions } from "../pages/distribution";
 import { InnerAppeal, InnerAppeals } from "../pages/appeals-student";
+import { FinancialOrder, FinancialOrders } from "../pages/financial-orders";
 
 
 export type RouteObjectType = IndexRouteObject |
@@ -240,6 +241,22 @@ export const routes = (): RouteObjectType[] => {
                     path: `${ROUTE_INNER_APPEAL}/${ROUTE_CREATE}`,
                     roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
                     element: <InnerAppeal />
+                },
+                // Route financial orders // Prof-O'qituvchilari, xodimlari va talabalaridan kelgan murojatlar
+                {
+                    path: `${ROUTE_FINANCIAL_ORDER}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <FinancialOrders />
+                },
+                {
+                    path: `${ROUTE_FINANCIAL_ORDER}/:id`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <FinancialOrder />
+                },
+                {
+                    path: `${ROUTE_FINANCIAL_ORDER}/${ROUTE_CREATE}`,
+                    roles: [RoleTypeEnums.ROLE_REGISTER, RoleTypeEnums.ROLE_SECRETARY],
+                    element: <FinancialOrder />
                 },
 
             ]
