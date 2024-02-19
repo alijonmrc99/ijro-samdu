@@ -67,6 +67,7 @@ h1 {
     width: 100%;
     position: absolute;
     left: -123px;
+    color: #000 !important;
     padding: 20px 30px;
     max-width: unset;
     min-width: 100vw;
