@@ -15,6 +15,8 @@ interface IContent {
 }
 
 export const DocumentView: FC<IContent> = ({ contentText, status, name, user, job }) => {
+    console.log(name);
+
     return (
         <div className="doc-view-container">
             {

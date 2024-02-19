@@ -87,7 +87,7 @@ export const Document: FC = () => {
 
                 {
                     isLoading ? <Spin tip="loading" /> :
-                        <DocumentView user={data?.user.fullName || ""} job={data?.user.job || ""} name="1321" status={data?.status || null} contentText={data?.body || ""} />
+                        <DocumentView user={data?.user.fullName || ""} job={data?.user.job || ""} name={data?.name || ""} status={data?.status || null} contentText={data?.body || ""} />
                 }
             </div>
         </div>

@@ -7,15 +7,16 @@ import { ROUTE_DASHBOARD, ROUTE_USERS } from "../../../../common/constants";
 import { useTranslation } from "react-i18next";
 import { ColumnType } from "antd/es/table";
 import { Button } from "antd";
-import { DeleteOutlined, EditFilled } from "@ant-design/icons";
+import { EditFilled, StopOutlined, SyncOutlined } from "@ant-design/icons";
 import { IRole } from "../../../auth/models";
 
 export const UserList: FC<{
     isLoading: boolean,
     list: IUser[],
     onDelete: (id: any) => void,
+    onRestore: (id: any) => void,
     isDeleting?: boolean
-}> = ({ isLoading, list, onDelete, isDeleting }) => {
+}> = ({ isLoading, list, onDelete, onRestore, isDeleting }) => {
     const { t } = useTranslation()
     const navigate = useNavigate();
 
@@ -53,6 +54,7 @@ export const UserList: FC<{
             navigate(`${ROUTE_DASHBOARD}/${ROUTE_USERS}/${id}`)
         }),
         deleteColumnsType(!!isDeleting, onDelete),
+        restoreColumnsType(!!isDeleting, onRestore)
     ], [t, list])
 
     return (
@@ -67,9 +69,22 @@ export const deleteColumnsType = (isDeleting: boolean, onDelete: (id: any) => vo
         key: 'action',
         fixed: 'right',
         render: (item: any) => <Button
-            disabled={isDeleting || item.isSent}
+            disabled={isDeleting || item.is_delete}
             danger
-            icon={<DeleteOutlined />}
+            icon={<StopOutlined />}
+            onClick={(e) => { e.stopPropagation(); onDelete(item.id) }}
+        />,
+    }
+}
+export const restoreColumnsType = (isDeleting: boolean, onDelete: (id: any) => void): ColumnType<any> => {
+    return {
+        title: "",
+        width: 64,
+        key: 'action',
+        fixed: 'right',
+        render: (item: any) => <Button
+            disabled={isDeleting || !item.is_delete}
+            icon={<SyncOutlined />}
             onClick={(e) => { e.stopPropagation(); onDelete(item.id) }}
         />,
     }

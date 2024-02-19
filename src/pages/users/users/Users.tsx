@@ -11,7 +11,7 @@ import { FilterContext, IFilter } from "../../../common/contexts/filter.context"
 import { UserList } from "../../../features/users/components";
 import { http } from "../../vise-reactor-docs";
 import { ExclamationCircleOutlined, FileAddOutlined } from "@ant-design/icons";
-import { ENDPOINT_USERS } from "../../../features/users/endpoints";
+import { ENDPOINT_RESTORE, ENDPOINT_USERS } from "../../../features/users/endpoints";
 import { fetchUsers } from "../../../features/users/thunks";
 import { ID } from "../../../common/models";
 import { useNavigate } from "react-router-dom";
@@ -39,6 +39,12 @@ export const Users: FC = () => {
             dispatch(fetchUsers({ ...pagination, ...filter }))
         }).finally(() => setIsDeleting(false))
     };
+    const onRestore = (id: ID) => {
+        setIsDeleting(true);
+        http.post(`${ENDPOINT_USERS}/${id}/${ENDPOINT_RESTORE}`, {}).then(_ => {
+            dispatch(fetchUsers({ ...pagination, ...filter }))
+        }).finally(() => setIsDeleting(false))
+    };
 
 
     const confirm = (id: ID) => {
@@ -50,6 +56,18 @@ export const Users: FC = () => {
             cancelText: t('cancel'),
             onCancel: () => { },
             onOk: () => onDelete(id)
+        })
+    };
+
+    const confirmRestore = (id: ID) => {
+        Modal.confirm({
+            title: t('attention'),
+            icon: <ExclamationCircleOutlined />,
+            content: t('restore_user_confirm'),
+            okText: t('confirm'),
+            cancelText: t('cancel'),
+            onCancel: () => { },
+            onOk: () => onRestore(id)
         })
     };
 
@@ -75,7 +93,7 @@ export const Users: FC = () => {
                 <Button onClick={() => navigate(`${ROUTE_DASHBOARD}/${ROUTE_USERS}/${ROUTE_CREATE}`)} type="primary"> <FileAddOutlined />{t('create')}</Button>
             </ContentHeader>
             <div className="page__content">
-                <UserList isDeleting={isDeleting} onDelete={confirm} list={data?.items || []} isLoading={isLoading} />
+                <UserList onRestore={confirmRestore} isDeleting={isDeleting} onDelete={confirm} list={data?.items || []} isLoading={isLoading} />
             </div>
         </Layout>
     )

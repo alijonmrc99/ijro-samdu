@@ -4,7 +4,7 @@ import { useConfirmModal } from "../../hooks";
 import { Button, Col, Flex, Modal } from "antd";
 import './style.scss';
 import { TextFieldController } from "../../../../common/inputs/text-feild-controller";
-import { DOC_COMMENT, DOC_NAME } from "../../constants";
+import { DOC_COMMENT } from "../../constants";
 import { useAppDispatch, useAppSelector } from "../../../../store";
 import { RegdocFetchById } from "../../thunks";
 import { ID } from "../../../../common/models";
@@ -90,21 +90,16 @@ export const ConfirmModalDialog: FC<{ id: ID }> = ({ id }) => {
             >
                 <form className="buttons-container" ref={formRef} onSubmit={handleCheckDoc}>
                     {
-                        status === 'approved' ? (
-                            <TextFieldController
-                                control={control}
-                                name={DOC_NAME}
-                                label={t('title')}
-                                placeholder={t("title")}
-                            />) : (
-                            <TextFieldController
-                                inputCompound="TextArea"
-                                control={control}
-                                name={DOC_COMMENT}
-                                label={t('reject-commit')}
-                                placeholder={t("reject-commit")}
-                            />
-                        )
+                        status === 'approved' ? (<>{t('accept_confirmation_message')}</>)
+                            : (
+                                <TextFieldController
+                                    inputCompound="TextArea"
+                                    control={control}
+                                    name={DOC_COMMENT}
+                                    label={t('reject-commit')}
+                                    placeholder={t("reject-commit")}
+                                />
+                            )
                     }
                     {contextHolder}
                 </form>
