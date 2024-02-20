@@ -2,15 +2,13 @@ import { message } from "antd";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { ENDPOINT_INCOMING } from "../endpoints";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { DocumentSchema } from "../schema";
 import { IDocumentsSave } from "../models";
 import { useAppDispatch } from "../../../store";
 import { onRegDocuments } from "../thunks";
 
 export const useConfirmModal = () => {
     const defaultValue = {};
-    const { reset, control, handleSubmit, setValue, watch, formState: { isSubmitting } } = useForm<IDocumentsSave>({
+    const { reset, control, handleSubmit, setValue, formState: { isSubmitting } } = useForm<IDocumentsSave>({
         defaultValues: defaultValue,
         // resolver: yupResolver(DocumentSchema),
         mode: 'onBlur'

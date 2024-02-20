@@ -9,14 +9,14 @@ import { notificationSlice } from '../notification/slices';
 const createAxiosInstance = (config: AxiosRequestConfig) => {
   const axiosInstance = axios.create(config) as AxiosInstance;
 
-  axiosInstance.interceptors.request.use((config: AxiosConfig) => {
+  axiosInstance.interceptors.request.use((config: any) => {
     if (!config.url) {
       return config;
     }
 
     const currentUrl = new URL(config.url, config.baseURL);
 
-    Object.entries(config.pathParams || {}).forEach(([k, v]: [string, string]) => {
+    Object.entries(config.pathParams || {}).forEach(([k, v]: [any, any]) => {
       currentUrl.pathname = currentUrl.pathname.replace(
         `:${k}`,
         Array.isArray(v) ? v.join(",") : encodeURIComponent(v)

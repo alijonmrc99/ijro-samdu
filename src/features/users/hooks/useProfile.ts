@@ -1,4 +1,3 @@
-import { yupResolver } from "@hookform/resolvers/yup"
 import { useForm } from "react-hook-form"
 import { IUser } from "../models"
 import { message } from "antd";
@@ -11,7 +10,6 @@ export const useProfile = () => {
     const [isLoading, setIsLoading] = useState(false)
     const { handleSubmit, setValue, control, register } = useForm<IUser>({
         mode: 'onBlur',
-        // resolver: yupResolver()
     });
 
     const [messageApi, contextHolder] = message.useMessage();

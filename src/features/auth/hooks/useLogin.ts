@@ -17,7 +17,7 @@ const httpApi = new HttpApi;
 export const useLogin = () => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
-    const { register, control, formState: { errors }, handleSubmit, setValue } = useForm({
+    const { register, control, handleSubmit, setValue } = useForm({
         defaultValues: {
             [AUTH_FIELD_USER_NAME]: '',
             [AUTH_FIELD_PASSWORD]: '',

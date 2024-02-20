@@ -1,6 +1,9 @@
-import { AxiosPromise, AxiosRequestConfig, AxiosStatic } from 'axios';
+import { AxiosPromise, AxiosRequestConfig, AxiosStatic, AxiosRequestHeaders } from 'axios';
+
+
 
 export type AxiosConfig = {
+    AxiosRequestHeaders: AxiosRequestHeaders,
     pathParams?: { [key: string]: string };
     formData?: boolean;
 } & AxiosRequestConfig;

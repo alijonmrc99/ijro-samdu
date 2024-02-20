@@ -2,7 +2,7 @@ import { ID } from "../../../common/models/baseTypes";
 import { IRole } from "../../auth/models";
 
 export interface IUser {
-    id: ID,
+    id?: ID,
     fullName: string,
     username: string,
     password: string,
@@ -12,7 +12,7 @@ export interface IUser {
 }
 
 export interface IUserSend {
-    id: ID,
+    id?: ID,
     full_name: string,
     username: string,
     password: string,

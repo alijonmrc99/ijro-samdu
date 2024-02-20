@@ -37,6 +37,7 @@ export const TextFieldController: FC<TextFieldControllerProps> = ({
     const ControlledInput = inputCompound
         ? (Input[inputCompound] as CompoundedComponent)
         : Input;
+
     return (
         <Controller
             name={name}
@@ -44,7 +45,8 @@ export const TextFieldController: FC<TextFieldControllerProps> = ({
             render={({ field: { ...fieldProps }, fieldState: { error } }) => (
                 <Space style={{ width: '100%' }} size={'small'} direction={'vertical'}>
                     {label && <label className="controller-label">{label}</label>}
-                    <ControlledInput {...{ ...props, ...fieldProps }} type="default" />
+                    <ControlledInput
+                        {...{ ...props, ...fieldProps }} type="default" />
                     <small style={{ color: "red" }}>{error?.message ? t(error.message) : null}</small>
                 </Space>
             )}

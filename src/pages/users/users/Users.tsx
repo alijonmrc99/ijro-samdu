@@ -39,6 +39,7 @@ export const Users: FC = () => {
             dispatch(fetchUsers({ ...pagination, ...filter }))
         }).finally(() => setIsDeleting(false))
     };
+
     const onRestore = (id: ID) => {
         setIsDeleting(true);
         http.post(`${ENDPOINT_USERS}/${id}/${ENDPOINT_RESTORE}`, {}).then(_ => {

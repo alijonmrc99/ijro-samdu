@@ -16,7 +16,7 @@ export const FinancialOrder: FC = () => {
     const { data } = useAppSelector(state => state.appeal)
 
     useEffect(() => {
-        setPageTitle(data?.acceptedDateAndIndex || "");
+        setPageTitle(data?.indexAndCreatedAt || "");
     }, [data])
 
     useEffect(() => {
@@ -27,10 +27,10 @@ export const FinancialOrder: FC = () => {
     return (
         <div className="pages">
             <Helmet>
-                <title>{data?.acceptedDateAndIndex || t("create")}</title>
+                <title>{data?.indexAndCreatedAt || t("create")}</title>
             </Helmet>
             <ContentHeader hasBackAction={true}>
-                <MainBreadcrumb lastItem={{ key: "documnet", title: data?.acceptedDateAndIndex || t('create') }} />
+                <MainBreadcrumb lastItem={{ key: "documnet", title: data?.indexAndCreatedAt || t('create') }} />
             </ContentHeader>
             <div className="pages__content doc-content" >
                 <FinancialOrdersForm />

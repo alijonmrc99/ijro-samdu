@@ -5,7 +5,6 @@ import { AUTH_FIELD_PASSWORD, AUTH_FIELD_USER_NAME } from "../../constants";
 import { useTranslation } from "react-i18next";
 import './style.scss'
 import { LoadingOutlined } from "@ant-design/icons";
-import { SelectContreoller } from "../../../../common/inputs/select-conroller";
 export const LoginForm: FC = () => {
     const { t } = useTranslation()
     const { handleLogin, isLoading, control, contextHolder } = useLogin()

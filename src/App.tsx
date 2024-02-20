@@ -6,15 +6,15 @@ import { useRoutes } from 'react-router-dom'
 import { useAppSelector } from './store'
 
 
-export const filterByPermission = (roles: RoleTypeEnums[], items: RouteObjectType[]) => {
+const filterByPermission = (roles: RoleTypeEnums[], items: RouteObjectType[]) => {
   return items.map(item => {
     if (item.children?.length) {
-      return {
+      return ({
         ...item,
-        children: item.children.filter(child => roles.some(role => child?.roles?.includes(role) || !child.roles?.length))
-      }
+        children: item.children.filter(child => roles.some(role => child?.roles?.includes(role)) || !child.roles?.length),
+      })
     } else {
-      return items
+      return item
     }
   })
 }

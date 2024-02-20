@@ -64,6 +64,21 @@ export const Filter: FC = () => {
         reset()
     }, [filter.status])
 
+    const filterValues = (object: any) => {
+        for (const key in object) {
+            for (const childKey in object[key]) {
+                if (!object[key][childKey]) {
+                    delete object[key][childKey]
+                }
+            }
+            if (Object.values(object[key]).every(value => !value)) {
+                delete object[key]
+            }
+        }
+        return object
+    }
+
+
 
     const onSubmit = (value: IInnerFilter) => {
         delete value.createdAt?.begin;
@@ -71,14 +86,10 @@ export const Filter: FC = () => {
 
         const newState = { ...filter, ...value };
 
-        Object.entries(newState).map(([k, v]: [string, any]) => {
-            if (Object.values(v)[0]?.length === 0) {
-                delete newState[k];
-            }
-        });
+
 
         setFilter({
-            ...newState
+            ...filterValues(newState)
         })
     }
 
