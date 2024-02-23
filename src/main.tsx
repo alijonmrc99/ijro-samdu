@@ -3,7 +3,7 @@ import App from './App.tsx'
 import './index.css'
 import { Provider } from 'react-redux'
 import { store } from './store'
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import './i18n';
 import 'antd-css-utilities/utility.min.css';
 import { SidebarProvider } from './common/providers/sidebar.provider.tsx'
@@ -14,7 +14,7 @@ import { FilterProvider } from './common/providers/filter.provider.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
-    <BrowserRouter>
+    <HashRouter>
       <ConfigProvider theme={{
         token: {
           fontFamily: `"Poppins", "Open sans" `,
@@ -31,7 +31,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           </PageTitleProvider>
         </SidebarProvider>
       </ConfigProvider>
-    </BrowserRouter>
+    </HashRouter>
   </Provider>
 
 )
