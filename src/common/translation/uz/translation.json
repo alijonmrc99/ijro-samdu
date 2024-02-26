@@ -95,5 +95,8 @@
     "inner_appeal": "Prof-O'qituvchilari, xodimlari va talabalaridan kelgan murojatlar",
     "financial_order": "Xizmat safarlari va moliyaviy buyruqlarni qayd qilish",
     "restore_user_confirm": "Siz haqiqatdan ham foydalanuvchini tiklamochimisiz",
-    "accept_confirmation_message": "Siz haqiqatdan ham ushbu hujjatni tasdiqlaysimi?"
+    "accept_confirmation_message": "Siz haqiqatdan ham ushbu hujjatni tasdiqlaysimi?",
+    "performer": "Ijro etuvchi",
+    "placeholder_performer": "F.I.SH, lavozimi",
+    "phone_number": "Ijrochining telefon raqami"
 }

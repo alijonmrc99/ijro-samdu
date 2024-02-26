@@ -10,11 +10,13 @@ interface IContent {
     contentText: string,
     status: "seen" | "approved" | "rejected" | null,
     name: string,
-    user: string
+    user: string,
+    performer?: string,
+    phone_number?: string,
     job: string,
 }
 
-export const DocumentView: FC<IContent> = ({ contentText, status, name, user, job }) => {
+export const DocumentView: FC<IContent> = ({ contentText, status, name, user, job, performer, phone_number }) => {
 
     return (
         <div className="doc-view-container">
@@ -68,6 +70,10 @@ export const DocumentView: FC<IContent> = ({ contentText, status, name, user, jo
                 </Col>
                 <Col span={6}><p>{user}</p></Col>
             </Row>
+            <div className="bottom-text">
+                <p>Ijrochi: {`${performer}`}</p>
+                <p>Tel.: {`${phone_number}`}</p>
+            </div>
 
         </div >
     )

@@ -2,7 +2,7 @@ import React from "react"
 
 export interface IInnerFilter {
     isSent?: {
-        eq?: boolean,
+        eq?: number,
         neq?: boolean
     },
     status?: {

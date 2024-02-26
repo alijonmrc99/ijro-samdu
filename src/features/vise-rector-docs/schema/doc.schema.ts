@@ -4,5 +4,7 @@ import { MSG_ERROR_REQIURED_FIELD } from '../../../common/constants/error.consta
 
 export const DocumentSchema = yup.object().shape({
     [DOC_TITLE]: yup.string().required(MSG_ERROR_REQIURED_FIELD),
+    ['performer']: yup.string().required(MSG_ERROR_REQIURED_FIELD),
+    ['phone_number']: yup.string().required(MSG_ERROR_REQIURED_FIELD),
     [DOC_BODY]: yup.string().required(MSG_ERROR_REQIURED_FIELD),
 });

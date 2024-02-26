@@ -48,7 +48,7 @@ export const RegDocument: FC = () => {
             <div className="pages__content doc-content" >
                 {
                     isLoading ? <Spin tip="loading" >__</Spin> :
-                        <DocumentView job={data?.user.job || ""} user={data?.user.fullName || ""} name={data?.name || ""} status={data?.status || null} contentText={data?.body || ""} />
+                        <DocumentView phone_number={data?.phoneNumber || ""} performer={data?.performer || ""} job={data?.user.job || ""} user={data?.user.fullName || ""} name={data?.name || ""} status={data?.status || null} contentText={data?.body || ""} />
                 }
             </div>
             {

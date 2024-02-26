@@ -14,9 +14,11 @@ export const DocumentForm: FC = () => {
 
     useEffect(() => {
         if (doc) {
-            setValue('body', doc.body)
-            setValue('title', doc.title),
-                setValue('id', doc.id)
+            setValue('title', doc.title);
+            setValue('phone_number', doc.phoneNumber);
+            setValue('performer', doc.performer);
+            setValue('body', doc.body);
+            setValue('id', doc.id);
         }
     }, [doc])
 
@@ -28,6 +30,14 @@ export const DocumentForm: FC = () => {
                         name={DOC_TITLE}
                         label={t('title')}
                         placeholder={t('title')} />
+                    <TextFieldController control={control}
+                        name={'performer'}
+                        label={t('performer')}
+                        placeholder={t('placeholder_performer')} />
+                    <TextFieldController control={control}
+                        name={'phone_number'}
+                        label={t('phone_number')}
+                        placeholder={t('phone_number')} />
                     <Editor hasValue={doc?.body} setValue={setValue} />
                 </div>
                 {contextHolder}

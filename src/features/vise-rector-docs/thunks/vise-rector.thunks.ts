@@ -6,8 +6,6 @@ import { IResponse, IPageable } from '../../../common/models';
 const httpApi = new HttpApi();
 export const onVRDocuments = createAsyncThunk('doc/action',
     async (payload: { route: string, values: IDocumentsSend }, { rejectWithValue }) => {
-        console.log(payload);
-
         try {
             return await httpApi.post(payload.route, payload.values)
         } catch (error) {

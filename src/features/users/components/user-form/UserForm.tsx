@@ -57,6 +57,7 @@ export const UserForm: FC = () => {
 
                     <div>
                         <SelectContreoller
+                            disabled={user?.job ? true : false}
                             style={{ width: "100%" }}
                             setValue={setValue}
                             control={control}

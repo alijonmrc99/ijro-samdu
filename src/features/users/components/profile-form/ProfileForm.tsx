@@ -13,7 +13,7 @@ export const ProfileForm: FC = () => {
 
     useEffect(() => {
         if (me) {
-            setValue('fullName', me.fullName)
+            setValue('full_name', me.fullName)
             setValue('username', me.username)
             setValue('job', me.job)
         }
@@ -22,6 +22,7 @@ export const ProfileForm: FC = () => {
     useEffect(() => {
         setValue('password', "")
     }, [isLoading])
+
     return (
         <div className="document-form">
             <form onSubmit={hadleUser}>

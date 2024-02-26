@@ -7,6 +7,8 @@ export interface IDocuments {
     isSent: boolean,
     status: "seen" | "approved" | "rejected" | null,
     name: string,
+    performer: string,
+    phoneNumber: string,
     comments: { text: string }[],
     user: {
         fullName: string,
@@ -18,6 +20,8 @@ export interface IDocumentsSend {
     id?: ID,
     "_method"?: string,
     title: string,
+    performer: string,
+    phone_number: string,
     body: string,
 }
 

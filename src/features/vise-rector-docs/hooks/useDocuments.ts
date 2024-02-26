@@ -39,16 +39,12 @@ export const useDocuments = () => {
         setIsLoading(true);
 
         if (values.id) {
-            console.log(values.id);
 
             values["_method"] = "PUT";
             dispatch(onVRDocuments({ values: values, route: `${ENDPOINT_DOCUMENTS}/${values.id}` })).unwrap()
                 .then((responseValues: any) => {
-                    console.log(responseValues);
-
                     if (responseValues.success) {
-                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/${values.id}`)
-                        // setOnSetSuccess(true);
+                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/${values.id}`);
                     }
                 })
                 .catch(handleErrors)
@@ -58,15 +54,12 @@ export const useDocuments = () => {
             dispatch(onVRDocuments({ values: values, route: `${ENDPOINT_DOCUMENTS}` })).unwrap()
                 .then((responseValues: any) => {
                     if (responseValues.success) {
-                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/`)
-                        // setOnSetSuccess(true);
+                        navigate(`${ROUTE_DASHBOARD}/${ROUTE_DOCUMENTS}/${responseValues?.data.id}`);
                     }
                 })
                 .catch(handleErrors)
                 .finally(() => { setIsLoading(false) })
         }
-
-
     };
 
     const handleLogin = handleSubmit(onSubmit);

@@ -4,6 +4,7 @@ import { IRole } from "../../auth/models";
 export interface IUser {
     id?: ID,
     fullName: string,
+    full_name: string,
     username: string,
     password: string,
     _method?: string,

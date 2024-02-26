@@ -62,6 +62,10 @@ h1 {
     display: none !important;
   }
 
+  .bottom-text {
+    bottom: 0px !important;
+  }
+
 
   .doc-view-container {
     width: 100%;
