@@ -19,7 +19,6 @@ export const vrDocSlice = createSlice({
     initialState,
     reducers: {
         emptyState: (state) => {
-            console.log(1);
             return ({ ...state, data: null })
         }
     },

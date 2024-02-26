@@ -60,7 +60,8 @@
 
     .ql-align-justify {
         text-align: justify;
-        margin: 0.5rem 0;
+        line-height: 1.2;
+        margin: 0;
 
         &::first-letter {
             display: inline-block;

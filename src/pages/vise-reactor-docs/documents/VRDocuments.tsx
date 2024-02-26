@@ -33,7 +33,6 @@ export const Documents: FC = () => {
     const { filter } = useContext(FilterContext) as IFilter;
 
 
-    console.log(user?.roles.map(role => role.name).includes(RoleTypeEnums.ROLE_SECRETARY));
     useEffect(() => {
         // If user is Register change Route
 
