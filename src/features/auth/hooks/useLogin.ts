@@ -29,7 +29,7 @@ export const useLogin = () => {
 
     const [messageApi, contextHolder] = message.useMessage();
     const handleErrors = (errors: any) => {
-        // console.log(errors);
+        console.log(errors);
 
         messageApi.open({
             type: 'error',
@@ -50,6 +50,7 @@ export const useLogin = () => {
     };
 
     const handleLogin = handleSubmit(onSubmit);
+
     return { control, register, setValue, isLoading, handleLogin, contextHolder };
 
 };
@@ -57,12 +58,11 @@ export const login = (body: ILoginQuery): Promise<ILogin> => {
     const loginData = new URLSearchParams();
     loginData.append('username', body.username);
     loginData.append('password', body.password);
-    // console.log();
 
 
     return httpApi.post(ENDPOINT_AUTH_LOGIN, loginData.toString(), {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         }
-    }).then((response) => response)
+    })
 }

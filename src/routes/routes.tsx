@@ -27,7 +27,7 @@ export type RouteObjectType = IndexRouteObject |
 export const routes = (): RouteObjectType[] => {
     // const { data: user } = useAppSelector(state => state.me)
     return [
-        // Route chech documents
+        // Route check documents
         {
             path: ROUTE_CHECK_DOC,
             element: <Outlet></Outlet>,

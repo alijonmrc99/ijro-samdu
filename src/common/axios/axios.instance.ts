@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 
 import { store } from '../../store';
 import { axiosConfig } from './axios.config';
-import { AxiosConfig, AxiosInstance } from './axios.types';
+import { AxiosInstance } from './axios.types';
 import { BASE_AUTH_TOKEN, BASE_AUTH_USER, ROUTE_LOGIN } from '../constants';
 import { notificationSlice } from '../notification/slices';
 

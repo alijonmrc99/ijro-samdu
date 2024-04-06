@@ -18,6 +18,7 @@ export const LoginForm: FC = () => {
                         name={AUTH_FIELD_USER_NAME}
                         label={t('username')}
                         placeholder={t('username')} />
+
                     <TextFieldController control={control}
                         className="login-input"
                         name={AUTH_FIELD_PASSWORD}
