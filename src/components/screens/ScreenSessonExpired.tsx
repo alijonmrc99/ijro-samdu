@@ -9,6 +9,7 @@ export const ScreenSessionExpired: FC = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { t } = useTranslation()
+
     const handleLogout = () => {
         dispatch(meSlice.actions.emptyState());
         localStorage.removeItem(BASE_AUTH_TOKEN);

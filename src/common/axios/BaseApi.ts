@@ -1,5 +1,6 @@
-import { ENDPOINT_ROOT } from '../constants';
-import { axiosInstance } from './axios.instance';
+;
+import { ENDPOINT_ROOT } from "../constants";
+import { axiosInstance } from "./axios.instance";
 
 export class BaseApi {
     httpClient;
@@ -12,4 +13,4 @@ export class BaseApi {
     url(path: string) {
         return `${this.baseUrl}${path}`
     }
-}
+};

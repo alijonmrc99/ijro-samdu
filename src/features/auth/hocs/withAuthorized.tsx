@@ -13,6 +13,8 @@ export const withAuthorized = (ComposedComponet: ComponentType) =>
         }
 
         if (!isAuthorized) {
+            console.log(isAuthorized, !!token);
+
             return !!token ? <ScreenSessionExpired /> : null;
         }
 
